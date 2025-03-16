@@ -16,11 +16,25 @@ This project provides tools to:
 
 ## Components
 
-### 1. Content Storage
+### 1. Evaluation Application
+
+The `main.py` script provides a web interface for testing and evaluating search results:
+
+```
+python main.py
+```
+
+Features:
+- Interactive search interface with multiple retrieval methods
+- Relevance rating system (1-5 scale)
+- Notes and annotations for search results
+- Historical evaluation tracking and comparison
+
+### 2. Content Storage
 
 - `rendered_posts/`: Contains blog posts from isaacflath.com in both HTML and Markdown formats.  `create_search_index.py` uses these, and they are provided for your own experimentation.
 
-### 2. Search Index Creation
+### 3. Search Index Creation
 
 The `create_search_index.py` script processes blog posts and creates search indices:
 
@@ -35,7 +49,7 @@ Outputs:
 - `blog_search.db`: LanceDB database containing vector embeddings
 - `bm25_corpus.pkl`: Pickled corpus for BM25 keyword search
 
-### 3. Search Functionality
+### 4. Search Functionality
 
 The `search_blog.py` script provides a command-line interface for searching blog posts:
 
@@ -53,24 +67,12 @@ Search methods:
 - `hybrid`: Combined vector and keyword search
 - `rerank`: Two-stage retrieval with cross-encoder reranking
 
-### 4. Evaluation Application
 
-The `eval_app.py` script provides a web interface for testing and evaluating search results:
-
-```
-python eval_app.py
-```
-
-Features:
-- Interactive search interface with multiple retrieval methods
-- Relevance rating system (1-5 scale)
-- Notes and annotations for search results
-- Historical evaluation tracking and comparison
 
 ## Getting Started
 
 1. Clone the repository
 2. Install dependencies `pip install -r requiements.txt`
-3. Use python `eval_app.py` and navigate to `localhost:5001` to run the app.
+3. Use python `main.py` and navigate to `localhost:5001` to run the app.
 4. Run `create_search_index.py` to build search indices
 5. Use `search_blog.py` for command-line searching
