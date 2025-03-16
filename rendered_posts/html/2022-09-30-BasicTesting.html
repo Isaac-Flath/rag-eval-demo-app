@@ -1,0 +1,1879 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2022-09-30-BasicTesting.ipynb">
+             <meta property="og:title" content="Introduction To Statistical Testing">
+             <meta property="og:description" content="An introduction to Statistical Testing applied to Stock Trading">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Introduction To Statistical Testing">
+             <meta name="twitter:description" content="An introduction to Statistical Testing applied to Stock Trading">
+             <meta property="article:published_time" content="2022-09-30">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="Time Series">
+             <meta property="article:tag" content="Testing">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2022-09-30-BasicTesting.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/TimeSeries.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/TimeSeries.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Introduction To Statistical Testing</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">An introduction to Statistical Testing applied to Stock Trading</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#introduction-to-testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Introduction to Testing</a><a href="#background" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Background</a><a href="#what-data-should-you-use-for-testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What data should you use for testing?</a><a href="#training-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Training Set</a><a href="#validation-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Validation Set</a><a href="#test-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Test Set</a><a href="#what-metric-should-you-use-for-testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What metric should you use for testing?</a><a href="#dollars" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Dollars</a><a href="#percent-return" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Percent Return</a><a href="#log-return" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Log Return</a><a href="#statistical-tests" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Statistical Tests</a><a href="#motivation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Motivation</a><a href="#bootstrapping" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Bootstrapping</a><a href="#the-test-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Test Set</a><a href="#homework-for-further-learning" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Homework for Further Learning</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="introduction-to-testing">Introduction to Testing</span></h1>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastcore.all import *
+from IPython.display import clear_output
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from polygon import RESTClient
+from utils import view_source_code, get_dollars
+from datetime import datetime, timedelta, date
+import math, time</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">path = Path(&#x27;../data&#x27;)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="background">Background</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">In <a href="../TimeSeries/SimpleTimeSeries.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">a previous post</a> we created models and created actions we want to take for multiple approaches for stock trading.  The question now is, how do we know if they are profitable?  How should we measure them?  How do we know if we simply got lucky, or if they are reliable?</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Testing is the most important part of the process.  If done well you have a good way to determine what strategies should be implemented, and if done poorly you run the risk of implementing non-profitable strategies.  I believe you should strive to never sacrifice testing principles because effective testing is your <strong>only</strong> objective indication to whether you are doing something useful or not.  Without effective testing you are "flying blind".</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This post will lay the groundwork and cover the basics of testing.  The goal of this post is to introduce concept and the three core things that need to be carefully considered for effective testing.</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">What data should you use for testing?</li>
+<li class="leading-relaxed pl-2">What metric should you use for testing?</li>
+<li class="leading-relaxed pl-2">What test should you use?</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We are going to walk through the concepts to see each step and understand the importance.</p>
+</div></div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="what-data-should-you-use-for-testing">What data should you use for testing?</span></h2>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">The first question we have to ask is what data to we use for testing?  Ideally we have 3 subsets of our data (training, validation, and test).  Let's go through what they are used for and why they are important.</p>
+</div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="training-set">Training Set</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">The training set is unique because it has no restrictions on what we can do with it.  We can look at any piece of data in it.  We can normalize data using values in the training set.  We can train machine learning models on the training set.  This is often the largest subset of our data.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This training set is pretty explanatory - we use this for understanding our data and developing our model.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We can load it in using the same method as we did in <a href="../TimeSeries/SimpleTimeSeries.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">the previous post</a></p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">raw = pd.read_csv(path/&#x27;eod-quotemedia.csv&#x27;,parse_dates=[&#x27;date&#x27;])
+df = raw.pivot(index=&#x27;date&#x27;, columns=&#x27;ticker&#x27;,values=&#x27;adj_close&#x27;)
+train = df.loc[:pd.Timestamp(&#x27;2017-1-1&#x27;)]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="validation-set">Validation Set</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">The goal of creating a trading strategy is to have it perform well on data that it was not developed using.  We may use data from 2015 - 2020 to create a trading strategy, but the goal is to apply it to 2021 and 2022 to make a profit.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Because we want our model to perform on <em>unseen</em> data, we create some restriction to how we use the validation set.  We do not train any models on it, and we do not use statistics or data from the validation set when creating our model.  It's data our model has never seen.  The validation set is something we can only use to see how well our strategy or model performs.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The entire purpose of the validation set is to give us unseen data to evaluate our approaches on.  By having this separate validation set we can more accurately determine what works and what doesn't.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We can get our validation set using the same method as we did in the <a href="../TimeSeries/SimpleTimeSeries.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">previous post</a></p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">valid = df.loc[pd.Timestamp(&#x27;2017-1-1&#x27;):]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="test-set">Test Set</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">The Test set is very similar to the validation set, but it takes things a step further.  It has further restrictions in that is is the final model step before deployment.  The main difference is how often you can use it.  For the validation set, you can test anything on the validation set as many times as you want.  For the test set you only get to look at the test set once for your particular approach.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For example, you may try 300 different approaches and parameter changes to your strategy to see what works best.  You can check the profitability on each of them using the validation set.  Then once you have chosen a strategy, you do a final check to ensure it also performs on the test set.  Once you have done that you need a new test set or your project is over.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The reason this is important is that you want to ensure that you didn't get lucky and find a configuration out of your 300 attempts that just happens to work on the validation set but doesn't work elsewhere.  If you try enough combinations eventually you will find something that works, but the test set gives you confidence that your model works because it's a good strategy and not that you just tried enough things to find something that works on coincidence.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Many people re-use or have more lax rules on the test set.  Many people do not use one at all.  In this text I am laying out the ideal state I believe we should strive for.  If you choose to loosen these restrictions on the test set or do without one, I would strongly encourage you to think hard about it.</p>
+</blockquote>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">To get our test set, we could have split our initial data into 3.  Because we are a bit concerned about survivorship bias, let's pull a new test set that uses recent data to and test how these strategies would perform over the last year and a half.</p>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We need to get adjusted close price.  There are a variety of services that have APIs to pull from, I have picked polgygon to use here because it's free for what we need.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">client = RESTClient(polygon_free_api_key)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">if not (path/&#x27;polytest_eod-quotemedia.csv&#x27;).exists():
+    dfs = L()
+    errors = L()
+    for ticker in valid:
+        try:
+            aggs = client.get_aggs(ticker, 1, &quot;day&quot;, &quot;2021-01-01&quot;, &quot;2022-05-31&quot;,adjusted=True)
+            close = {ticker:[o.close for o in aggs]}
+            
+            # Convert millisecond time stamp to date
+            date = L(o.timestamp/1e3 for o in aggs).map(datetime.fromtimestamp)
+            dfs.append(pd.DataFrame(close,index=date))
+        except:
+            errors.append(aggs)
+            print(f&quot;FAILURE: {ticker}&quot;)
+        
+        # Free api gives 5 API calls / minute - so we need to pace our api calls!
+        time.sleep(60/5)
+    df_test = pd.concat(dfs,axis=1)
+    df_test.to_csv(path/&#x27;polytest_eod-quotemedia.csv&#x27;)
+
+df_test = pd.read_csv(path/&#x27;polytest_eod-quotemedia.csv&#x27;,index_col=0,parse_dates=True)
+df_test.index.name=&#x27;date&#x27;
+df_test.columns.name=&#x27;ticker&#x27;</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df_test.iloc[:5,:5]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">ticker</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">A</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">AAL</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">AAP</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">AAPL</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">ABBV</th>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">date</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2021-01-04</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">118.64</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">15.13</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">157.34</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">129.41</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">105.41</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2021-01-05</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">119.61</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">15.43</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">157.17</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">131.01</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">106.50</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2021-01-06</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">122.89</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">15.52</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">166.25</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">126.60</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">105.58</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2021-01-07</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">126.16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">15.38</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">167.67</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">130.92</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">106.71</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2021-01-08</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">127.06</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">15.13</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">170.06</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">132.05</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">107.27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="what-metric-should-you-use-for-testing">What metric should you use for testing?</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we understand what data we will use for testing, let's start figuring out how well our first model from the <a href="../TimeSeries/SimpleTimeSeries.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">previous post performs</a></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The next step is to figure out an appropriate metric.  There are a variety of ways to measure this and we will walk through a few first steps in this section</p>
+</div></div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="dollars">Dollars</span></h3>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's take our first model from <a href="../TimeSeries/SimpleTimeSeries.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">the previous post</a> and measure how well it does in terms of dollars.  After all dollars is what we want to make, so it seems like a reasonable starting point.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from SimpleTimeSeries import get_momentum_actions</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">valid_mom = get_momentum_actions(valid,28,0.08).reset_index()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions = pd.melt(valid_mom,id_vars=&#x27;date&#x27;,value_name=&#x27;action&#x27;)
+transactions = transactions.loc[transactions.action != &#x27;&#x27;]
+transactions.columns = [&#x27;open_date&#x27;] + L(*transactions.columns[1:])</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions.head()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">open_date</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">ticker</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">11</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-02</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">13</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-04</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">14</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-07</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we have a dataframe with all the positions we are going to take and when to take them.  But we are missing one crucial piece!  When should we close those positions.  We cannot make money by simplying buying a stock (ignoring dividends for now) - the profit comes when we actually close the position and sell the stock.  Let's close the position 28 days after opening.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions[&#x27;close_date&#x27;] = transactions.open_date + timedelta(28)
+transactions = transactions.loc[transactions.open_date &lt; (transactions.open_date.max() - timedelta(28))]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions.head()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">open_date</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">ticker</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">action</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">close_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-14</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-16</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">11</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-02</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-30</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">13</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-04</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-01</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">14</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-07</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Next we need to get the stock price on the date of our initial action when we open to position, as well as when we close our position.  Let's start with the price on the day we open.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df_valid_long = valid.melt(var_name=&#x27;ticker&#x27;,value_name=&#x27;adj_close&#x27;,ignore_index=False).reset_index()
+df_valid_long.columns = [&#x27;dte&#x27;,&#x27;ticker&#x27;,&#x27;adj_close&#x27;]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions[&#x27;open_date&#x27;] = pd.to_datetime(transactions.open_date)
+df_valid_long[&#x27;dte&#x27;]      = pd.to_datetime(df_valid_long.dte)
+pd.merge(left=transactions,left_on=[&#x27;open_date&#x27;,&#x27;ticker&#x27;],
+         right=df_valid_long,right_on=[&#x27;dte&#x27;,&#x27;ticker&#x27;],
+         how=&#x27;left&#x27;).head(10)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">open_date</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">ticker</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">action</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">close_date</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">dte</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">adj_close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">49.703267</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">1</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">50.147135</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-02</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-30</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-02</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">50.679775</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">3</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-04</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-01</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaT</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">4</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-07</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-04</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-07</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">50.512092</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">5</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-11</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-08</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaT</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">6</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-13</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">52.327016</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">7</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-18</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-04-15</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaT</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">8</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-05-24</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-06-21</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-05-24</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">58.568656</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">9</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-05-25</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-06-22</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-05-25</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">58.637875</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Uh oh - We have a join that isn't working correctly and get <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">NaT</code> and <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">NaN</code>!  We created our model assuming that we could make transactions any day we want, but the stock market is not open every day.  There are limitations to when we can trade openly in the stock market we need to start accounting for.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When we trade using the adjusted close price we added a day because we wouldn't be able to actually place the trade until the following day.  If that day ended up being a Saturday in reality we would have to wait until Monday to place that trade (assuming that monday isn't a holiday).</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's fix that by getting the next available trading day for each date.  Because we know this same thing applies to our <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">close_date</code>, we will fix it there as well.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def get_next_trading_day(dte,unique_dates):
+    _dates_dict = unique_dates.val2idx()
+    for i in range(10):
+        out = _dates_dict.get(dte.date()+timedelta(i),False) 
+        if out != False: return unique_dates[out]
+    raise Exception</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">f = bind(get_next_trading_day,unique_dates=L(*valid.index.date))
+
+transactions[&#x27;open_date&#x27;] = transactions.open_date.apply(f)
+transactions[&#x27;close_date&#x27;] = transactions.close_date.apply(f)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions[&#x27;open_date&#x27;] = pd.to_datetime(transactions.open_date)
+transactions[&#x27;close_date&#x27;] = pd.to_datetime(transactions.close_date)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we can merge in the price correctly!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions = pd.merge(left=transactions,left_on=[&#x27;open_date&#x27;,&#x27;ticker&#x27;],
+                         right=df_valid_long,right_on=[&#x27;dte&#x27;,&#x27;ticker&#x27;],
+                          how=&#x27;left&#x27;)
+transactions = pd.merge(left=transactions,left_on=[&#x27;close_date&#x27;,&#x27;ticker&#x27;],
+                         right=df_valid_long,right_on=[&#x27;dte&#x27;,&#x27;ticker&#x27;],
+                          how=&#x27;left&#x27;,
+                          suffixes=(&#x27;_atOpen&#x27;,&#x27;_atClose&#x27;))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions[[&#x27;ticker&#x27;,&#x27;action&#x27;,
+             &#x27;dte_atOpen&#x27;,&#x27;adj_close_atOpen&#x27;,
+             &#x27;dte_atClose&#x27;,&#x27;adj_close_atClose&#x27;]].head(3)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">ticker</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">action</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">dte_atOpen</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">adj_close_atOpen</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">dte_atClose</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">adj_close_atClose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">49.703267</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-14</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">51.498464</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">1</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-02-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">50.147135</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-16</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">52.327016</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">A</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Buy</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-02</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">50.679775</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2017-03-30</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">52.593336</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def f_committed(x):
+    if x.action in (&#x27;Buy&#x27;,&#x27;Short&#x27;): return x.adj_close_atOpen  
+    else: return 0
+transactions[&#x27;committed&#x27;] = transactions.apply(f_committed,axis=1)
+
+def f_revenue(x):
+    if x.action==&quot;Buy&quot;: return x.adj_close_atClose
+    else:               return x.adj_close_atOpen
+transactions[&#x27;revenue&#x27;] = transactions.apply(f_revenue,axis=1)
+
+def f_cost(x):
+    if x.action == &#x27;Buy&#x27;: return x.adj_close_atOpen  
+    else:                 return x.adj_close_atClose
+transactions[&#x27;cost&#x27;] = transactions.apply(f_cost,axis=1)
+
+transactions[&#x27;profit&#x27;] = transactions.revenue - transactions.cost</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">transactions[&#x27;committed&#x27;] = transactions.apply(f_committed,axis=1)
+transactions[&#x27;revenue&#x27;] = transactions.apply(f_revenue,axis=1)
+transactions[&#x27;cost&#x27;] = transactions.apply(f_cost,axis=1)
+transactions[&#x27;profit&#x27;] = transactions.revenue - transactions.cost</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">get_dollars(transactions[transactions.action==&#x27;Buy&#x27;].profit.sum()), \
+get_dollars(transactions[transactions.action==&#x27;Short&#x27;].profit.sum()), \
+get_dollars(transactions.profit.sum())</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(&#x27;$7457.36&#x27;, &#x27;$190.98&#x27;, &#x27;$7648.35&#x27;)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Great!  So according to our validation set we made a good chunk of profit (pre-tax).  We could buy/short in higher volumes (ie Buy = 10x buys, Short = 10x shorts) to make this profit larger.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">However, this really isn't enough information to determine whether that is a good idea of feasible.  I would love to loan someone 100 dollars if they would give me one-thousand dollars back a week later.  I would hate to loan someone 1,000,000 dollars on the promise that they would pay me 1,000,900 dollars back in 20 years.  The reward just wouldn't be worth the risk, and I can use that money better in a 20-year span than that.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's see if we can come up with a better metric that accounts for this.</p>
+</div></div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="percent-return">Percent Return</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Instead of measuring raw dollars, lets consider how much money (capital) we needed in order to make that 90 dollars profit.  To do this we need to keep track of our money more carefully than just looking at how much we made at the end.  Let's track out financials by day instead of by transaction o calculate this.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">I am using "committed" to be the amount we have invested + the amount leveraged.  For now, let's assume that we won't take out debt and borrow stocks (shorting) if we do not have the capital to cover the initial price we borrowed at</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df = pd.DataFrame()
+for cols in [[&#x27;open_date&#x27;,&#x27;committed&#x27;],
+             [&#x27;close_date&#x27;,&#x27;profit&#x27;],
+             [&#x27;close_date&#x27;,&#x27;revenue&#x27;],
+             [&#x27;open_date&#x27;,&#x27;cost&#x27;]]:
+    _tmp = transactions[cols].groupby(cols[0]).sum()
+    df = pd.merge(df,_tmp,how=&#x27;outer&#x27;,left_index=True,right_index=True)
+df.fillna(0,inplace=True)
+df.sort_index(inplace=True)
+df.sample(8)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">committed</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">profit</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">revenue</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-03-08</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">10584.689356</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.000000</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.000000</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">10583.600318</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-03-29</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">5225.468769</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">-93.792090</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">11510.549118</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">5250.575701</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-02-16</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">13205.019794</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.000000</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.000000</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">13187.821518</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-05-04</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">12577.980970</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">-17.387456</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">3561.027174</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">12536.763156</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-03-30</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">3812.650344</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">-42.581923</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">16811.036857</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">3830.179057</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-05-16</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">13842.232885</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">114.058575</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">4165.332503</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">13868.190505</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-05-01</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">6789.531992</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">154.664868</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">5354.190170</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">6754.560876</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2017-06-15</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.000000</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">203.997769</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">10639.412827</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we can easily look at when we had the most committed.  We are subtracting revenue because once we get money back we can reinvest rather than using new money.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">capital_needed = (df.committed.cumsum()-df.revenue.cumsum()).max()
+get_dollars(capital_needed)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">$274744.63</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">And of course our profit is still the same as we had before because we are just aggregating the data differently.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">💡 Tip</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This is the first time we are using the <a href="https://fastcore.fast.ai/test.html" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">fastcore's testing framework</a>.  It has several handy and easy to use testing functions, such as testing if 2 numbers are arbitrarily close (useful for floats).</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">test_close(transactions.profit.sum(),df.profit.sum())
+get_dollars(df.profit.sum())</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">$7648.35</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we see our capital needed and our profit, let's calculate a percent return</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">f&quot;Percent Return: {(df.profit.sum() / capital_needed) * 100:.2f}%&quot;</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">Percent Return: 2.78%</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="log-return">Log Return</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">More commonly rather than using the percent return we want to use the log return.  There are a lot of reasons they are advantageous to use, but for now we will cover one that is immediately useful to us.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Symmetry / Additive</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Percent Return
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Invest 100 dollars</li>
+<li class="leading-relaxed pl-2">Get 50% Return on investment 1 and reinvest</li>
+<li class="leading-relaxed pl-2">Get -50% Return on investment 2</li>
+<li class="leading-relaxed pl-2">End with <strong>75</strong> dollars</li>
+</ul>
+</li>
+<li class="leading-relaxed pl-2">Log Return
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Invest 100 dollars</li>
+<li class="leading-relaxed pl-2">Get 50% Return on investment 1 and reinvest</li>
+<li class="leading-relaxed pl-2">Get -50% Return on investment 2</li>
+<li class="leading-relaxed pl-2">End with <strong>100</strong> dollars</li>
+</ul>
+</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This property where a positive return + an equal-sized negative return = no return makes it much easier to look at returns and figure out if you are winning or losing.  Just add up all your log returns to get your overall log return.  You have to be much more careful with percent returns.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">pt = capital_needed + df.profit.sum()
+pt_1 = capital_needed
+log_return = math.log(pt/pt_1)
+f&quot;{math.log(pt/pt_1)*100:.2f}%&quot;</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">2.75%</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">As we calculate the log return we see we get a very similar value to our percent return, but it's not exactly the same.  The advantage of using the log return however is we can accurate get an estimated annualized return.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This is great because we can easily have everything thought of as an annualized return so that we have a common time frame to compare investment strategies more easily.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">time_period = (df.index.max().date() - df.index.min().date()).days</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">f&quot;{(log_return/time_period * 365)*100:.2f}%&quot;</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">7.37%</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we can just convert to normal return to compare very simply to S&amp;P 500 annual return</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">f&quot;{(np.exp(log_return/time_period * 365)-1)*100:.2f}%&quot;</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">7.65%</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Go ahead an look up S&amp;P 500 annual returns for each year online and compare.  How does this fare?</p>
+</div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="statistical-tests">Statistical Tests</span></h2>
+</div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="motivation">Motivation</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">If you bought fifty 1.50 dollar lottery tickets and won 10 million dollars in the lottery, what could you say about your chances to win?  Well let's calculate our rate of return.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">$$\frac{10,000,000 - 75}{75} = 133,332.33$$</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">So based on our calculations, the rate of return for playing the lottery is fantastic.  But we know that this doesn't really reflect reality or mean that it's a good safe investment strategy.  We know that you would've just gotten lucky.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">So how do we determine if our trading strategy is a good strategy, or we just got lucky this time?  This is where statistical testing comes in.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">I will cover the basics that I think are key, but if you'd like more detail and practice I reading <a href="https://www.lock5stat.com/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Statistics: Unlocking the Power of Data</a>.  Unlike most statistics books it is extremely applied and focused on data, with lots of real world examples.</p>
+</div></div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="bootstrapping">Bootstrapping</span></h3>
+</div>
+                 <div class="prose-section my-4"><h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Background</h4>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Statistical testing can be done be done using 2 general approaches.  The first is the classical approach with is the most widely known.  The second is through bootstrapping.  This post will focus on bootstrapping because in my opinion it is the first that should be learned.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Bootstrapping is less commonly accepted but is the more powerful and flexible of the two.  In bootstrapping you create a sampling distribution by by taking many samples and performing an experiment.  In traditional testing you use clever algebra to approximate a sampling distribution.  With todays computer you can almost always use bootstrapping and I believe it it the more powerful and flexible approach.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">With Bootstrapping you start with just the data and make no other assumptions about the data.  With classical methods you start with the data and some assumptions about the data in order to arrive at an answer.  If you make incorrect assumptions then you get an incorrect answer - and determining which assumptions are safe to make is not always trivial.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The idea of bootstrapping and the power of it has also been spoken of by many of the statistical greats for almost 100 years, much longer than it was feasible to do, <a href="https://www.lock5stat.com/Lock5Overview.pdf" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">as pointed out in this article</a>.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For example, that article points out that in 1936 Sir R.A. Fisher spoke about using this bootstrapping approach:</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Actually, the statistician does not carry out this very simple and very tedious process, but his conclusions have no justification beyond the fact that they agree with those which could have been arrived at by this elementary method.</p>
+</blockquote>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">However while these methods were tedious in 1936, they are trivial thanks to modern computers.  We no longer have to do clever algebraic tricks to approximate a sampling distribution - we can just create a sampling distribution.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">That said, I do believe it's good and useful to have the ability to use both approaches.  Luckily, traditional testing is just algebraic tricks to approximate what we will do here and so it will not be too hard to pick that up on top of bootstrapping.  In this section we will focus on Bootstrapping because in my opinion it is the one that should be learned first.</p>
+</div></div>
+                 <div class="prose-section my-4"><h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Bootstrap Test</h4>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">With any type of testing we need to understand what we are testing.  We are going to have 2 competing hypothesis.  The first in the <strong>null hypothesis</strong>.  The null hypothesis is what we assume to be true, until we have evidence otherwise.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">In the context of trading strategies we might make the hypothesis that our strategy will yield returns equal to that of randomly picking stocks.  If we randomly pick stocks we know that it will roughly match the market so that seems like a reasonable thing to want to beat.  The null hypothesis is important because our goal of testing is to determine whether we have sufficient evident to reject that null hypothesis.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The alternate hypothesis is what we are testing for.  For example, if the null hypothesis is that our strategy will yield returns equal that that of investing in random stocks the alternate hypothesis could be that our strategy will yield returns greater than if we were to invest in random stocks.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">First we need a few functions:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">A function to run our null hypothesis model (random)</li>
+<li class="leading-relaxed pl-2">A function to run the model we created and have been exploring throughout the post</li>
+<li class="leading-relaxed pl-2">A function to measure the statistic of each run (log return of the models)</li>
+</ul>
+</div></div>
+                 <div class="prose-section my-4"><div><h5>Null Hypothesis Model</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's design a Null Hypothesis.  There are many Null Hypothesis' you can choose, and one of the beauty of bootstrapping is that you can think about it very intuitively and design the experiment exactly how you want easier.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def run_random(input_df,buy_chance,short_chance,hold_time):
+    input_df_l = input_df.melt(var_name=&#x27;ticker&#x27;,value_name=&#x27;adj_close&#x27;,
+                                  ignore_index=False).reset_index()
+    
+    # Buy/Short stocks using random chance, probabilities to be passed as arguements
+    buys = input_df_l.loc[np.random.rand(input_df_l.shape[0])&lt;buy_chance].copy()
+    shorts = input_df_l.loc[np.random.rand(input_df_l.shape[0])&lt;short_chance].copy()
+
+    # Concatenate into 1 dataframe
+    buys[&#x27;action&#x27;] = &#x27;Buy&#x27;
+    shorts[&#x27;action&#x27;] = &#x27;Short&#x27;
+    trans = pd.concat([buys[[&#x27;date&#x27;,&#x27;ticker&#x27;,&#x27;action&#x27;]],
+                     shorts[[&#x27;date&#x27;,&#x27;ticker&#x27;,&#x27;action&#x27;]]])
+    
+    # Close the positions
+    trans[&#x27;close_date&#x27;] = trans.date + timedelta(hold_time)
+    trans = trans.loc[trans.date &lt; (trans.date.max() - timedelta(hold_time))]
+    
+    # Adjust dates for when market is open
+    f = bind(get_next_trading_day,unique_dates=L(*input_df.index.date))
+    
+    trans[&#x27;date&#x27;] = pd.to_datetime(trans.date.apply(f))
+    trans[&#x27;close_date&#x27;] = pd.to_datetime(trans.close_date.apply(f))
+    return trans</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h5>Alternate Hypothesis Model</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We also need a model that we are hoping performs well that we are trying to evaluate whether it is better than our random null hypothesis or not.  For this, we will just use the model we have been working on throughout the post.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def run_model(input_df,n_periods,threshold,hold_time):
+    valid_mom = get_momentum_actions(input_df,n_periods,threshold).reset_index()
+    trans = pd.melt(valid_mom,id_vars=&#x27;date&#x27;,value_name=&#x27;action&#x27;)
+    trans = trans.loc[trans.action != &#x27;&#x27;]
+    trans[&#x27;close_date&#x27;] = trans.date + timedelta(hold_time)
+    trans = trans.loc[trans.date &lt; (trans.date.max() - timedelta(hold_time))]
+
+    f = bind(get_next_trading_day,unique_dates=L(*input_df.index.date))
+    trans[&#x27;date&#x27;] = pd.to_datetime(trans.date.apply(f))
+    trans[&#x27;close_date&#x27;] = pd.to_datetime(trans.close_date.apply(f))
+    return trans</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h5>Calculate Returns</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Next, we need a function that can take our 2 different model outputs (for null and alternate hypothesis) and calculate the statistic we care about (log return).  We do this by drawing on our work earlier in the post.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def calculate_returns(trans,input_df):
+    input_df_l = input_df.melt(var_name=&#x27;ticker&#x27;,value_name=&#x27;adj_close&#x27;,
+                                  ignore_index=False).reset_index()
+    # Merge in stock prices
+    trans = pd.merge(left=trans,left_on=[&#x27;date&#x27;,&#x27;ticker&#x27;],
+                             right=input_df_l,right_on=[&#x27;date&#x27;,&#x27;ticker&#x27;],
+                              how=&#x27;left&#x27;)
+
+    trans = pd.merge(left=trans,left_on=[&#x27;close_date&#x27;,&#x27;ticker&#x27;],
+                             right=input_df_l,right_on=[&#x27;date&#x27;,&#x27;ticker&#x27;],
+                              how=&#x27;left&#x27;,
+                              suffixes=(&#x27;_atOpen&#x27;,&#x27;_atClose&#x27;))
+    trans = trans[[&#x27;ticker&#x27;,&#x27;action&#x27;,
+                   &#x27;date_atOpen&#x27; ,&#x27;adj_close_atOpen&#x27;,
+                   &#x27;date_atClose&#x27;,&#x27;adj_close_atClose&#x27;]]
+
+    # Calculate profit for each transaction
+    trans[&#x27;committed&#x27;] = trans.apply(f_committed,axis=1)
+    trans[&#x27;revenue&#x27;] = trans.apply(f_revenue,axis=1)
+    trans[&#x27;cost&#x27;] = trans.apply(f_cost,axis=1)
+    trans[&#x27;profit&#x27;] = trans.revenue - trans.cost
+
+    # Create Daily dataframe
+    df_daily = pd.DataFrame()
+    for cols in [[&#x27;date_atOpen&#x27;,&#x27;committed&#x27;],[&#x27;date_atClose&#x27;,&#x27;profit&#x27;],
+                 [&#x27;date_atClose&#x27;,&#x27;revenue&#x27;],[&#x27;date_atOpen&#x27;,&#x27;cost&#x27;]]:
+        _tmp = trans[cols].groupby(cols[0]).sum()
+        df_daily = pd.merge(df_daily,_tmp,how=&#x27;outer&#x27;,
+                            left_index=True,right_index=True)
+    df_daily.fillna(0,inplace=True)
+    df_daily.sort_index(inplace=True)
+    
+    # Calculate Log Return
+    pt_1 = (df_daily.committed.cumsum()-df_daily.revenue.cumsum()).max()
+    pt = pt_1 + df_daily.profit.sum()
+    return math.log(pt/pt_1)
+
+calculate_returns(run_model(valid.iloc[:,:5],28,0.08,28),valid.iloc[:,:5]),\
+calculate_returns(run_random(valid.iloc[:,:5],.1,0.05,28),valid.iloc[:,:5]),</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(0.01999690938292933, 0.018885915383428743)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h5>Statistical Test</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we have the setup let's start our test.  First for our random model we need to give it a buy and short chance probability.  Let's assume roughly even volume of trades to keep things simple and get the probabilities from our model.  In this way our random model trades at the same volume and frequency, just using random selection instead of momentum selection.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df_long = valid.melt(var_name=&#x27;ticker&#x27;,value_name=&#x27;adj_close&#x27;,
+                     ignore_index=False).reset_index()
+t = run_model(valid,28,0.08,28)
+buy_chance = sum(t.action==&#x27;Buy&#x27;)/len(df_long)
+short_chance = sum(t.action==&#x27;Short&#x27;)/len(df_long)
+print(f&quot;Model buy percentage={buy_chance}&quot;)
+print(f&quot;Model buy percentage={short_chance}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Model buy percentage=0.08691717171717171
+Model buy percentage=0.04311919191919192
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Great - Let's bind these to a function.  This is a functional programming principle that is extremely common in functional languages in the form of currying.  Python isn't quite as convenient so we use <a href="https://fastcore.fast.ai/basics.html#bind" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">fastcore's bind</a> for this (which is like the more common <a href="https://docs.python.org/3/library/functools.html#functools.partial" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">functool partial</a>, with a few added conveniences).</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This allows us to pass our model functions as parameters which will be convenient when we want to try different parameters.  We could also just have all the parameters for either function as arguments in the main <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">run_bootstrap_test</code> function, but that can get rather clunky and confusing.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">model_h0 = bind(run_random,
+                buy_chance=buy_chance,
+                short_chance=short_chance,
+                hold_time=28)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we get to the meat of bootstrapping.  Really all we are doing is tacking different samples and running both models many times on different samples.  In classical statistics the normal distribution or some other distribution is assumed so that we can approximate a sampling distribution.  In bootstrapping we just create the sampling distribution directly.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def run_bootstrap_test(input_df,model_h0,runs,sample_size):
+    r_h0 = L()
+    for i in range(runs):
+        ticker_sample = np.random.choice(input_df.columns,sample_size) 
+        valid_sample = input_df[ticker_sample]
+        r_h0.append(calculate_returns(model_h0(valid_sample),input_df))
+    return r_h0</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h5>Plot Experiment</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">It's always helpful to visualize whatever you can.  Visualizing the data will help you build intuition, generate additional ideas, spot outliers, and identify possible errors in your code.  Let's start with plotting our initial parameters we are using.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">fig,ax = plt.subplots(figsize=(6,6))
+
+model_h0 = bind(run_random,
+                buy_chance=buy_chance,short_chance=short_chance,hold_time=28)
+
+model_h1 = bind(run_model,
+                n_periods=28,threshold=0.08,hold_time=28)
+    
+runs, ss = 200,100
+h0 = run_bootstrap_test(valid,model_h0,runs=runs,sample_size=ss)
+ax.set_xlim(-.15,.15)
+
+ax.hist(h0,alpha=0.5,bins=60,label = &#x27;h0&#x27;,range=(-.15,.15))
+x = calculate_returns(model_h1(valid),valid)
+ax.scatter(x=x,y=0,marker=&quot;P&quot;,color=&#x27;red&#x27;,s=300)
+
+title_r1 = f&quot;h0 mean={np.array(h0).mean():.4f}\n&quot;
+title_r2 = f&quot;h1 value={x:.4f}&quot;
+
+ax.set_title(title_r1 + title_r2)
+ax.legend(loc =&#x27;upper left&#x27;) 
+plt.show()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><img src="data:image/png;base64,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" class="mx-auto"/></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">The blue histogram is the distribution of our random sampling.  The Red is our models return.  Visually the red point seems perfectly in line with the random distribution, but let's be a bit more scientific about it.  Let's calculate the p-value, and talk about what that means.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">p_value = (np.array(h0)&gt;x).sum()/runs
+print(p_value)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>0.425
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">The p-value tells us the percentage of samples from our randomized null hypothesis trials that are more extreme than our model's return.  Roughly 40% of the time we get a more unusual result just using our random selection - which tells us that from this look our model is pretty indistinguishable from our random model.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Said in statistical jargon, we failed to reject the null hypothesis.</p>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's try something else</p>
+</div>
+                 <div class="prose-section my-4"><h5>What if we hold for less time?</h5>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">fig,ax = plt.subplots(figsize=(6,6))
+
+model_h0 = bind(run_random,
+                buy_chance=buy_chance,short_chance=short_chance,hold_time=14)
+model_h1 = bind(run_model,
+                n_periods=28,threshold=0.08,hold_time=14)
+    
+runs, ss = 200,100
+h0 = run_bootstrap_test(valid,model_h0,runs=runs,sample_size=ss)
+ax.set_xlim(-.15,.15)
+
+ax.hist(h0,alpha=0.5,bins=60,label = &#x27;h0&#x27;,range=(-.15,.15))
+x = calculate_returns(model_h1(valid),valid)
+ax.scatter(x=x,y=0,marker=&quot;P&quot;,color=&#x27;red&#x27;,s=300)
+
+title_r1 = f&quot;h0 mean={np.array(h0).mean():.4f}\n&quot;
+title_r2 = f&quot;h1 value={x:.4f}&quot;
+
+ax.set_title(title_r1 + title_r2)
+ax.legend(loc =&#x27;upper left&#x27;) 
+plt.show()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><img src="data:image/png;base64,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" class="mx-auto"/></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">p_value = (np.array(h0)&gt;x).sum()/runs
+print(p_value)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>0.33
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This isn't any better.  But that's ok, because that's how the process works.  Most of your experiments will fail, and this was only our first model.  Let's try one more idea.</p>
+</div>
+                 <div class="prose-section my-4"><h5>What if we use a larger period size for momentum?</h5>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">fig,ax = plt.subplots(figsize=(6,6))
+
+model_h0 = bind(run_random,
+                buy_chance=buy_chance,short_chance=short_chance,hold_time=28)
+model_h1 = bind(run_model,
+                n_periods=56,threshold=0.08,hold_time=28)
+    
+runs, ss = 200,100
+h0 = run_bootstrap_test(valid,model_h0,runs=runs,sample_size=ss)
+ax.set_xlim(-.15,.15)
+
+ax.hist(h0,alpha=0.5,bins=60,label = &#x27;h0&#x27;,range=(-.15,.15))
+x = calculate_returns(model_h1(valid),valid)
+ax.scatter(x=x,y=0,marker=&quot;P&quot;,color=&#x27;red&#x27;,s=300)
+
+title_r1 = f&quot;h0 mean={np.array(h0).mean():.4f}\n&quot;
+title_r2 = f&quot;h1 value={x:.4f}&quot;
+
+ax.set_title(title_r1 + title_r2)
+ax.legend(loc =&#x27;upper left&#x27;) 
+plt.show()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><img src="data:image/png;base64,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" class="mx-auto"/></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">p_value = (np.array(h0)&gt;x).sum()/runs
+print(p_value)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>0.015
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we're talking!  A very small percentage of the values from our random model are more extreme than the one we got with our model.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">But now this invites a new question - how small does the p-value need to be to reject the null hypothesis?  0.05 is the most common and many people use this by default, but <strong>what your p-value threshold is is a design choice and trede-off that has real implications on your testing</strong>.  This is something to carefully consider.  Remember, testing is our only objective signal for whether we are doing something right or not so it deserves the most care and consideration.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's consider the extremes so that we can easily thing about the trade-off.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>What if the p-value threshold we pick is large (ie 0.5)?</strong>*</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">With a p-value threshold of 0.5, we accept anything where less than 50% of the values from the randomized null hypothesis tests are more extreme.  The risk of this means that we will have a lot of false positives.  Said another way, LOTS of stuff will pass our test many of them just because of luck.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Said simply, we will think a lot of bad ideas are good ideas.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>What if the p-value threshold we pick is small (ie 0.000001)?</strong>*</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">With a p-value this small almost nothing will pass the test, but if it does we can be pretty confident in it!  The problem with this is many good ideas will fail the test just because of bad luck.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Said simply, we will have a lot of good ideas that we won't realize are good ideas.  These are missed opportunities.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>The Tradeoff</strong></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">So really the P value is a trade-off.  A lower P value is more cautious and safe but you will miss out on some opportunities.  A high P value is riskier and more of your approaches will turn out to fail.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">It is important to understand that this is a tradeoff.  For a more detailed guide to testing read the hypothesis testing material in <a href="https://www.lock5stat.com/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Statistics: Unlocking the Power of Data</a></p>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="the-test-set">The Test Set</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we have our best model, we will test it on the test set.  This is the only time we can look at it - so while we got to try lots of things out on our validation set we only get 1 shot at our test set.  Let's see how it performs</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">fig,ax = plt.subplots(figsize=(6,6))
+
+df_test_small = df_test[df_test.index &lt; &#x27;2021-05-31&#x27;]
+
+model_h0 = bind(run_random,
+                buy_chance=buy_chance,short_chance=short_chance,hold_time=28)
+model_h1 = bind(run_model,
+                n_periods=56,threshold=0.08,hold_time=28)
+    
+runs, ss = 200,100
+h0 = run_bootstrap_test(df_test_small,model_h0,runs=runs,sample_size=ss)
+ax.set_xlim(-.15,.15)
+
+ax.hist(h0,alpha=0.5,bins=60,label = &#x27;h0&#x27;,range=(-.15,.15))
+x = calculate_returns(model_h1(df_test_small),df_test_small)
+ax.scatter(x=x,y=0,marker=&quot;P&quot;,color=&#x27;red&#x27;,s=300)
+
+title_r1 = f&quot;h0 mean={np.array(h0).mean():.4f}\n&quot;
+title_r2 = f&quot;h1 value={x:.4f}&quot;
+
+ax.set_title(title_r1 + title_r2)
+ax.legend(loc =&#x27;upper left&#x27;) 
+plt.show()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><img src="data:image/png;base64,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" class="mx-auto"/></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">p_value = (np.array(h0)&gt;x).sum()/runs
+print(p_value)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>0.685
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Oh man, suddenly our model failed the test on the test set after it passed on the validation set.  I think it's helpful to keep in mind this is not a "bad" result.  Testing is designed to catch errors and it did - it prevented us from deploying a bad model into production and betting real dollars on it.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If a test never caught errors, there'd be no point in performing the test.  We do this step BECAUSE it catches things like this.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="homework-for-further-learning">Homework for Further Learning</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Entry-Level:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Test different parameters of the model in the post.  What is your best model on the validation set?  Ho does it perform on our test set?</li>
+<li class="leading-relaxed pl-2">Modify model to only place "Buy" order and not "Short" orders.  How does this effect return?</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Mid-Level:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Test the other models in post 1 and create a blog post or write up of your findings</li>
+<li class="leading-relaxed pl-2">Find something that could have been done differently with one of the models.  Change and test it and create a blog post of your findings.</li>
+<li class="leading-relaxed pl-2">Create an ensemble of multiple momentum models and measure the performance.  Create a blog post with findings.</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Senior-Level:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Find another type of data that momentum can be applied to, and create a model to use that as a signal.  For example, maybe momentum of job postings listed by the company could be a signal of stock performance.  You should:
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Create train/valid/test split</li>
+<li class="leading-relaxed pl-2">Verify data cleanliness and highlight any potential concerns for incorrectness or biases</li>
+<li class="leading-relaxed pl-2">Explain why you are choosing the model you did and why you think it's a good thing to test</li>
+<li class="leading-relaxed pl-2">Create the model and test various configurations on the validation set</li>
+<li class="leading-relaxed pl-2">Test the best one on the test set</li>
+<li class="leading-relaxed pl-2">Write a blog post on what you did, why, choices you made along the way, future research that could be done on this data, and whether you think this could be a productive area for a trading firm to look at more.</li>
+</ul>
+</li>
+</ol>
+</div></div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#introduction-to-testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Introduction to Testing</a><a href="#background" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Background</a><a href="#what-data-should-you-use-for-testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What data should you use for testing?</a><a href="#training-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Training Set</a><a href="#validation-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Validation Set</a><a href="#test-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Test Set</a><a href="#what-metric-should-you-use-for-testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What metric should you use for testing?</a><a href="#dollars" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Dollars</a><a href="#percent-return" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Percent Return</a><a href="#log-return" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Log Return</a><a href="#statistical-tests" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Statistical Tests</a><a href="#motivation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Motivation</a><a href="#bootstrapping" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Bootstrapping</a><a href="#the-test-set" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Test Set</a><a href="#homework-for-further-learning" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Homework for Further Learning</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

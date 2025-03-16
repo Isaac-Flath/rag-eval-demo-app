@@ -1,0 +1,1045 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-18-Builing-a-search-eval-app-fasthtml-monsterui.ipynb">
+             <meta property="og:title" content="Building a Search Evaluation App with FastHTML and MonsterUI">
+             <meta property="og:description" content="Create a professional web application to evaluate search algorithms without writing CSS or JavaScript">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Building a Search Evaluation App with FastHTML and MonsterUI">
+             <meta name="twitter:description" content="Create a professional web application to evaluate search algorithms without writing CSS or JavaScript">
+             <meta property="article:published_time" content="2025-03-18">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="web-development">
+             <meta property="article:tag" content="python">
+             <meta property="article:tag" content="search">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-18-Builing-a-search-eval-app-fasthtml-monsterui.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/basic_rag.webp">
+             <meta name="twitter:image" content="static/thumbnail_imgs/basic_rag.webp">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Building a Search Evaluation App with FastHTML and MonsterUI</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">Create a professional web application to evaluate search algorithms without writing CSS or JavaScript</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#the-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Setup</a><a href="#real-world-problem-or-challenge" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Real-World Problem or Challenge</a><a href="#what-this-post-will-deliver" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What This Post Will Deliver</a><a href="#background-and-foundation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Background and Foundation</a><a href="#lets-build" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Let&#x27;s build</a><a href="#setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Setup</a><a href="#database" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Database</a><a href="#application" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Application</a><a href="#searching-and-saving-feedback" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Searching and Saving Feedback</a><a href="#viewing-evaluation-results" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Viewing Evaluation Results</a><a href="#putting-it-all-together" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Putting It All Together</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="the-setup">The Setup</span></h2>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="real-world-problem-or-challenge">Real-World Problem or Challenge</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When building search functionality for applications, developers often struggle to systematically evaluate search quality. You might have implemented vector search, BM25, or hybrid approaches, but how do you know which one works best for your specific use case? Creating evaluation interfaces typically requires significant frontend expertise, leaving many Python developers stuck with makeshift command-line tools or spreadsheets to track search performance.</p>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="what-this-post-will-deliver">What This Post Will Deliver</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">By the end of this tutorial, you'll be able to build a complete search evaluation web application using Python, <a href="http://fastht.ml/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">FastHTML</a>, and <a href="https://monsterui.answer.ai/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">MonsterUI</a>. You'll learn how to create a professional-looking interface where you can query different search algorithms, view results side-by-side, and systematically rate and annotate them—all without writing a single line of CSS or JavaScript. Here's a quick preview of what we'll build:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div style="display: flex; justify-content: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dSOF4Vfo4g8?si=hEupJ4vkN262o9iv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="background-and-foundation">Background and Foundation</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This tutorial assumes you're comfortable with Python but may not have much experience with web development.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Before we dive in, you should understand:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Basic Python concepts (functions, classes, list comprehensions)</li>
+<li class="leading-relaxed pl-2">Simple database operations and sql queries (we'll use SQLite through a simplified API)</li>
+<li class="leading-relaxed pl-2">Some familiarity with how web applications work</li>
+</ul>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="lets-build">Let's build</span></h2>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="setup">Setup</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's start with importing the key libraries we will need.  FastHTML is a Python library that simplifies web app creation by combining <a href="https://htmx.org/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">HTMX</a>, Starlette, and HTTP fundamentals. <a href="https://monsterui.answer.ai/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">MonsterUI</a> extends this with beautiful, ready-to-use UI components that eliminate the need for CSS expertise.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from datetime import datetime
+from pathlib import Path
+from fasthtml.common import *
+from monsterui.all import *</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We will be using a search algorithms that were defined in my <a href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-26-Retrieval101.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Retreival 101 blog post</a>.  If you are interested in the details of how those are implemented please check out that blog post.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Import search algorithms - each uses a different retrieval strategy
+from retrieval_scripts.search_blog import (vector_search, bm25_search, hybrid_search, search_blog_posts)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="database">Database</span></h3>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We will be using a library called <a href="https://fastlite.answer.ai/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">fastlite</a> for our database management, which allows for simple concise database management in python.  To define a SQL table schema we can use python classes.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">class Query:
+    id: int          # Primary key
+    query_text: str  # The actual query text
+    created_at: str  # Timestamp when the query was created
+
+class Evaluation:
+    id: int              # Primary key
+    query_id: int        # Foreign key to Query
+    result_id: str       # ID of the evaluated search result
+    relevance_score: int # Relevance rating (1-5)
+    notes: str           # Evaluator&#x27;s notes
+    created_at: str      # Timestamp when the evaluation was created</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">With our schemas we can connect to our databased and the tables.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># fastlite uses SQLite under the hood but with a simpler API
+db_path = Path(&quot;search_evaluations.db&quot;)
+db = database(db_path)
+# Create tables based on class definitions - no SQL or ORM setup needed
+db.queries     = db.create(Query,      pk=&#x27;id&#x27;)
+db.evaluations = db.create(Evaluation, pk=&#x27;id&#x27;, foreign_keys=(&#x27;query_id&#x27;,))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">💡 Tip: <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">db.create</code> in <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">fastlite</code> is creating a <em>connection</em> to a table.  It either connects to the existing table if it exists, or creates a table with the schema provided if not.</p>
+</blockquote>
+</div>
+                 <div class="code-section my-6">
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><html><head><style>
+        .dbt{border-collapse:collapse;margin:10px;font-family:sans-serif;min-width:250px;box-shadow:0 0 10px rgba(0,0,0,.15)}
+        .dbt thead tr{background-color:#009879;color:white}
+        .dbt th,.dbt td{padding:8px 10px;border:1px solid #ddd;font-size:0.9em}
+        .dbt tbody tr:nth-of-type(even){background-color:#f3f3f3}
+        .dbc{display:flex;justify-content:center;align-items:flex-start;gap:15px}
+        .fkl{font-weight:bold;padding:5px}
+        .pk{font-weight:bold;color:#009879}.fk{font-weight:bold;color:#ff7700}
+    </style>
+    </head><body><div class="dbc">
+        <table class="dbt 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+            <thead><tr><th colspan="3" class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">Query</th></tr></thead>
+            <tbody>
+                <tr><td class="pk p-4 border-b border-indigo-100 text-gray-700">id</td><td class="p-4 border-b border-indigo-100 text-gray-700">int</td><td class="p-4 border-b border-indigo-100 text-gray-700">Primary Key</td></tr>
+                <tr><td class="p-4 border-b border-indigo-100 text-gray-700">query_text</td><td class="p-4 border-b border-indigo-100 text-gray-700">str</td><td class="p-4 border-b border-indigo-100 text-gray-700">Search query</td></tr>
+                <tr><td class="p-4 border-b border-indigo-100 text-gray-700">created_at</td><td class="p-4 border-b border-indigo-100 text-gray-700">str</td><td class="p-4 border-b border-indigo-100 text-gray-700">Timestamp</td></tr>
+            </tbody>
+        </table>
+        <div class="fkl">←FK→</div>
+        <table class="dbt 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+            <thead><tr><th colspan="3" class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">Evaluation</th></tr></thead>
+            <tbody>
+                <tr><td class="pk p-4 border-b border-indigo-100 text-gray-700">id</td><td class="p-4 border-b border-indigo-100 text-gray-700">int</td><td class="p-4 border-b border-indigo-100 text-gray-700">Primary Key</td></tr>
+                <tr><td class="fk p-4 border-b border-indigo-100 text-gray-700">query_id</td><td class="p-4 border-b border-indigo-100 text-gray-700">int</td><td class="p-4 border-b border-indigo-100 text-gray-700">FK → Query.id</td></tr>
+                <tr><td class="p-4 border-b border-indigo-100 text-gray-700">result_id</td><td class="p-4 border-b border-indigo-100 text-gray-700">str</td><td class="p-4 border-b border-indigo-100 text-gray-700">Result ID</td></tr>
+                <tr><td class="p-4 border-b border-indigo-100 text-gray-700">relevance_score</td><td class="p-4 border-b border-indigo-100 text-gray-700">int</td><td class="p-4 border-b border-indigo-100 text-gray-700">Rating (1-5)</td></tr>
+                <tr><td class="p-4 border-b border-indigo-100 text-gray-700">notes</td><td class="p-4 border-b border-indigo-100 text-gray-700">str</td><td class="p-4 border-b border-indigo-100 text-gray-700">Notes</td></tr>
+                <tr><td class="p-4 border-b border-indigo-100 text-gray-700">created_at</td><td class="p-4 border-b border-indigo-100 text-gray-700">str</td><td class="p-4 border-b border-indigo-100 text-gray-700">Timestamp</td></tr>
+            </tbody>
+        </table>
+    </div>
+    </body></html></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We need a variety of queries to save and store in sqlite.  Let's write a few of them so you can understand how interactions with the database work in fastlite.</p>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">fastlite</code> handles the insertion and returns the object back to you.  You can use the classes defined above to construct the data to insert.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def save_query(query_text):
+    &quot;&quot;&quot;Save a query to the database and return its ID.&quot;&quot;&quot;
+    now = datetime.now().isoformat()
+    query = db.queries.insert(Query(query_text=query_text, created_at=now))
+    return query.id
+
+# rt makes it a route so it can be access and called in your app too
+@rt
+def save_evaluation(query_id:str, result_id:str, rating:int=0, notes:str=&quot;&quot;):
+    &quot;&quot;&quot;Save an evaluation to the database.&quot;&quot;&quot;
+    now = datetime.now().isoformat()
+    evaluation = db.evaluations.insert(Evaluation(
+        query_id=query_id, result_id=result_id, 
+        relevance_score=rating, notes=notes, created_at=now))
+    return evaluation.id</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">save_query(&quot;My Query&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">1</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">db.queries()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[Query(id=1, query_text=&#x27;My Query&#x27;, created_at=&#x27;2025-03-14T23:34:36.890074&#x27;)]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">save_evaluation(1, 0, 5, &quot;Very cool!&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">1</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">db.evaluations()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[Evaluation(id=1, query_id=1, result_id=&#x27;0&#x27;, relevance_score=5, notes=&#x27;Very cool!&#x27;, created_at=&#x27;2025-03-14T23:37:26.332980&#x27;)]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">fastlite</code> lets you easily use WHERE clauses from a table connection object for filtering.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def get_evaluations_for_query(query_id):
+    &quot;&quot;&quot;Get evaluations for a specific query.&quot;&quot;&quot;
+    evaluations = db.evaluations(&#x27;query_id=?&#x27;,[query_id])
+    # Sort by relevance to show best results first - key function handles None values
+    return sorted(evaluations, key=lambda x: x.relevance_score or 0, reverse=True)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">get_evaluations_for_query(1)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[Evaluation(id=1, query_id=1, result_id=&#x27;0&#x27;, relevance_score=5, notes=&#x27;Very cool!&#x27;, created_at=&#x27;2025-03-14T23:37:26.332980&#x27;)]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">For more complicated queries, <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">fastlite</code> allows raw SQL.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def get_evaluation_stats():
+    &quot;&quot;&quot;Get statistics for queries with evaluations.&quot;&quot;&quot;
+    return db.q(f&quot;&quot;&quot;
+        SELECT q.id, q.query_text, 
+               COUNT(e.id) as eval_count, 
+               AVG(e.relevance_score) as avg_score
+        FROM query q
+        LEFT JOIN evaluation e ON q.id = e.query_id
+        GROUP BY q.id
+        HAVING eval_count &gt; 0
+        ORDER BY q.created_at DESC
+    &quot;&quot;&quot;)
+get_evaluation_stats()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[{&#x27;id&#x27;: 1, &#x27;query_text&#x27;: &#x27;My Query&#x27;, &#x27;eval_count&#x27;: 1, &#x27;avg_score&#x27;: 5.0}]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def get_all_evaluations():
+    &quot;&quot;&quot;Get all evaluations with query text.&quot;&quot;&quot;
+    return db.q(f&quot;&quot;&quot;
+        SELECT q.query_text, e.result_id, e.relevance_score, e.notes, e.created_at
+        FROM evaluation e
+        JOIN query q ON e.query_id = q.id
+        ORDER BY q.id, e.relevance_score DESC
+    &quot;&quot;&quot;)
+get_all_evaluations()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[{&#x27;query_text&#x27;: &#x27;My Query&#x27;,
+  &#x27;result_id&#x27;: &#x27;0&#x27;,
+  &#x27;relevance_score&#x27;: 5,
+  &#x27;notes&#x27;: &#x27;Very cool!&#x27;,
+  &#x27;created_at&#x27;: &#x27;2025-03-14T23:37:26.332980&#x27;}]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="application">Application</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">FastHTML creates an app that can be served.  So let's create one!</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">app</code>: The main application object that has everything needed to actually run and deploy the app</li>
+<li class="leading-relaxed pl-2"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">rt</code>: A decorator registers routes to <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">app</code></li>
+</ul>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">💡 Tip:  <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Theme.blue.headers()</code> adds the needed headers for <a href="https://monsterui.answer.ai/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">MonsterUI</a> which lets you simplify the app a lot by giving strong default styles and convenient helper functions for layout, style, and more.</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">app, rt = fast_app(hdrs=Theme.blue.headers(), live=True)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">How do we create UI in python?  Well, with FastHTML!</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If you've done web dev in python before you may have had bad experiences with frameworks that create huge abstractions you can't modify.  This is NOT what fasthtml does.  The FastHTML library is a 1:1 mapping.  <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">A("Search") == &lt;a&gt;Search&lt;/a&gt;</code> and <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Div() == &lt;div&gt;&lt;/div&gt;</code>.  There's no mysteries</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">Div(A(&quot;Search&quot;, href=&#x27;/my-route&#x27;))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-html bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">&lt;div&gt;
+&lt;a href="/my-route"&gt;Search&lt;/a&gt;&lt;/div&gt;
+
+</code></pre>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><a href="https://monsterui.answer.ai/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">MonsterUI</a> adds python functions on top of that for convenience, but is still very close to the foundations!  For example a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Subtitle</code> is a very simple convenience abstration for HTML.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">Subtitle()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-html bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">&lt;p class="text-gray-500 dark:text-gray-200 text-sm mt-1.5"&gt;&lt;/p&gt;
+
+</code></pre>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">More complicated functions create more complicated components for you, but it's still quite close to the foundations of the web.  <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">NavBar</code> for example using tailwind (common css library) to create a navbar that collapses to a hamburger menu on mobile for you.  It's still quite close to the foundations so you can code it yourself, but it's convenient not to (because NavBars are hard to get right as you can see!)</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">NavBar()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-html bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">&lt;div&gt;
+  &lt;div class="monster-navbar p-4 navbar-underline"&gt;
+    &lt;div class="flex justify-between items-center w-full"&gt;
+      &lt;h3 class="uk-h3 "&gt;Title&lt;/h3&gt;
+&lt;a class="md:hidden" data-uk-toggle="target: #__VerV2LJSIyA3FhuzeOiIg; cls: hidden"&gt;&lt;uk-icon icon="menu" height="30" width="30"&gt;&lt;/uk-icon&gt;&lt;/a&gt;      &lt;div class="items-center space-x-4 hidden md:flex"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="flex flex-col items-center justify-center space-y-4 p-4 navbar-underline hidden md:hidden monster-navbar" id="__VerV2LJSIyA3FhuzeOiIg"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">So let's create a navigation bar for our site that have a title and a couple pages.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def EvalNavBar():
+    &quot;&quot;&quot;Create navigation bar with links to main app sections.&quot;&quot;&quot;
+    return NavBar(
+        # FastHTML components map 1:1 with HTML tags
+        # A(&quot;Search&quot;, href=&quot;/&quot;) -&gt; &lt;a href=&quot;/&quot;&gt;Search&lt;/a&gt;
+        A(&quot;Search&quot;, href=&quot;/&quot;,              cls=AT.primary),
+        A(&quot;Evals&quot;,  href=view_evaluations, cls=AT.primary),
+        # MonsterUI components can be nested to create complex UI elements
+        brand=Div(
+            H3(&quot;Search Evaluation Tool&quot;), 
+            Subtitle(&quot;Query, annotate, and rank search results&quot;)))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><img src="static/FasthtmlEvalApp/navbar.png" alt="Image of Navbar component created by " title="" class="max-w-full h-auto rounded-lg mb-6 
+        max-w-full h-auto rounded-xl shadow-lg mb-6 
+        border-2 border-indigo-100 hover:shadow-xl transition-shadow duration-300"></p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def layout(content):
+    &quot;&quot;&quot;Wrap content in consistent page layout with navigation.&quot;&quot;&quot;
+    return Div(EvalNavBar(), Container(content))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="searching-and-saving-feedback">Searching and Saving Feedback</span></h3>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Lets start by defining what we want our main page to be. Put simply, we want a form for users to enter their query into, and a place for the results of that query to go.  We can make our page with the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">@rt</code> decorator.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">@rt
+def index():
+    &quot;&quot;&quot;Render the main search page.&quot;&quot;&quot;
+    return layout(Div(search_form(), Div(id=&quot;search-results&quot;)))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's define this <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search_form</code> we need!</p>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We will need a drop down to select different options.  We can abstract out the options creation into a function to keep our code clean and avoid unneccesary repetition.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def _Option(label, selected=False):
+    return Option(label, value=label.lower(), selected=selected)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we need to create a form for the user to type in their query, what method they are testing, and how many results they want returned to them.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def search_form(query=&quot;&quot;):
+    &quot;&quot;&quot;Create search form with query input and search options.&quot;&quot;&quot;
+    return Card(
+        Form(
+            # MonsterUI&#x27;s Label* components combine labels with inputs for cleaner UI
+            LabelInput(&quot;Search Query&quot;, id=&quot;query&quot;, placeholder=&quot;Enter your search query...&quot;, value=query),
+
+            LabelSelect(
+                # An Option component is used to create a dropdown option
+                _Option(&quot;Rerank&quot;, selected=True),
+                # We can use common python patterns to create a list of options
+                *map(_Option, (&quot;Vector&quot;, &quot;BM25&quot;, &quot;Hybrid Search&quot;)),
+                label=&quot;Search Method&quot;, id=&quot;search_method&quot;),
+
+            LabelInput(&quot;Number of Results&quot;, type=&quot;number&quot;, id=&quot;top_k&quot;,min=&quot;1&quot;, max=&quot;20&quot;, value=&quot;5&quot;),
+
+            # ButtonT.primary is an enum for styling - w-full makes button full width
+            # This is combining MonsterUI styles with tailwind classes giving lots of control over the style
+            Button(&quot;Search&quot;, cls=(ButtonT.primary,&#x27;w-full&#x27;)),
+
+            # HTMX attributes enable dynamic updates without full page reloads
+            # Make a POST request to the search route and update the #search-results div with the response
+            hx_post=search, hx_target=&quot;#search-results&quot;))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><img src="static/FasthtmlEvalApp/search_form.png" alt="Form with text box for search query, a drop down for the search method, an option for number of results, and a Button to search" title="" class="max-w-full h-auto rounded-lg mb-6 
+        max-w-full h-auto rounded-xl shadow-lg mb-6 
+        border-2 border-indigo-100 hover:shadow-xl transition-shadow duration-300"></p>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">A fasthtml route is a regular python function with a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">@rt</code> decorator.  FastHTML will automatically parse items in the request to arguments that match the name and type hint to make them accessible in python.  So lets create the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search</code> route that the form above is making a POST request to.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Note: This search function returns a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search_result_component</code> for each result.  We will define that later.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">@rt
+def search(query: str = &quot;&quot;, search_method: str = &quot;vector&quot;, top_k: int = 5):
+    &quot;&quot;&quot;Execute search and return formatted results.&quot;&quot;&quot;
+    if not query: return Card(P(&quot;Please enter a search query&quot;, cls=TextT.error))
+    
+    # Avoid duplicate queries in the database by checking if it exists first
+    existing_queries = db.queries(&#x27;query_text=?&#x27;,[query])
+    query_id = existing_queries[0].id if existing_queries else save_query(query)
+    
+    # Use the appropriate search function based on the value from the user form
+    match search_method:
+        case &quot;vector&quot;:  results = vector_search(query).sort_values(&#x27;vector_score&#x27;, ascending=False).head(top_k)
+        case &quot;bm25&quot;:    results = bm25_search(query, vector_search(query)).sort_values(&#x27;bm25_score&#x27;, ascending=False).head(top_k)
+        case &quot;hybrid&quot;:  results = hybrid_search(query, top_k=top_k)
+        case &#x27;rerank&#x27;:  results = search_blog_posts(query, top_k=top_k)
+        case _: raise ValueError(f&quot;Invalid search method: {search_method}&quot;)
+            
+    # Return the results of the query and associated information
+    # Returns a `search_result_component` for each result
+    return Div(
+        H2(f&quot;Search Results for: &#x27;{query}&#x27;&quot;),
+        P(f&quot;Method: {search_method.capitalize()}&quot;),
+        *[search_result_component(results.iloc[i], query_id) for i in range(len(results))])</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Great!  Now we have a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search</code> route that when a POST request is issued against it will do the appropriate search and return the results in a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search_result_component</code>, so let's define that!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def rating_labels(rating):
+    &quot;&quot;&quot;Convert numeric ratings to descriptive text so users can see what each button means&quot;&quot;&quot;
+    labels = {1: &quot;Not relevant&quot;, 2: &quot;Slightly relevant&quot;, 3: &quot;Moderately relevant&quot;,
+              4: &quot;Relevant&quot;, 5: &quot;Highly relevant&quot;}
+    return f&quot;{rating} - {labels[rating]}&quot;
+
+def search_result_component(result, query_id):
+    &quot;&quot;&quot;Create a card for a search result with evaluation controls.&quot;&quot;&quot;
+
+    token_count = result.get(&#x27;token_count&#x27;, 0)
+    # Visual cues help evaluators quickly assess content length
+    if token_count &lt; 1000: token_color = TextT.success     # Green = short, definitely good embedding
+    elif token_count &lt; 3000: token_color = TextT.warning   # Yellow = medium length, probably good embedding
+    else: token_color = TextT.error                        # Red = too long for embeddding
+
+    # Different search methods use different scoring mechanisms    
+    score = (result.get(&#x27;rerank_score&#x27;)   or 
+             result.get(&#x27;combined_score&#x27;) or 
+             result.get(&#x27;vector_score&#x27;)   or 
+             result.get(&#x27;bm25_score&#x27;)     or 
+             0)
+    
+    # Return a UI component
+    return Card(Article(
+        # Make it easy to see the title of the post and the section
+        ArticleTitle(result[&#x27;post_title&#x27;]), H4(result[&#x27;chunk_title&#x27;]),
+        
+        # DivFullySpaced creates a flexbox with items at opposite ends (Layout helpers)
+        DivFullySpaced(
+            # Add some values that are helpful for evaluating
+            P(f&quot;Score: {score:.4f}&quot;   , cls=TextT.muted + TextT.sm),
+            P(f&quot;Tokens: {token_count}&quot;, cls=token_color + TextT.sm)),
+        Divider(),
+        # `render_md` converts markdown text to HTML and styles it nicely for you
+        P(render_md(result[&#x27;content&#x27;])),
+        Divider(),
+        # Create a form for user to put their feedback they want saved in
+        Form(
+            H4(&quot;Relevance Rating:&quot;, cls=TextT.medium + TextT.sm),
+            Div(
+                # Label* inputs combines a user input with a label for what it is
+                *[LabelRadio(rating_labels(i), name=f&quot;rating&quot;, value=str(i)) for i in range(1, 6)],
+                cls=&quot;space-y-2&quot;),
+            LabelTextArea(&quot;Notes:&quot;, id=f&quot;notes&quot;, placeholder=&quot;Add notes about this result...&quot;, rows=&quot;2&quot;, cls=&#x27;w-full&#x27;),
+            Button(&quot;Save Evaluation&quot;, type=&quot;button&quot;, cls=ButtonT.primary,
+                   # HTMX will send the form data, query_id, and result_id to the `save_evaluation` endpoint
+                   hx_post=save_evaluation.to(query_id=query_id, result_id=str(result.name)),
+                   hx_swap=&quot;none&quot;))))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><img src="static/FasthtmlEvalApp/search_result.png" alt="" title="" class="max-w-full h-auto rounded-lg mb-6 
+        max-w-full h-auto rounded-xl shadow-lg mb-6 
+        border-2 border-indigo-100 hover:shadow-xl transition-shadow duration-300"></p>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Ok, so we've stored all of the data.  We created a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search_form</code> for users to enter their search query into.  That calls the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search</code> route which does the actual search and stores the results in the database.  And that passes the neccesary information to <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">search_result_component</code> to allow users to see the results and rate them.  All that is put together into a single page for users in <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">index</code>.</p>
+</div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="viewing-evaluation-results">Viewing Evaluation Results</span></h3>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">We're ready to view the results of our evaluation.  Lets create a route for that!  We can create a single route that if there is no <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">query_id</code> shows a summary (<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">AllEvalsTable</code>), and if a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">query_id</code> is provided it shows details on that particular query (<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">SingleEvalTable</code>).</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We'll define the tables later, but let's get the big picture first.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">@rt
+def view_evaluations(query_id: int = None):
+    &quot;&quot;&quot;Show either all queries with evaluations or details for a specific query.&quot;&quot;&quot;
+    if not query_id:
+        # Overview mode - show all queries with evaluation stats
+        queries = get_evaluation_stats()        
+        return layout(Card(H2(&quot;Queries with Evals&quot;),  AllEvalsTable(queries)))
+    else:
+        # Detail mode - show evaluations for a specific query
+        query = db.queries[query_id]
+        evaluations = get_evaluations_for_query(query_id)
+        return layout(Div(H4(f&quot;Evals for: &#x27;{query.query_text}&#x27;&quot;, cls=&#x27;mb-6&#x27;), Card(SingleEvalTable(evaluations))))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">So now we need to create the tables!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def AllEvalsTable(queries):
+    &quot;&quot;&quot;Create a table showing all queries with evaluation statistics using TableFromDicts.&quot;&quot;&quot;
+    headers = [&quot;Query&quot;, &quot;Evaluations&quot;, &quot;Avg. Score&quot;, &quot;Actions&quot;]
+    
+    def create_row(query):
+        &quot;Pull data from query and format it for viewing&quot;
+        return {
+            &quot;Query&quot;:       query[&#x27;query_text&#x27;],
+            &quot;Evaluations&quot;: str(query[&#x27;eval_count&#x27;]),
+            &quot;Avg. Score&quot;:  f&quot;{query[&#x27;avg_score&#x27;]:.2f}&quot; if query[&#x27;avg_score&#x27;] else &quot;N/A&quot;,
+            # Actions uses a link (href) to send to the `view_evaluations` route for the specific query
+            &quot;Actions&quot;:     A(&quot;View Details&quot;, href=view_evaluations.to(query_id=query[&#x27;id&#x27;]), cls=AT.primary)}
+    
+    rows = list(map(create_row, queries))
+    return TableFromDicts(headers, rows)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><img src="static/FasthtmlEvalApp/all_evals.png" alt="" title="" class="max-w-full h-auto rounded-lg mb-6 
+        max-w-full h-auto rounded-xl shadow-lg mb-6 
+        border-2 border-indigo-100 hover:shadow-xl transition-shadow duration-300"></p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def SingleEvalTable(evaluations):
+    &quot;&quot;&quot;Create a table showing evaluations for a single query using TableFromDicts.&quot;&quot;&quot;
+    headers = [&quot;Result ID&quot;, &quot;Relevance&quot;, &quot;Notes&quot;, &quot;Date&quot;]
+    
+    def create_row(eval):
+        &quot;Pull data from an eval and format it for viewing&quot;
+        return {
+            &quot;Result ID&quot;: eval.result_id,
+            &quot;Relevance&quot;: str(eval.relevance_score),
+            &quot;Notes&quot;:     eval.notes or &quot;No notes&quot;,
+            &quot;Date&quot;:      eval.created_at}
+    
+    rows = list(map(create_row, evaluations))
+    return TableFromDicts(headers, rows)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><img src="static/FasthtmlEvalApp/single_eval.png" alt="" title="" class="max-w-full h-auto rounded-lg mb-6 
+        max-w-full h-auto rounded-xl shadow-lg mb-6 
+        border-2 border-indigo-100 hover:shadow-xl transition-shadow duration-300"></p>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Then we start the server!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">serve()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="putting-it-all-together">Putting It All Together</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's review what we've built: a complete search evaluation application with just Python. Our app lets you:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Run queries against different search algorithms</li>
+<li class="leading-relaxed pl-2">View and compare search results side-by-side</li>
+<li class="leading-relaxed pl-2">Rate results on a 1-5 relevance scale</li>
+<li class="leading-relaxed pl-2">Add notes to explain your ratings</li>
+<li class="leading-relaxed pl-2">View evaluation statistics across queries</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The entire application is built with FastHTML and MonsterUI, eliminating the need for CSS or JavaScript knowledge. Here's the complete structure:</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block"># Main components:
+# - Database schema and operations (Query and Evaluation classes)
+# - Search functionality (vector_search, bm25_search, hybrid_search)
+# - UI components (EvalNavBar, search_form, search_result_component)
+# - Routes (index, search, view_evaluations)
+# - Evaluation views (AllEvalsTable, SingleEvalTable)
+
+# Start the application
+serve()
+</code></pre>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700">From Theory to Practice</h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This search evaluation tool isn't just a demo—it's designed for real-world use. Here are some practical ways to integrate it into your workflow:</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Iterative Algorithm Development</strong>: As you tweak your search algorithms, use this tool to systematically track improvements. The evaluation database provides concrete evidence of which changes actually improve relevance.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Team Collaboration</strong>: Multiple team members can use the same instance to evaluate results, building a shared understanding of what "good search" means for your specific use case.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Stakeholder Demos</strong>: When explaining search improvements to non-technical stakeholders, this visual interface is much more compelling than command-line outputs or spreadsheets.</p>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700">Key Takeaways and Principles</h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Building this application demonstrates several powerful principles:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Separation of concerns</strong>: The search algorithms, database operations, and UI components are cleanly separated, making the code maintainable and extensible.</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Progressive enhancement</strong>: The HTMX-powered interactions provide a modern feel without complex client-side JavaScript.</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Pythonic web development</strong>: FastHTML and MonsterUI let Python developers build web applications without learning new paradigms or languages.</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Data-driven decisions</strong>: Systematic evaluation transforms search development from guesswork into an evidence-based process.</p>
+</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Most importantly, this approach puts the power of building professional web applications into the hands of Python developers who may not have frontend expertise. You can focus on your core strengths—data processing, search algorithms, and Python programming—while still delivering polished user experiences.</p>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700">Next Steps for the Reader</h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that you have this foundation, here are some ways to extend and adapt this application:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>Add more search algorithms</strong>: Implement additional retrieval methods like dense passage retrieval or learned sparse retrieval.</li>
+<li class="leading-relaxed pl-2"><strong>Expand evaluation metrics</strong>: Add dimensions beyond relevance, such as diversity or freshness of results.</li>
+<li class="leading-relaxed pl-2"><strong>Build visualization dashboards</strong>: Create charts and graphs to visualize evaluation trends over time.</li>
+<li class="leading-relaxed pl-2"><strong>Implement A/B testing</strong>: Modify the app to show results from two algorithms side-by-side for direct comparison.</li>
+<li class="leading-relaxed pl-2"><strong>Add authentication:</strong> Create a system of authentication so you can track what users provide what feedback to follow up with them</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">I'd love to see your eval application!  Share your extensions and adaptations with the community.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If you found this useful, check out my other tutorials on <a href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-26-Retrieval101.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">building vector search systems</a> and <a href="http://localhost:5001/blog/blog_post?fpath=posts%2F2025-03-27-FastHTML-Lesson1.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">FastHTML application development</a> and [FastHTML and HTMX](http://localhost:5001/blog/blog_post?fpath=posts%2F2025-04-03-Dynamic UI Interactions with FastHTML and HTMX.ipynb).</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Happy searching!</p>
+</div></div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#the-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Setup</a><a href="#real-world-problem-or-challenge" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Real-World Problem or Challenge</a><a href="#what-this-post-will-deliver" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What This Post Will Deliver</a><a href="#background-and-foundation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Background and Foundation</a><a href="#lets-build" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Let&#x27;s build</a><a href="#setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Setup</a><a href="#database" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Database</a><a href="#application" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Application</a><a href="#searching-and-saving-feedback" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Searching and Saving Feedback</a><a href="#viewing-evaluation-results" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Viewing Evaluation Results</a><a href="#putting-it-all-together" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Putting It All Together</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

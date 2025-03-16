@@ -1,0 +1,785 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-04-03-Dynamic UI Interactions with FastHTML and HTMX.ipynb">
+             <meta property="og:title" content="Building Dynamic Web UIs with FastHTML and HTMX">
+             <meta property="og:description" content="A simpler approach to creating interactive web applications using Python and hypermedia">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Building Dynamic Web UIs with FastHTML and HTMX">
+             <meta name="twitter:description" content="A simpler approach to creating interactive web applications using Python and hypermedia">
+             <meta property="article:published_time" content="2025-04-03">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="web-development">
+             <meta property="article:tag" content="python">
+             <meta property="article:tag" content="html">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-04-03-Dynamic UI Interactions with FastHTML and HTMX.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/FastHtml.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/FastHtml.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Building Dynamic Web UIs with FastHTML and HTMX</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">A simpler approach to creating interactive web applications using Python and hypermedia</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#the-problem-with-web-ui-interactivity" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Problem with Web UI Interactivity</a><a href="#what-is-fasthtml" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What is FastHTML?</a><a href="#getting-started-with-fasthtml-and-htmx" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Getting Started with FastHTML and HTMX</a><a href="#what-fasthtml-and-htmx-will-do-for-you" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What FastHTML and HTMX Will Do For You</a><a href="#simple-showhide-toggle-your-first-interactive-component" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Simple Show/Hide Toggle: Your First Interactive Component</a><a href="#click-to-edit-server-driven-forms" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Click-to-Edit: Server-Driven Forms</a><a href="#the-surprising-insight-server-side-can-feel-like-client-side" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Surprising Insight: Server-Side Can Feel Like Client-Side</a><a href="#real-time-updates-and-advanced-patterns" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Real-Time Updates and Advanced Patterns</a><a href="#infinite-scrolling" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Infinite Scrolling</a><a href="#putting-it-all-together" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Putting It All Together</a><a href="#simplified-development-workflow" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Simplified Development Workflow</a><a href="#enhanced-maintainability" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Enhanced Maintainability</a><a href="#key-principles-to-remember" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Key Principles to Remember</a><a href="#next-steps-for-your-journey" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Next Steps for Your Journey</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Modern web development requires complicated dependencies and extensive boilerplate spread over multiple languages to create interactive UIs. FastHTML with HTMX is here to fix that.</p>
+</div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="the-problem-with-web-ui-interactivity">The Problem with Web UI Interactivity</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Building interactive web applications has always been complicated.  I spent years banging my head against the wall with web development. My Python backend code was a thing of beauty - elegant, readable, maintainable. But the moment I needed a simple dropdown to update dynamically? Pure chaos.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The worst part? Most of this complexity was for ridiculously simple interactions.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Traditional approaches force you to choose between:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Heavy JavaScript frameworks that take over your entire frontend</li>
+<li class="leading-relaxed pl-2">Server-rendered pages with poor interactivity</li>
+<li class="leading-relaxed pl-2">Complex hybrid approaches requiring expertise in multiple paradigms</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">There had to be a saner approach to building interactive web UIs</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="what-is-fasthtml">What is FastHTML?</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">FastHTML is a Python library that makes generating HTML intuitive and pythonic. It allows you to:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Create HTML elements using Python functions (e.g., <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Div()</code>, <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Button()</code>)</li>
+<li class="leading-relaxed pl-2">Compose elements hierarchically using function composition</li>
+<li class="leading-relaxed pl-2">Add attributes using keyword arguments or chained methods</li>
+<li class="leading-relaxed pl-2">Integrate seamlessly with HTMX for interactivity</li>
+</ul>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="getting-started-with-fasthtml-and-htmx">Getting Started with FastHTML and HTMX</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Before diving into examples, let's set up a minimal FastHTML application:</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">from fasthtml.common import *
+
+@rt
+def index():
+    return Div(
+        H1("Hello, FastHTML!"),
+        "This is my first FastHTML application.")
+
+serve()
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Save this as <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">app.py</code> and run with <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">python app.py</code>. Visit http://localhost:5001 to see your application.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">💡 The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">@rt</code> decorator (short for "route") is FastHTML's way of defining HTTP endpoints. It automatically:</p>
+</blockquote>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Converts the function into a web route</li>
+<li class="leading-relaxed pl-2">Handles parameter parsing from requests</li>
+<li class="leading-relaxed pl-2">Renders the returned FastHTML elements to HTML</li>
+</ul>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="what-fasthtml-and-htmx-will-do-for-you">What FastHTML and HTMX Will Do For You</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">FastHTML lets anyone build high-quality, interactive web apps in pure Python.  HTMX is a small JavaScript library (&lt; 14KB) that allows you to access modern browser features directly from HTML, rather than writing your own JavaScript. FastHTML is a Python library that makes it easy to generate HTML with HTMX attributes, letting you build dynamic interfaces with minimal code.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Together, they:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Bring simplicity to web interactivity development</li>
+<li class="leading-relaxed pl-2">Allow you to write your entire application in Python</li>
+<li class="leading-relaxed pl-2">Let you focus on building features instead of managing frontend state</li>
+</ul>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For comprehensive documentation see the <a href="https://fastht.ml/docs/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">FastHTML Documentation</a> and <a href="https://htmx.org/docs/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">HTMX Documentation</a></p>
+</blockquote>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's see a simple example of a <a href="https://fastht.ml/gallery/split_view?category=dynamic_user_interface_%28htmx%29&amp;project=show_hide" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">show/hide toggle</a>:</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">def mk_button(show):
+    return Button("Hide" if show else "Show",
+        hx_get="toggle?show=" + ("False" if show else "True"),
+        hx_target="#content", id="toggle", hx_swap_oob="outerHTML")
+
+@rt
+def index(): return Div(mk_button(False), Div(id="content"))
+
+@rt
+def toggle(show: bool):
+    return Div(
+        Div(mk_button(show)),
+        Div("Content that is toggled!" if show else ''))
+</code></pre>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">💡 Tip
+You can follow the example links to see full running examples and the source code you can use to try it out yourself locally!</p>
+</blockquote>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">With just these few lines of Python, I've created a toggle button that shows and hides content without writing a single line of JavaScript. The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">hx_get</code> attribute tells HTMX to make a GET request to the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">toggle</code> endpoint when clicked, and the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">hx_target</code> attribute tells it to replace the element with ID "content" with the response.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">By the end of this post, you'll be able to implement complex UI patterns like inline validation, infinite scrolling, and even real-time chat - all with a fraction of the code you'd need with traditional approaches.</p>
+</div></div>
+                 <div class="prose-section my-4"><blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">💡 When to Consider Alternatives</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>Highly Interactive UIs</strong>: Applications requiring complex client-side state management (like graphic editors)</li>
+<li class="leading-relaxed pl-2"><strong>Offline-First Applications</strong>: Apps that need to function without network connectivity</li>
+<li class="leading-relaxed pl-2"><strong>Extremely High-Performance Needs</strong>: Cases where minimizing network roundtrips is critical (this is not most cases)</li>
+</ul>
+</blockquote>
+</div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="simple-showhide-toggle-your-first-interactive-component">Simple Show/Hide Toggle: Your First Interactive Component</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's start our journey with a simple but powerful pattern: the <a href="https://fastht.ml/gallery/split_view?category=dynamic_user_interface_%28htmx%29&amp;project=show_hide" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">show/hide toggle</a>. This is a common UI element that allows users to expand and collapse content, saving screen space and reducing visual clutter.</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">def mk_button(show):
+    return Button(
+        "Hide" if show else "Show",
+        hx_get="toggle?show=" + ("False" if show else "True"),
+        hx_target="#content", id="toggle", 
+        hx_swap_oob="outerHTML")
+
+@rt
+def index():
+    return Div(mk_button(False), Div(id="content"))
+
+@rt
+def toggle(show: bool):
+    return Div(
+        Div(mk_button(show)),
+        Div("Content that is toggled!" if show else ''))
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This code creates a simple page with a button that toggles the visibility of a block of text. Let's break down how it works:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">mk_button</code> function creates a button with HTMX attributes:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">hx_get</code> specifies the endpoint to call when clicked</li>
+<li class="leading-relaxed pl-2"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">hx_target</code> identifies which element to update with the response</li>
+<li class="leading-relaxed pl-2"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">hx_swap_oob</code> ("out of band") allows us to update multiple elements at once</li>
+</ul>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">index</code> route renders the initial state with a "Show" button and an empty content div</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">toggle</code> route handles the button click:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">It takes a boolean parameter indicating whether to show content</li>
+<li class="leading-relaxed pl-2">It returns a new button (toggled state) and the content div (filled or empty)</li>
+</ul>
+</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When a user clicks the button, HTMX makes a GET request to our server, which responds with HTML that updates both the button and content area. The entire interaction happens without a page refresh or any custom JavaScript.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">How It Works Behind the Scenes</h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">What makes this approach powerful is the seamless integration between the client and server. Here's what happens when a user clicks the button:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">HTMX intercepts the click event</li>
+<li class="leading-relaxed pl-2">It makes an HTTP request to <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">/toggle?show=True</code></li>
+<li class="leading-relaxed pl-2">Our server processes the request and generates new HTML</li>
+<li class="leading-relaxed pl-2">HTMX replaces the targeted elements with the new HTML</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This pattern - intercepting events, making HTTP requests, and updating the DOM - is the foundation for all HTMX interactions.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">But what happens when we need more complex interactions? Let's explore that next.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="click-to-edit-server-driven-forms">Click-to-Edit: Server-Driven Forms</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">One of the most common UI patterns in modern web applications is the "click-to-edit" pattern. This allows users to view data in a clean, readable format, then click to transform it into an editable form. When they're done editing, they submit the changes, and the view returns to its original state with updated data.  With FastHTML and HTMX, we can implement it with pure Python and a few HTMX attributes.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Here's how we can implement a <a href="https://fastht.ml/gallery/split_view?category=dynamic_user_interface_%28htmx%29&amp;project=click_to_edit" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">click-to-edit pattern</a> using FastHTML and HTMX:</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">flds = dict(firstName='First Name', lastName='Last Name', email='Email')
+
+@dataclass
+class Contact:
+    firstName:str; lastName:str; email:str; edit:bool=False
+    def __ft__(self):
+        "The __ft__ method determines how a `Contact` is rendered and displayed"
+        def item(k, v):
+            val = getattr(self,v)
+            return Div(Label(Strong(k), val), Hidden(val, id=v))
+        return Form(
+            *(item(v,k) for k,v in flds.items()),
+            Button('Click To Edit'),
+            post='form', hx_swap='outerHTML')
+
+contacts = [Contact('Joe', 'Blow', 'joe@blow.com')]
+
+@rt
+def index(): return contacts[0]
+
+@rt
+def form(c:Contact):
+    def item(k,v): return Div(Label(k), Input(name=v, value=getattr(c,v)))
+    return Form(
+        *(item(v,k) for k,v in flds.items()),
+        Button('Submit', name='btn', value='submit'),
+        Button('Cancel', name='btn', value='cancel'),
+        post="contact", hx_swap='outerHTML'
+    )
+
+@rt
+def contact(c:Contact, btn:str):
+    if btn=='submit': contacts[0] = c
+    return contacts[0]
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This code creates a contact information display that transforms into an editable form when clicked. Let's break down how it works:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">We define a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Contact</code> class with a custom <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">__ft__</code> method that determines how it renders in FastHTML</li>
+<li class="leading-relaxed pl-2">In view mode, it displays formatted contact information with a "Click To Edit" button</li>
+<li class="leading-relaxed pl-2">When clicked, HTMX sends a POST request to the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">form</code> endpoint</li>
+<li class="leading-relaxed pl-2">The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">form</code> endpoint returns an editable form with the contact's current data</li>
+<li class="leading-relaxed pl-2">When submitted, HTMX sends the form data to the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">contact</code> endpoint</li>
+<li class="leading-relaxed pl-2">The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">contact</code> endpoint updates the data and returns to view mode</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The entire interaction happens without a page refresh, giving users a smooth, app-like experience—all with server-rendered HTML.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">Technical Principles at Work</h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This example demonstrates several powerful principles:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>HTML as the Transport Layer</strong>: We're sending HTML fragments between client and server, not JSON</li>
+<li class="leading-relaxed pl-2"><strong>Server-Side State Management</strong>: The server maintains the state of the application</li>
+<li class="leading-relaxed pl-2"><strong>Targeted DOM Updates</strong>: HTMX only updates the parts of the page that need to change</li>
+<li class="leading-relaxed pl-2"><strong>Declarative Behavior</strong>: The behavior is declared in HTML attributes, not JavaScript code</li>
+</ol>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">Real-Time Form Validation</h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">While our click-to-edit example is already powerful, we can take it a step further with <a href="https://fastht.ml/gallery/split_view?category=dynamic_user_interface_%28htmx%29&amp;project=inline_validation" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">real-time form validation</a>. This is where HTMX truly shines—allowing us to validate form inputs as users type, providing immediate feedback without writing any JavaScript.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's see how we can implement real-time validation for a more complex form:</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">@rt
+def index():
+    return Form(
+        Div(Label('Email Address', _for='email'),
+            Input(type='text', name='email', id='email', post='email'),
+            hx_target='this', hx_trigger='changed', hx_swap='outerHTML'),
+        Div(Button('Submit', type='submit', id='submit-btn'),
+            id='submit-btn-container'),
+            hx_post=submit, hx_target='#submit-btn-container', hx_swap='outerHTML')
+
+@rt
+def email(email: str):
+    error_msg = validate_email(email)
+    return Div(
+        Label('Email Address'),
+        Input(name='email', type='text', value=f'{email}', post='email'),
+        Div(f'{error_msg}', style='color: red;') if error_msg else None,
+        hx_target='this', 
+        hx_swap='outerHTML', cls=f"{error_msg if error_msg else 'Valid'}")
+
+@rt
+def submit(email: str):
+    errors = {'email': validate_email(email)}
+    errors = {k: v for k, v in errors.items() if v is not None}
+    return Div(
+        Button("Submit", type='submit', id='submit-btn'),
+        *[Div(error, style='color: red;') for error in errors.values()],
+        id='submit-btn-container')
+
+def validate_email(email: str):
+    email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    if not re.match(email_regex, email):
+        return "Please enter a valid email address"
+    return None
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This example creates a form with an email fields, validated in real-time. Let's break down how it works:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Each input field has a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">post</code> attribute that triggers a request to a validation endpoint when the value changes</li>
+<li class="leading-relaxed pl-2">The validation endpoint checks the input and returns HTML with appropriate error messages</li>
+<li class="leading-relaxed pl-2">HTMX replaces the input field with the validated version, showing any error messages</li>
+<li class="leading-relaxed pl-2">When the form is submitted, all fields are validated again on the server</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The result is a form that provides immediate feedback to users, guiding them toward valid input without any custom JavaScript. This is a powerful pattern that can be applied to any form in your application.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="the-surprising-insight-server-side-can-feel-like-client-side">The Surprising Insight: Server-Side Can Feel Like Client-Side</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">One of the most counterintuitive aspects of this approach is that server-side validation can feel just as responsive as client-side validation. By making small, targeted requests and updating only the necessary parts of the page, HTMX creates an experience that feels instant to users.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">In the next section, we'll explore even more powerful patterns, including loading indicators, infinite scrolling, and real-time updates with WebSockets.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="real-time-updates-and-advanced-patterns">Real-Time Updates and Advanced Patterns</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we've explored basic interactions and form validation, let's look at more sophisticated patterns that truly showcase the power of FastHTML and HTMX together.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="infinite-scrolling">Infinite Scrolling</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><a href="https://fastht.ml/gallery/split_view?category=dynamic_user_interface_%28htmx%29&amp;project=infinite_scroll" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Infinite scrolling</a> is a pattern that automatically loads more content as the user scrolls down a page. With HTMX, it's remarkably simple compared to other alternatives.</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">column_names = ('name', 'email', 'id')
+
+def generate_contact(id: int) -&gt; Dict[str, str]:
+    return {'name': 'Agent Smith',
+            'email': f'void{str(id)}@matrix.com',
+            'id': str(uuid.uuid4())}
+
+def generate_table_row(row_num: int) -&gt; Tr:
+    contact = generate_contact(row_num)
+    return Tr(*[Td(contact[key]) for key in column_names])
+
+def generate_table_part(part_num: int = 1, size: int = 20) -&gt; Tuple[Tr]:
+    paginated = [generate_table_row((part_num - 1) * size + i) for i in range(size)]
+    paginated[-1].attrs.update({
+        'get': f'page?idx={part_num + 1}',
+        'hx-trigger': 'revealed',
+        'hx-swap': 'afterend'})
+    return tuple(paginated)
+
+@rt
+def index():
+    return Titled('Infinite Scroll',
+                  Div(Table(
+                      Thead(Tr(*[Th(key) for key in column_names])),
+                      Tbody(generate_table_part(1)))))
+
+@rt
+def page(idx:int|None = 0):
+    return generate_table_part(idx)
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The magic happens with the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">hx_trigger="revealed"</code> attribute, which fires when an element becomes visible in the viewport. When the loading indicator is revealed, HTMX automatically fetches more content and seamlessly adds it to the page.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">WebSockets for Real-Time Updates</h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><a href="https://fastht.ml/gallery/split_view?category=dynamic_user_interface_%28htmx%29&amp;project=web_sockets" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">WebSockets</a> provide a persistent connection between client and server, enabling real-time updates without polling. Setting up WebSockets with FastHTML requires:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Adding the WebSocket extension to your application</li>
+<li class="leading-relaxed pl-2">Creating WebSocket handlers for connection events</li>
+<li class="leading-relaxed pl-2">Using the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">ws_connect</code> attribute to establish connections</li>
+</ol>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block"># All messages here, but only most recent 15 are stored
+messages = deque(maxlen=15)
+users = {}
+
+# Takes all the messages and renders them
+box_style = "border: 1px solid #ccc; border-radius: 10px; padding: 10px; margin: 5px 0;"
+def render_messages(messages):
+    return Div(*[Div(m, style=box_style) for m in messages], id='msg-list')
+
+# Input field is reset via hx_swap_oob after submitting a message
+def mk_input(): return Input(id='msg', placeholder="Type your message", value="", hx_swap_oob="true")
+
+@rt
+def index():
+    return Titled("Leave a message for others!"),Div(
+        Form(mk_input(), ws_send=True), # input field
+        P("Leave a message for others!"),
+        Div(render_messages(messages),id='msg-list'), # All the Messages
+        hx_ext='ws', ws_connect='ws') # Use a web socket 
+
+def on_connect(ws, send): users[id(ws)] = send
+def on_disconnect(ws):users.pop(id(ws),None)
+
+@app.ws('/ws', conn=on_connect, disconn=on_disconnect)
+async def ws(msg:str,send):
+    await send(mk_input()) # reset the input field immediately
+    messages.appendleft(msg) # New messages first
+    for u in users.values(): # Get `send` function for a user
+        await u(render_messages(messages)) # Send the message to that user
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">With just these few lines of code, we've created a real-time chat application where messages are instantly broadcast to all connected clients. No JavaScript frameworks, no complex state management, just HTML and Python.</p>
+<h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="putting-it-all-together">Putting It All Together</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's step back and consider what we've accomplished. We've built:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">A simple show/hide toggle</li>
+<li class="leading-relaxed pl-2">A click-to-edit interface with form validation</li>
+<li class="leading-relaxed pl-2">An infinite scrolling content loader</li>
+<li class="leading-relaxed pl-2">A real-time chat application</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">All with minimal code, no JavaScript, and a unified development experience in Python. This approach brings several key benefits:</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="simplified-development-workflow">Simplified Development Workflow</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">With FastHTML and HTMX, your entire application lives in Python. This means:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">One language to learn and maintain</li>
+<li class="leading-relaxed pl-2">Consistent patterns throughout your codebase</li>
+<li class="leading-relaxed pl-2">No context switching between frontend and backend</li>
+<li class="leading-relaxed pl-2">Easier debugging and testing</li>
+</ul>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="enhanced-maintainability">Enhanced Maintainability</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">As your application grows, the benefits become even more apparent:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Clear separation of concerns</li>
+<li class="leading-relaxed pl-2">Predictable request/response patterns</li>
+<li class="leading-relaxed pl-2">Server-side rendering for better SEO</li>
+<li class="leading-relaxed pl-2">Simplified state management (the server is the source of truth)</li>
+</ul>
+<h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="key-principles-to-remember">Key Principles to Remember</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">As you start building with FastHTML and HTMX, keep these principles in mind:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Think in HTML, not JavaScript</strong>: Focus on the HTML structure and how it changes, not on client-side logic.</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Embrace hypermedia</strong>: Use links, forms, and HTMX attributes to create interactive applications without custom JavaScript.</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Server as the state manager</strong>: Let your server handle state transitions and business logic, returning HTML that reflects the new state.</p>
+</li>
+<li class="leading-relaxed pl-2">
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Progressive enhancement</strong>: Start with functional HTML and enhance it with HTMX</p>
+</li>
+</ol>
+<h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="next-steps-for-your-journey">Next Steps for Your Journey</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that you understand the basics of FastHTML and HTMX, here are concrete steps to continue your learning:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>Start with a small project</strong>: Convert an existing static page to use FastHTML</li>
+<li class="leading-relaxed pl-2"><strong>Explore the pattern gallery</strong>: Visit <a href="https://fastht.ml/gallery/" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">the FastHTML gallery</a> to see dozens of UI patterns implemented</li>
+<li class="leading-relaxed pl-2"><strong>Join the community</strong>: <a href="https://discord.gg/qcXvcxMhdP" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">FastHTML Discord</a></li>
+<li class="leading-relaxed pl-2"><strong>Contribute</strong>: Both projects are open source and welcome contributions</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">What will you build with FastHTML and HTMX?</p>
+</div></div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#the-problem-with-web-ui-interactivity" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Problem with Web UI Interactivity</a><a href="#what-is-fasthtml" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What is FastHTML?</a><a href="#getting-started-with-fasthtml-and-htmx" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Getting Started with FastHTML and HTMX</a><a href="#what-fasthtml-and-htmx-will-do-for-you" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What FastHTML and HTMX Will Do For You</a><a href="#simple-showhide-toggle-your-first-interactive-component" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Simple Show/Hide Toggle: Your First Interactive Component</a><a href="#click-to-edit-server-driven-forms" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Click-to-Edit: Server-Driven Forms</a><a href="#the-surprising-insight-server-side-can-feel-like-client-side" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">The Surprising Insight: Server-Side Can Feel Like Client-Side</a><a href="#real-time-updates-and-advanced-patterns" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Real-Time Updates and Advanced Patterns</a><a href="#infinite-scrolling" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Infinite Scrolling</a><a href="#putting-it-all-together" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Putting It All Together</a><a href="#simplified-development-workflow" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Simplified Development Workflow</a><a href="#enhanced-maintainability" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Enhanced Maintainability</a><a href="#key-principles-to-remember" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Key Principles to Remember</a><a href="#next-steps-for-your-journey" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Next Steps for Your Journey</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

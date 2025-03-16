@@ -1,0 +1,1907 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-06-19-NeuralNetworkFoundationsP1.ipynb">
+             <meta property="og:title" content="Neural Network Foundations (Part 1)">
+             <meta property="og:description" content="MNIST 3/7 classification from scratch with deep Learning">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Neural Network Foundations (Part 1)">
+             <meta name="twitter:description" content="MNIST 3/7 classification from scratch with deep Learning">
+             <meta property="article:published_time" content="2020-06-19">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="Neural Networks">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-06-19-NeuralNetworkFoundationsP1.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/NeuralNetwork.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/NeuralNetwork.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Neural Network Foundations (Part 1)</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">MNIST 3/7 classification from scratch with deep Learning</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#intro" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Intro</a><a href="#load-the-data" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Load the Data</a><a href="#defining-our-linear-equation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Defining our Linear Equation</a><a href="#setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Setup</a><a href="#loss-function" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Loss Function</a><a href="#gradient-descent" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Gradient Descent</a><a href="#background-and-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Background and Setup</a><a href="#calculate-the-gradient" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Calculate the Gradient</a><a href="#training-the-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Training the Model</a><a href="#linear-recap" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Linear Recap</a><a href="#relu" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">ReLu</a><a href="#what-is-it" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What is it?</a><a href="#in-a-neural-network" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">In a Neural Network</a><a href="#train-the-full-neural-network" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Train the Full Neural Network</a><a href="#recap-of-tensor-shapes" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Recap of Tensor Shapes</a><a href="#whats-next" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What&#x27;s Next?</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastai.vision.all import *
+from fastai.data.external import *
+from PIL import Image
+import math
+torch.manual_seed(100)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;torch._C.Generator&gt;</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="intro">Intro</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Today we will be working with a subset of the MNIST dataset. The goal is going to be to take an image of handwritten digits and automatically predict whether it is a 3 or a 7.  We will be building a Neural Network to do this.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">ℹ️ Note</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If you get through this and want more detail, I highly recommend checking out <a href="https://www.amazon.com/Deep-Learning-Coders-fastai-PyTorch/dp/1492045527" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Deep Learning for Coders with fastai &amp; Pytorch by Jeremy Howard and Sylvain Gugger</a>. All of the material in this guide and more is covered in much greater detail in that book.  They also have some awesome courses on the <a href="https://fast.ai" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">fast.ai</a> website, such as <a href="https://course.fast.ai" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">their deep learning course</a></p>
+</blockquote>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="load-the-data">Load the Data</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The first step is to get and load the data.  We'll look at it a bit along the way to make sure it was loaded properly and we understand it.  We will be using fastai's built in dataset feature rather than sourcing it ourself.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># This command downloads the MNIST_TINY dataset and returns the path where it was downloaded
+path = untar_data(URLs.MNIST_TINY)
+
+# This takes that path from above, and get the path for the threes and the sevens
+threes = (path/&#x27;train&#x27;/&#x27;3&#x27;).ls().sorted()
+sevens = (path/&#x27;train&#x27;/&#x27;7&#x27;).ls().sorted()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's take a look at an image.  The first thing I reccomend doing for any dataset is to view something to verify you loaded it right. The second thing is to look at the size of it.  This is not just for memory concerns, but you want to generally know some basics about whatever you are working with.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we've loaded our images let's look at what one looks like.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">im3 = Image.open(threes[1])
+im3</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAA4klEQVR4nGNgGEjgu/Xf//gIrFLMiZ/+/v3793cpPxZJkWN/IeC9NUKQCUq/Wfab4fv9VwwMfP7YDM5r3MAQ/Pfv30MSWO2VYgj++/fvXwMMYxkYGBieMTAwMDAceIZVEgLOvsIhmYLVOgYGBgYGx29///5dz4Jdcs3fv3//uuHQ6fT379+/78ywSwo6vvj79+9UVhx6dXv//v1bjUVC8+zZs4pMDX//fk2GCSHcxmnAwLBlnQEDw6cbmDqNoNHy9wpcCBEIj/fhcAjEXKvNv//+/XtbB4d899+/TYb4DKA9AABLQV4KAJgjfgAAAABJRU5ErkJggg==" class="mx-auto"/></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Under the hood it's just a 28x28 matrix!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">tensor(im3).shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">torch.Size([28, 28])</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's put the matrix into a pandas dataframe.  We will then color each cell based on the value in that cell.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When we do that, we can clearly see that this is a 3 just from the values in the tensor.  This should give a good idea for the data we are working with and how an image can be worked with (it's just a bunch of numbers).</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">pd.DataFrame(tensor(im3)).loc[3:24,6:20].style.set_properties(**{&#x27;font-size&#x27;:&#x27;6pt&#x27;}).background_gradient(&#x27;Greys&#x27;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><html><head><style type="text/css">
+#T_62b58_row0_col0, #T_62b58_row0_col1, #T_62b58_row0_col2, #T_62b58_row0_col3, #T_62b58_row0_col4, #T_62b58_row0_col5, #T_62b58_row0_col6, #T_62b58_row0_col7, #T_62b58_row0_col8, #T_62b58_row0_col9, #T_62b58_row0_col10, #T_62b58_row0_col11, #T_62b58_row0_col12, #T_62b58_row0_col13, #T_62b58_row0_col14, #T_62b58_row1_col0, #T_62b58_row1_col1, #T_62b58_row1_col2, #T_62b58_row1_col9, #T_62b58_row1_col10, #T_62b58_row1_col11, #T_62b58_row1_col12, #T_62b58_row1_col13, #T_62b58_row1_col14, #T_62b58_row2_col0, #T_62b58_row2_col11, #T_62b58_row2_col12, #T_62b58_row2_col13, #T_62b58_row2_col14, #T_62b58_row3_col0, #T_62b58_row3_col12, #T_62b58_row3_col13, #T_62b58_row3_col14, #T_62b58_row4_col0, #T_62b58_row4_col1, #T_62b58_row4_col12, #T_62b58_row4_col13, #T_62b58_row4_col14, #T_62b58_row5_col0, #T_62b58_row5_col1, #T_62b58_row5_col2, #T_62b58_row5_col6, #T_62b58_row5_col13, #T_62b58_row5_col14, #T_62b58_row6_col0, #T_62b58_row6_col1, #T_62b58_row6_col2, #T_62b58_row6_col3, #T_62b58_row6_col4, #T_62b58_row6_col6, #T_62b58_row6_col13, #T_62b58_row6_col14, #T_62b58_row7_col0, #T_62b58_row7_col1, #T_62b58_row7_col2, #T_62b58_row7_col3, #T_62b58_row7_col4, #T_62b58_row7_col5, #T_62b58_row7_col6, #T_62b58_row7_col13, #T_62b58_row7_col14, #T_62b58_row8_col0, #T_62b58_row8_col1, #T_62b58_row8_col2, #T_62b58_row8_col3, #T_62b58_row8_col4, #T_62b58_row8_col5, #T_62b58_row8_col6, #T_62b58_row8_col12, #T_62b58_row8_col13, #T_62b58_row8_col14, #T_62b58_row9_col0, #T_62b58_row9_col1, #T_62b58_row9_col2, #T_62b58_row9_col3, #T_62b58_row9_col4, #T_62b58_row9_col5, #T_62b58_row9_col6, #T_62b58_row9_col12, #T_62b58_row9_col13, #T_62b58_row9_col14, #T_62b58_row10_col0, #T_62b58_row10_col1, #T_62b58_row10_col2, #T_62b58_row10_col3, #T_62b58_row10_col4, #T_62b58_row10_col12, #T_62b58_row10_col13, #T_62b58_row10_col14, #T_62b58_row11_col0, #T_62b58_row11_col1, #T_62b58_row11_col2, #T_62b58_row11_col3, #T_62b58_row11_col4, #T_62b58_row11_col11, #T_62b58_row11_col12, #T_62b58_row11_col13, #T_62b58_row11_col14, #T_62b58_row12_col0, #T_62b58_row12_col1, #T_62b58_row12_col2, #T_62b58_row12_col3, #T_62b58_row12_col4, #T_62b58_row12_col12, #T_62b58_row12_col13, #T_62b58_row12_col14, #T_62b58_row13_col0, #T_62b58_row13_col1, #T_62b58_row13_col2, #T_62b58_row13_col3, #T_62b58_row13_col4, #T_62b58_row13_col13, #T_62b58_row13_col14, #T_62b58_row14_col0, #T_62b58_row14_col1, #T_62b58_row14_col2, #T_62b58_row14_col3, #T_62b58_row14_col4, #T_62b58_row14_col5, #T_62b58_row14_col6, #T_62b58_row14_col13, #T_62b58_row14_col14, #T_62b58_row15_col0, #T_62b58_row15_col1, #T_62b58_row15_col2, #T_62b58_row15_col14, #T_62b58_row16_col0, #T_62b58_row16_col1, #T_62b58_row16_col2, #T_62b58_row16_col14, #T_62b58_row17_col0, #T_62b58_row17_col1, #T_62b58_row17_col2, #T_62b58_row17_col13, #T_62b58_row17_col14, #T_62b58_row18_col0, #T_62b58_row18_col1, #T_62b58_row18_col2, #T_62b58_row18_col13, #T_62b58_row18_col14, #T_62b58_row19_col0, #T_62b58_row19_col1, #T_62b58_row19_col2, #T_62b58_row19_col3, #T_62b58_row19_col13, #T_62b58_row19_col14, #T_62b58_row20_col0, #T_62b58_row20_col1, #T_62b58_row20_col2, #T_62b58_row20_col3, #T_62b58_row20_col4, #T_62b58_row20_col5, #T_62b58_row20_col6, #T_62b58_row20_col12, #T_62b58_row20_col13, #T_62b58_row20_col14, #T_62b58_row21_col0, #T_62b58_row21_col1, #T_62b58_row21_col2, #T_62b58_row21_col3, #T_62b58_row21_col4, #T_62b58_row21_col5, #T_62b58_row21_col6, #T_62b58_row21_col7, #T_62b58_row21_col8, #T_62b58_row21_col9, #T_62b58_row21_col10, #T_62b58_row21_col11, #T_62b58_row21_col12, #T_62b58_row21_col13, #T_62b58_row21_col14 {
+  font-size: 6pt;
+  background-color: #ffffff;
+  color: #000000;
+}
+#T_62b58_row1_col3 {
+  font-size: 6pt;
+  background-color: #cdcdcd;
+  color: #000000;
+}
+#T_62b58_row1_col4 {
+  font-size: 6pt;
+  background-color: #5b5b5b;
+  color: #f1f1f1;
+}
+#T_62b58_row1_col5, #T_62b58_row1_col6, #T_62b58_row2_col4, #T_62b58_row2_col7, #T_62b58_row3_col1, #T_62b58_row3_col2, #T_62b58_row3_col3, #T_62b58_row3_col4, #T_62b58_row3_col7, #T_62b58_row3_col8, #T_62b58_row3_col9, #T_62b58_row4_col4, #T_62b58_row4_col8, #T_62b58_row4_col9, #T_62b58_row4_col10, #T_62b58_row5_col8, #T_62b58_row5_col9, #T_62b58_row5_col10, #T_62b58_row6_col8, #T_62b58_row6_col9, #T_62b58_row6_col10, #T_62b58_row6_col11, #T_62b58_row7_col8, #T_62b58_row7_col9, #T_62b58_row7_col10, #T_62b58_row8_col8, #T_62b58_row8_col9, #T_62b58_row8_col10, #T_62b58_row9_col8, #T_62b58_row9_col9, #T_62b58_row9_col10, #T_62b58_row10_col7, #T_62b58_row10_col8, #T_62b58_row10_col9, #T_62b58_row11_col7, #T_62b58_row11_col8, #T_62b58_row11_col9, #T_62b58_row12_col7, #T_62b58_row12_col8, #T_62b58_row12_col9, #T_62b58_row13_col8, #T_62b58_row13_col9, #T_62b58_row13_col10, #T_62b58_row14_col9, #T_62b58_row14_col10, #T_62b58_row14_col11, #T_62b58_row15_col10, #T_62b58_row15_col11, #T_62b58_row15_col12, #T_62b58_row15_col13, #T_62b58_row16_col4, #T_62b58_row16_col10, #T_62b58_row16_col11, #T_62b58_row17_col4, #T_62b58_row17_col7, #T_62b58_row17_col8, #T_62b58_row17_col9, #T_62b58_row17_col10, #T_62b58_row17_col11, #T_62b58_row18_col7, #T_62b58_row18_col8, #T_62b58_row18_col9, #T_62b58_row18_col10, #T_62b58_row18_col11, #T_62b58_row19_col8, #T_62b58_row19_col9, #T_62b58_row19_col10, #T_62b58_row20_col8, #T_62b58_row20_col9 {
+  font-size: 6pt;
+  background-color: #000000;
+  color: #f1f1f1;
+}
+#T_62b58_row1_col7 {
+  font-size: 6pt;
+  background-color: #bdbdbd;
+  color: #000000;
+}
+#T_62b58_row1_col8 {
+  font-size: 6pt;
+  background-color: #c3c3c3;
+  color: #000000;
+}
+#T_62b58_row2_col1 {
+  font-size: 6pt;
+  background-color: #ececec;
+  color: #000000;
+}
+#T_62b58_row2_col2 {
+  font-size: 6pt;
+  background-color: #999999;
+  color: #f1f1f1;
+}
+#T_62b58_row2_col3 {
+  font-size: 6pt;
+  background-color: #0d0d0d;
+  color: #f1f1f1;
+}
+#T_62b58_row2_col5, #T_62b58_row3_col5, #T_62b58_row16_col5, #T_62b58_row17_col5, #T_62b58_row18_col5 {
+  font-size: 6pt;
+  background-color: #010101;
+  color: #f1f1f1;
+}
+#T_62b58_row2_col6, #T_62b58_row2_col8, #T_62b58_row3_col6, #T_62b58_row11_col6, #T_62b58_row12_col6, #T_62b58_row16_col6, #T_62b58_row17_col6, #T_62b58_row18_col6, #T_62b58_row19_col7 {
+  font-size: 6pt;
+  background-color: #020202;
+  color: #f1f1f1;
+}
+#T_62b58_row2_col9 {
+  font-size: 6pt;
+  background-color: #a2a2a2;
+  color: #f1f1f1;
+}
+#T_62b58_row2_col10 {
+  font-size: 6pt;
+  background-color: #f8f8f8;
+  color: #000000;
+}
+#T_62b58_row3_col10, #T_62b58_row16_col12 {
+  font-size: 6pt;
+  background-color: #101010;
+  color: #f1f1f1;
+}
+#T_62b58_row3_col11 {
+  font-size: 6pt;
+  background-color: #dcdcdc;
+  color: #000000;
+}
+#T_62b58_row4_col2, #T_62b58_row4_col11, #T_62b58_row8_col11, #T_62b58_row9_col11 {
+  font-size: 6pt;
+  background-color: #898989;
+  color: #f1f1f1;
+}
+#T_62b58_row4_col3 {
+  font-size: 6pt;
+  background-color: #060606;
+  color: #f1f1f1;
+}
+#T_62b58_row4_col5 {
+  font-size: 6pt;
+  background-color: #0c0c0c;
+  color: #f1f1f1;
+}
+#T_62b58_row4_col6 {
+  font-size: 6pt;
+  background-color: #292929;
+  color: #f1f1f1;
+}
+#T_62b58_row4_col7 {
+  font-size: 6pt;
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+}
+#T_62b58_row5_col3 {
+  font-size: 6pt;
+  background-color: #aaaaaa;
+  color: #f1f1f1;
+}
+#T_62b58_row5_col4 {
+  font-size: 6pt;
+  background-color: #939393;
+  color: #f1f1f1;
+}
+#T_62b58_row5_col5, #T_62b58_row10_col10 {
+  font-size: 6pt;
+  background-color: #616161;
+  color: #f1f1f1;
+}
+#T_62b58_row5_col7, #T_62b58_row6_col7, #T_62b58_row7_col7, #T_62b58_row8_col7 {
+  font-size: 6pt;
+  background-color: #c8c8c8;
+  color: #000000;
+}
+#T_62b58_row5_col11 {
+  font-size: 6pt;
+  background-color: #4b4b4b;
+  color: #f1f1f1;
+}
+#T_62b58_row5_col12, #T_62b58_row6_col5 {
+  font-size: 6pt;
+  background-color: #f3f3f3;
+  color: #000000;
+}
+#T_62b58_row6_col12, #T_62b58_row16_col3, #T_62b58_row17_col3 {
+  font-size: 6pt;
+  background-color: #e3e3e3;
+  color: #000000;
+}
+#T_62b58_row7_col11 {
+  font-size: 6pt;
+  background-color: #525252;
+  color: #f1f1f1;
+}
+#T_62b58_row7_col12, #T_62b58_row18_col3 {
+  font-size: 6pt;
+  background-color: #f5f5f5;
+  color: #000000;
+}
+#T_62b58_row9_col7 {
+  font-size: 6pt;
+  background-color: #585858;
+  color: #f1f1f1;
+}
+#T_62b58_row10_col5, #T_62b58_row13_col6 {
+  font-size: 6pt;
+  background-color: #d8d8d8;
+  color: #000000;
+}
+#T_62b58_row10_col6 {
+  font-size: 6pt;
+  background-color: #0a0a0a;
+  color: #f1f1f1;
+}
+#T_62b58_row10_col11, #T_62b58_row13_col12 {
+  font-size: 6pt;
+  background-color: #fdfdfd;
+  color: #000000;
+}
+#T_62b58_row11_col5 {
+  font-size: 6pt;
+  background-color: #656565;
+  color: #f1f1f1;
+}
+#T_62b58_row11_col10 {
+  font-size: 6pt;
+  background-color: #d4d4d4;
+  color: #000000;
+}
+#T_62b58_row12_col5 {
+  font-size: 6pt;
+  background-color: #d7d7d7;
+  color: #000000;
+}
+#T_62b58_row12_col10 {
+  font-size: 6pt;
+  background-color: #111111;
+  color: #f1f1f1;
+}
+#T_62b58_row12_col11 {
+  font-size: 6pt;
+  background-color: #e0e0e0;
+  color: #000000;
+}
+#T_62b58_row13_col5 {
+  font-size: 6pt;
+  background-color: #f7f7f7;
+  color: #000000;
+}
+#T_62b58_row13_col7 {
+  font-size: 6pt;
+  background-color: #181818;
+  color: #f1f1f1;
+}
+#T_62b58_row13_col11 {
+  font-size: 6pt;
+  background-color: #7d7d7d;
+  color: #f1f1f1;
+}
+#T_62b58_row14_col7, #T_62b58_row19_col12 {
+  font-size: 6pt;
+  background-color: #e7e7e7;
+  color: #000000;
+}
+#T_62b58_row14_col8 {
+  font-size: 6pt;
+  background-color: #868686;
+  color: #f1f1f1;
+}
+#T_62b58_row14_col12 {
+  font-size: 6pt;
+  background-color: #959595;
+  color: #f1f1f1;
+}
+#T_62b58_row15_col3 {
+  font-size: 6pt;
+  background-color: #e9e9e9;
+  color: #000000;
+}
+#T_62b58_row15_col4 {
+  font-size: 6pt;
+  background-color: #3c3c3c;
+  color: #f1f1f1;
+}
+#T_62b58_row15_col5 {
+  font-size: 6pt;
+  background-color: #3d3d3d;
+  color: #f1f1f1;
+}
+#T_62b58_row15_col6 {
+  font-size: 6pt;
+  background-color: #3f3f3f;
+  color: #f1f1f1;
+}
+#T_62b58_row15_col7 {
+  font-size: 6pt;
+  background-color: #efefef;
+  color: #000000;
+}
+#T_62b58_row15_col8 {
+  font-size: 6pt;
+  background-color: #fefefe;
+  color: #000000;
+}
+#T_62b58_row15_col9 {
+  font-size: 6pt;
+  background-color: #949494;
+  color: #f1f1f1;
+}
+#T_62b58_row16_col7 {
+  font-size: 6pt;
+  background-color: #303030;
+  color: #f1f1f1;
+}
+#T_62b58_row16_col8 {
+  font-size: 6pt;
+  background-color: #919191;
+  color: #f1f1f1;
+}
+#T_62b58_row16_col9 {
+  font-size: 6pt;
+  background-color: #5d5d5d;
+  color: #f1f1f1;
+}
+#T_62b58_row16_col13 {
+  font-size: 6pt;
+  background-color: #7b7b7b;
+  color: #f1f1f1;
+}
+#T_62b58_row17_col12, #T_62b58_row18_col12, #T_62b58_row19_col11 {
+  font-size: 6pt;
+  background-color: #282828;
+  color: #f1f1f1;
+}
+#T_62b58_row18_col4 {
+  font-size: 6pt;
+  background-color: #545454;
+  color: #f1f1f1;
+}
+#T_62b58_row19_col4 {
+  font-size: 6pt;
+  background-color: #fbfbfb;
+  color: #000000;
+}
+#T_62b58_row19_col5 {
+  font-size: 6pt;
+  background-color: #dddddd;
+  color: #000000;
+}
+#T_62b58_row19_col6 {
+  font-size: 6pt;
+  background-color: #5f5f5f;
+  color: #f1f1f1;
+}
+#T_62b58_row20_col7 {
+  font-size: 6pt;
+  background-color: #888888;
+  color: #f1f1f1;
+}
+#T_62b58_row20_col10 {
+  font-size: 6pt;
+  background-color: #929292;
+  color: #f1f1f1;
+}
+#T_62b58_row20_col11 {
+  font-size: 6pt;
+  background-color: #e4e4e4;
+  color: #000000;
+}
+</style>
+</head><body><table id="T_62b58_" class="w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr>
+      <th class="blank level0 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"> </th>
+      <th class="col_heading level0 col0 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">6</th>
+      <th class="col_heading level0 col1 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">7</th>
+      <th class="col_heading level0 col2 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">8</th>
+      <th class="col_heading level0 col3 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">9</th>
+      <th class="col_heading level0 col4 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">10</th>
+      <th class="col_heading level0 col5 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">11</th>
+      <th class="col_heading level0 col6 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">12</th>
+      <th class="col_heading level0 col7 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">13</th>
+      <th class="col_heading level0 col8 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">14</th>
+      <th class="col_heading level0 col9 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">15</th>
+      <th class="col_heading level0 col10 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">16</th>
+      <th class="col_heading level0 col11 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">17</th>
+      <th class="col_heading level0 col12 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">18</th>
+      <th class="col_heading level0 col13 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">19</th>
+      <th class="col_heading level0 col14 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">20</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_62b58_level0_row0" class="row_heading level0 row0 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">3</th>
+      <td id="T_62b58_row0_col0" class="data row0 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col1" class="data row0 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col2" class="data row0 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col3" class="data row0 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col4" class="data row0 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col5" class="data row0 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col6" class="data row0 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col7" class="data row0 col7 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col8" class="data row0 col8 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col9" class="data row0 col9 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col10" class="data row0 col10 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col11" class="data row0 col11 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col12" class="data row0 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col13" class="data row0 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row0_col14" class="data row0 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row1" class="row_heading level0 row1 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">4</th>
+      <td id="T_62b58_row1_col0" class="data row1 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col1" class="data row1 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col2" class="data row1 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col3" class="data row1 col3 p-4 border-b border-indigo-100 text-gray-700">77</td>
+      <td id="T_62b58_row1_col4" class="data row1 col4 p-4 border-b border-indigo-100 text-gray-700">181</td>
+      <td id="T_62b58_row1_col5" class="data row1 col5 p-4 border-b border-indigo-100 text-gray-700">254</td>
+      <td id="T_62b58_row1_col6" class="data row1 col6 p-4 border-b border-indigo-100 text-gray-700">255</td>
+      <td id="T_62b58_row1_col7" class="data row1 col7 p-4 border-b border-indigo-100 text-gray-700">95</td>
+      <td id="T_62b58_row1_col8" class="data row1 col8 p-4 border-b border-indigo-100 text-gray-700">88</td>
+      <td id="T_62b58_row1_col9" class="data row1 col9 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col10" class="data row1 col10 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col11" class="data row1 col11 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col12" class="data row1 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col13" class="data row1 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row1_col14" class="data row1 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row2" class="row_heading level0 row2 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">5</th>
+      <td id="T_62b58_row2_col0" class="data row2 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row2_col1" class="data row2 col1 p-4 border-b border-indigo-100 text-gray-700">3</td>
+      <td id="T_62b58_row2_col2" class="data row2 col2 p-4 border-b border-indigo-100 text-gray-700">97</td>
+      <td id="T_62b58_row2_col3" class="data row2 col3 p-4 border-b border-indigo-100 text-gray-700">242</td>
+      <td id="T_62b58_row2_col4" class="data row2 col4 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row2_col5" class="data row2 col5 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row2_col6" class="data row2 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row2_col7" class="data row2 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row2_col8" class="data row2 col8 p-4 border-b border-indigo-100 text-gray-700">251</td>
+      <td id="T_62b58_row2_col9" class="data row2 col9 p-4 border-b border-indigo-100 text-gray-700">117</td>
+      <td id="T_62b58_row2_col10" class="data row2 col10 p-4 border-b border-indigo-100 text-gray-700">15</td>
+      <td id="T_62b58_row2_col11" class="data row2 col11 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row2_col12" class="data row2 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row2_col13" class="data row2 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row2_col14" class="data row2 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row3" class="row_heading level0 row3 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">6</th>
+      <td id="T_62b58_row3_col0" class="data row3 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row3_col1" class="data row3 col1 p-4 border-b border-indigo-100 text-gray-700">20</td>
+      <td id="T_62b58_row3_col2" class="data row3 col2 p-4 border-b border-indigo-100 text-gray-700">198</td>
+      <td id="T_62b58_row3_col3" class="data row3 col3 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col4" class="data row3 col4 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col5" class="data row3 col5 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col6" class="data row3 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col7" class="data row3 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col8" class="data row3 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col9" class="data row3 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row3_col10" class="data row3 col10 p-4 border-b border-indigo-100 text-gray-700">239</td>
+      <td id="T_62b58_row3_col11" class="data row3 col11 p-4 border-b border-indigo-100 text-gray-700">59</td>
+      <td id="T_62b58_row3_col12" class="data row3 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row3_col13" class="data row3 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row3_col14" class="data row3 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row4" class="row_heading level0 row4 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">7</th>
+      <td id="T_62b58_row4_col0" class="data row4 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row4_col1" class="data row4 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row4_col2" class="data row4 col2 p-4 border-b border-indigo-100 text-gray-700">108</td>
+      <td id="T_62b58_row4_col3" class="data row4 col3 p-4 border-b border-indigo-100 text-gray-700">248</td>
+      <td id="T_62b58_row4_col4" class="data row4 col4 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row4_col5" class="data row4 col5 p-4 border-b border-indigo-100 text-gray-700">244</td>
+      <td id="T_62b58_row4_col6" class="data row4 col6 p-4 border-b border-indigo-100 text-gray-700">220</td>
+      <td id="T_62b58_row4_col7" class="data row4 col7 p-4 border-b border-indigo-100 text-gray-700">231</td>
+      <td id="T_62b58_row4_col8" class="data row4 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row4_col9" class="data row4 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row4_col10" class="data row4 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row4_col11" class="data row4 col11 p-4 border-b border-indigo-100 text-gray-700">138</td>
+      <td id="T_62b58_row4_col12" class="data row4 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row4_col13" class="data row4 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row4_col14" class="data row4 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row5" class="row_heading level0 row5 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">8</th>
+      <td id="T_62b58_row5_col0" class="data row5 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row5_col1" class="data row5 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row5_col2" class="data row5 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row5_col3" class="data row5 col3 p-4 border-b border-indigo-100 text-gray-700">110</td>
+      <td id="T_62b58_row5_col4" class="data row5 col4 p-4 border-b border-indigo-100 text-gray-700">129</td>
+      <td id="T_62b58_row5_col5" class="data row5 col5 p-4 border-b border-indigo-100 text-gray-700">176</td>
+      <td id="T_62b58_row5_col6" class="data row5 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row5_col7" class="data row5 col7 p-4 border-b border-indigo-100 text-gray-700">83</td>
+      <td id="T_62b58_row5_col8" class="data row5 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row5_col9" class="data row5 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row5_col10" class="data row5 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row5_col11" class="data row5 col11 p-4 border-b border-indigo-100 text-gray-700">194</td>
+      <td id="T_62b58_row5_col12" class="data row5 col12 p-4 border-b border-indigo-100 text-gray-700">24</td>
+      <td id="T_62b58_row5_col13" class="data row5 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row5_col14" class="data row5 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row6" class="row_heading level0 row6 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">9</th>
+      <td id="T_62b58_row6_col0" class="data row6 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col1" class="data row6 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col2" class="data row6 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col3" class="data row6 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col4" class="data row6 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col5" class="data row6 col5 p-4 border-b border-indigo-100 text-gray-700">26</td>
+      <td id="T_62b58_row6_col6" class="data row6 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col7" class="data row6 col7 p-4 border-b border-indigo-100 text-gray-700">83</td>
+      <td id="T_62b58_row6_col8" class="data row6 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row6_col9" class="data row6 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row6_col10" class="data row6 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row6_col11" class="data row6 col11 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row6_col12" class="data row6 col12 p-4 border-b border-indigo-100 text-gray-700">48</td>
+      <td id="T_62b58_row6_col13" class="data row6 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row6_col14" class="data row6 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row7" class="row_heading level0 row7 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">10</th>
+      <td id="T_62b58_row7_col0" class="data row7 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col1" class="data row7 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col2" class="data row7 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col3" class="data row7 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col4" class="data row7 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col5" class="data row7 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col6" class="data row7 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col7" class="data row7 col7 p-4 border-b border-indigo-100 text-gray-700">83</td>
+      <td id="T_62b58_row7_col8" class="data row7 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row7_col9" class="data row7 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row7_col10" class="data row7 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row7_col11" class="data row7 col11 p-4 border-b border-indigo-100 text-gray-700">189</td>
+      <td id="T_62b58_row7_col12" class="data row7 col12 p-4 border-b border-indigo-100 text-gray-700">22</td>
+      <td id="T_62b58_row7_col13" class="data row7 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row7_col14" class="data row7 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row8" class="row_heading level0 row8 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">11</th>
+      <td id="T_62b58_row8_col0" class="data row8 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col1" class="data row8 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col2" class="data row8 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col3" class="data row8 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col4" class="data row8 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col5" class="data row8 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col6" class="data row8 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col7" class="data row8 col7 p-4 border-b border-indigo-100 text-gray-700">83</td>
+      <td id="T_62b58_row8_col8" class="data row8 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row8_col9" class="data row8 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row8_col10" class="data row8 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row8_col11" class="data row8 col11 p-4 border-b border-indigo-100 text-gray-700">138</td>
+      <td id="T_62b58_row8_col12" class="data row8 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col13" class="data row8 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row8_col14" class="data row8 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row9" class="row_heading level0 row9 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">12</th>
+      <td id="T_62b58_row9_col0" class="data row9 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col1" class="data row9 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col2" class="data row9 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col3" class="data row9 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col4" class="data row9 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col5" class="data row9 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col6" class="data row9 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col7" class="data row9 col7 p-4 border-b border-indigo-100 text-gray-700">183</td>
+      <td id="T_62b58_row9_col8" class="data row9 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row9_col9" class="data row9 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row9_col10" class="data row9 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row9_col11" class="data row9 col11 p-4 border-b border-indigo-100 text-gray-700">138</td>
+      <td id="T_62b58_row9_col12" class="data row9 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col13" class="data row9 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row9_col14" class="data row9 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row10" class="row_heading level0 row10 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">13</th>
+      <td id="T_62b58_row10_col0" class="data row10 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col1" class="data row10 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col2" class="data row10 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col3" class="data row10 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col4" class="data row10 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col5" class="data row10 col5 p-4 border-b border-indigo-100 text-gray-700">65</td>
+      <td id="T_62b58_row10_col6" class="data row10 col6 p-4 border-b border-indigo-100 text-gray-700">246</td>
+      <td id="T_62b58_row10_col7" class="data row10 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row10_col8" class="data row10 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row10_col9" class="data row10 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row10_col10" class="data row10 col10 p-4 border-b border-indigo-100 text-gray-700">175</td>
+      <td id="T_62b58_row10_col11" class="data row10 col11 p-4 border-b border-indigo-100 text-gray-700">4</td>
+      <td id="T_62b58_row10_col12" class="data row10 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col13" class="data row10 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row10_col14" class="data row10 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row11" class="row_heading level0 row11 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">14</th>
+      <td id="T_62b58_row11_col0" class="data row11 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col1" class="data row11 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col2" class="data row11 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col3" class="data row11 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col4" class="data row11 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col5" class="data row11 col5 p-4 border-b border-indigo-100 text-gray-700">172</td>
+      <td id="T_62b58_row11_col6" class="data row11 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row11_col7" class="data row11 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row11_col8" class="data row11 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row11_col9" class="data row11 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row11_col10" class="data row11 col10 p-4 border-b border-indigo-100 text-gray-700">70</td>
+      <td id="T_62b58_row11_col11" class="data row11 col11 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col12" class="data row11 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col13" class="data row11 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row11_col14" class="data row11 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row12" class="row_heading level0 row12 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">15</th>
+      <td id="T_62b58_row12_col0" class="data row12 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col1" class="data row12 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col2" class="data row12 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col3" class="data row12 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col4" class="data row12 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col5" class="data row12 col5 p-4 border-b border-indigo-100 text-gray-700">66</td>
+      <td id="T_62b58_row12_col6" class="data row12 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row12_col7" class="data row12 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row12_col8" class="data row12 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row12_col9" class="data row12 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row12_col10" class="data row12 col10 p-4 border-b border-indigo-100 text-gray-700">238</td>
+      <td id="T_62b58_row12_col11" class="data row12 col11 p-4 border-b border-indigo-100 text-gray-700">54</td>
+      <td id="T_62b58_row12_col12" class="data row12 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col13" class="data row12 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row12_col14" class="data row12 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row13" class="row_heading level0 row13 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">16</th>
+      <td id="T_62b58_row13_col0" class="data row13 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row13_col1" class="data row13 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row13_col2" class="data row13 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row13_col3" class="data row13 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row13_col4" class="data row13 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row13_col5" class="data row13 col5 p-4 border-b border-indigo-100 text-gray-700">17</td>
+      <td id="T_62b58_row13_col6" class="data row13 col6 p-4 border-b border-indigo-100 text-gray-700">65</td>
+      <td id="T_62b58_row13_col7" class="data row13 col7 p-4 border-b border-indigo-100 text-gray-700">232</td>
+      <td id="T_62b58_row13_col8" class="data row13 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row13_col9" class="data row13 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row13_col10" class="data row13 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row13_col11" class="data row13 col11 p-4 border-b border-indigo-100 text-gray-700">149</td>
+      <td id="T_62b58_row13_col12" class="data row13 col12 p-4 border-b border-indigo-100 text-gray-700">5</td>
+      <td id="T_62b58_row13_col13" class="data row13 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row13_col14" class="data row13 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row14" class="row_heading level0 row14 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">17</th>
+      <td id="T_62b58_row14_col0" class="data row14 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col1" class="data row14 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col2" class="data row14 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col3" class="data row14 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col4" class="data row14 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col5" class="data row14 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col6" class="data row14 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col7" class="data row14 col7 p-4 border-b border-indigo-100 text-gray-700">45</td>
+      <td id="T_62b58_row14_col8" class="data row14 col8 p-4 border-b border-indigo-100 text-gray-700">141</td>
+      <td id="T_62b58_row14_col9" class="data row14 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row14_col10" class="data row14 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row14_col11" class="data row14 col11 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row14_col12" class="data row14 col12 p-4 border-b border-indigo-100 text-gray-700">123</td>
+      <td id="T_62b58_row14_col13" class="data row14 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row14_col14" class="data row14 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row15" class="row_heading level0 row15 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">18</th>
+      <td id="T_62b58_row15_col0" class="data row15 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row15_col1" class="data row15 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row15_col2" class="data row15 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row15_col3" class="data row15 col3 p-4 border-b border-indigo-100 text-gray-700">41</td>
+      <td id="T_62b58_row15_col4" class="data row15 col4 p-4 border-b border-indigo-100 text-gray-700">205</td>
+      <td id="T_62b58_row15_col5" class="data row15 col5 p-4 border-b border-indigo-100 text-gray-700">205</td>
+      <td id="T_62b58_row15_col6" class="data row15 col6 p-4 border-b border-indigo-100 text-gray-700">205</td>
+      <td id="T_62b58_row15_col7" class="data row15 col7 p-4 border-b border-indigo-100 text-gray-700">33</td>
+      <td id="T_62b58_row15_col8" class="data row15 col8 p-4 border-b border-indigo-100 text-gray-700">2</td>
+      <td id="T_62b58_row15_col9" class="data row15 col9 p-4 border-b border-indigo-100 text-gray-700">128</td>
+      <td id="T_62b58_row15_col10" class="data row15 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row15_col11" class="data row15 col11 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row15_col12" class="data row15 col12 p-4 border-b border-indigo-100 text-gray-700">245</td>
+      <td id="T_62b58_row15_col13" class="data row15 col13 p-4 border-b border-indigo-100 text-gray-700">99</td>
+      <td id="T_62b58_row15_col14" class="data row15 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row16" class="row_heading level0 row16 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">19</th>
+      <td id="T_62b58_row16_col0" class="data row16 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row16_col1" class="data row16 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row16_col2" class="data row16 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row16_col3" class="data row16 col3 p-4 border-b border-indigo-100 text-gray-700">50</td>
+      <td id="T_62b58_row16_col4" class="data row16 col4 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row16_col5" class="data row16 col5 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row16_col6" class="data row16 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row16_col7" class="data row16 col7 p-4 border-b border-indigo-100 text-gray-700">213</td>
+      <td id="T_62b58_row16_col8" class="data row16 col8 p-4 border-b border-indigo-100 text-gray-700">131</td>
+      <td id="T_62b58_row16_col9" class="data row16 col9 p-4 border-b border-indigo-100 text-gray-700">179</td>
+      <td id="T_62b58_row16_col10" class="data row16 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row16_col11" class="data row16 col11 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row16_col12" class="data row16 col12 p-4 border-b border-indigo-100 text-gray-700">231</td>
+      <td id="T_62b58_row16_col13" class="data row16 col13 p-4 border-b border-indigo-100 text-gray-700">59</td>
+      <td id="T_62b58_row16_col14" class="data row16 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row17" class="row_heading level0 row17 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">20</th>
+      <td id="T_62b58_row17_col0" class="data row17 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row17_col1" class="data row17 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row17_col2" class="data row17 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row17_col3" class="data row17 col3 p-4 border-b border-indigo-100 text-gray-700">50</td>
+      <td id="T_62b58_row17_col4" class="data row17 col4 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col5" class="data row17 col5 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col6" class="data row17 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col7" class="data row17 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col8" class="data row17 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col9" class="data row17 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col10" class="data row17 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col11" class="data row17 col11 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row17_col12" class="data row17 col12 p-4 border-b border-indigo-100 text-gray-700">212</td>
+      <td id="T_62b58_row17_col13" class="data row17 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row17_col14" class="data row17 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row18" class="row_heading level0 row18 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">21</th>
+      <td id="T_62b58_row18_col0" class="data row18 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row18_col1" class="data row18 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row18_col2" class="data row18 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row18_col3" class="data row18 col3 p-4 border-b border-indigo-100 text-gray-700">21</td>
+      <td id="T_62b58_row18_col4" class="data row18 col4 p-4 border-b border-indigo-100 text-gray-700">187</td>
+      <td id="T_62b58_row18_col5" class="data row18 col5 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col6" class="data row18 col6 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col7" class="data row18 col7 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col8" class="data row18 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col9" class="data row18 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col10" class="data row18 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col11" class="data row18 col11 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row18_col12" class="data row18 col12 p-4 border-b border-indigo-100 text-gray-700">212</td>
+      <td id="T_62b58_row18_col13" class="data row18 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row18_col14" class="data row18 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row19" class="row_heading level0 row19 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">22</th>
+      <td id="T_62b58_row19_col0" class="data row19 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row19_col1" class="data row19 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row19_col2" class="data row19 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row19_col3" class="data row19 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row19_col4" class="data row19 col4 p-4 border-b border-indigo-100 text-gray-700">9</td>
+      <td id="T_62b58_row19_col5" class="data row19 col5 p-4 border-b border-indigo-100 text-gray-700">58</td>
+      <td id="T_62b58_row19_col6" class="data row19 col6 p-4 border-b border-indigo-100 text-gray-700">179</td>
+      <td id="T_62b58_row19_col7" class="data row19 col7 p-4 border-b border-indigo-100 text-gray-700">251</td>
+      <td id="T_62b58_row19_col8" class="data row19 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row19_col9" class="data row19 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row19_col10" class="data row19 col10 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row19_col11" class="data row19 col11 p-4 border-b border-indigo-100 text-gray-700">219</td>
+      <td id="T_62b58_row19_col12" class="data row19 col12 p-4 border-b border-indigo-100 text-gray-700">44</td>
+      <td id="T_62b58_row19_col13" class="data row19 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row19_col14" class="data row19 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row20" class="row_heading level0 row20 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">23</th>
+      <td id="T_62b58_row20_col0" class="data row20 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col1" class="data row20 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col2" class="data row20 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col3" class="data row20 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col4" class="data row20 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col5" class="data row20 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col6" class="data row20 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col7" class="data row20 col7 p-4 border-b border-indigo-100 text-gray-700">139</td>
+      <td id="T_62b58_row20_col8" class="data row20 col8 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row20_col9" class="data row20 col9 p-4 border-b border-indigo-100 text-gray-700">253</td>
+      <td id="T_62b58_row20_col10" class="data row20 col10 p-4 border-b border-indigo-100 text-gray-700">130</td>
+      <td id="T_62b58_row20_col11" class="data row20 col11 p-4 border-b border-indigo-100 text-gray-700">49</td>
+      <td id="T_62b58_row20_col12" class="data row20 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col13" class="data row20 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row20_col14" class="data row20 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+    <tr>
+      <th id="T_62b58_level0_row21" class="row_heading level0 row21 
+        bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">24</th>
+      <td id="T_62b58_row21_col0" class="data row21 col0 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col1" class="data row21 col1 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col2" class="data row21 col2 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col3" class="data row21 col3 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col4" class="data row21 col4 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col5" class="data row21 col5 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col6" class="data row21 col6 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col7" class="data row21 col7 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col8" class="data row21 col8 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col9" class="data row21 col9 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col10" class="data row21 col10 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col11" class="data row21 col11 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col12" class="data row21 col12 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col13" class="data row21 col13 p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td id="T_62b58_row21_col14" class="data row21 col14 p-4 border-b border-indigo-100 text-gray-700">0</td>
+    </tr>
+  </tbody>
+</table>
+</body></html></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="defining-our-linear-equation">Defining our Linear Equation</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">One of the foundations of neural networks are linear layers, in this case <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">xw + b = y</code>.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="setup">Setup</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We will need a weight matrix <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">w</code> with 1 weight per pixel, meaning this will be a 784 row by 1 column matrix.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We are also going to add <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">b</code>, so let's initialize that as well.  Since we haven't solved the problem yet, we don't know what good values for w and b are so we will make them random to start with.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When we checked the shape above, we saw our images were 28 x 28 pixels, which is 784 total pixels.</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def init_params(size, std=1.0): return (torch.randn(size)*std).requires_grad_()
+
+w = init_params((28*28,1))
+b = init_params(1)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">max(w)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">tensor([2.8108], grad_fn=&lt;UnbindBackward0&gt;)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we just need <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">x</code> and <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">y</code>.  A <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">784x1</code> matrix times a <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">1x784</code> matrix.  We want all values to be between 0 and 1 so we divide by the max pixel value (255).</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># open each image and convert them to a tensor
+threes_t = [tensor(Image.open(o)) for o in threes]
+sevens_t = [tensor(Image.open(o)) for o in sevens]
+
+# Get list of tensors and &quot;stack&quot; them.  Also dividing by 255 so all values are between 0 and 1
+threes_s = torch.stack(threes_t).float()/255
+sevens_s = torch.stack(sevens_t).float()/255
+
+# Verify max and min pixel values
+torch.min(threes_s), torch.max(threes_s), torch.min(sevens_s), torch.max(sevens_s)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(tensor(0.), tensor(1.), tensor(0.), tensor(1.))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Next we do a simple average of all our threes together and see what we get.  It's a nice sanity check to see that we did things ok.  We can see that after averaging, we pretty much get a three!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">show_image(threes_s.mean(0))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;AxesSubplot:&gt;</p>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAOMElEQVR4nO2c2W7kWHKGv4izkMxFW1X39BgzGMMwYMAXfgTf+RH8lH4Ev4jh8cUMjFk8tWnNJHmW8MVhplRyd8MlqasNQwEkMpMSM8n/xImI/4+QxMx4tXvTn/sC/q/ZKyCP7BWQR/YKyCN7BeSR+R/74T/pP/+/TUH/Wv9Fvu/4q4c8sldAHtkrII/sFZBH9qNB9auZfG98+5/2FWjGTw/I4WZFEX104/LAQVUQET7jVvX+tZUC1OXNTwfMywMicn/zou1GnQPnEO9BBdS147oAorqcJ+1mDzdcK1ZrAyZnKAXLuR0vFaxi1cDqi4H0MoA89ALnkBiQ4CFEJAboItZH6ipSo6N2jhqU6gVzgjmw5TPEDAw0L89zRbPhdgmdMrKfkTlh+xFyxsbpCJSV8mxgngfII2+Q4JsXDD0SAjZ01C5SN5EyeNLGk3sh90qJUDrBPNQAJoCAFJAKmkGy4UdwsxFvPG5fCLcB3SfEO2RK7TpSxswQeDYoTwPksJo+NNePEfEeWQ0QA/VkRV5F0mkkrZXxTEkbYT6HPBj5pCBDoVvPbIaJN6s7vFZUjLsUGbPnZuwYx0C66ZCdo3/nidee/kMg3lW6Dz1uN6NXAdlPKGDzvGyh8pUBgc/ig3iPdLFtjaGjbDry2jOdOtJamM+EtIHpvGKrQtjMDMPMxXrHebfjm/6WIBWVylQ9+xL42K+5nTvehTVjH5lzhzlFsoKATh4UdMyQCzjXYtEz7YkecogVi2esVxAD5XxNWUXGbyLzRtl/I6Q1zBeVus2cvLnjdBj5bn3NedzxV90VKzex0pkgBUclSCZK4bKsuCor/v3kF/xpf8Lvhgv21z01BPJaqU6It4rMFQ/IOIFVZJ6x+pUBEZVjmsQpOMW8w8ISLB1UB+YAXeKDQanKmD3Xc081IVdH5zKDznSa6TSzchO9ZEbzJHN4LfQu0YXM3BVK7ymTUHooSVqAjh7nffNa0fts9VUAOQRS52AJohYDFsNycYfsAbaAIRUsK+M+Ms+O3RQRsfYAnFaGmFiFxGnccxpGOpfxUsjV0bvMupvJVbndemYBN7bt0a0dkgPu0sMhrYs+OY48P8sAmCFmSDY0VdzcQPG7BgYilMlRZqE6SM5ADJbMghpXXcGHwnpYcdJPbOLEJkxUE6q171ExcPYZ2HZM+UugF+E5ifdF6hApFcsFnTIA4U7RbEhVahDCNZgTqndtCy2xz4Tj+xKhdsblduDTutBtJ07WI+s4M/iWXqMviDfMWwNEpQH6gvY0QKxCrVAqJhVJuS326FEzvAqaFKlQg+AmwdRaEbZ4xeG5eqhekBUUE0pUSjRqUUoVzOTRVwuaBc2teJNsSLF2PUs0FZUnB9Yne4iVCjkjVjGrSG5g2OiQqYBX/I3DvGJBMZG2og9NIA+OPAjTmTIhuA5qL5Si5OKO2wUWapMEHQU3gZvAj+U+9b5A+f4kQKwa4mglc62tQlwqRfEeqYZ5h0t+AcSBLGW6tAx1LN09lCiUTigdlMGwodD3iU0/0fmMipGrMqWAjA6/F/zeCLuKTgWd8z3XMWvF2dcEZEEFS7lF9VJAFZsT4rQVSd4jIRzfm9NWOPmWJlkFSucpUUnrVrilrVFOCv3pxMVmx7erm+PXTckzjoFwK8Rr6K6M7qrgbidkN2IptespT69SnwWIVUO0QlVMQWpdjlekGlTDADF/ZLMWPDYE8jqQtp7xzDGfCtMZzGeVcpYZzsYjGOdxz03u2OXIfgqUu0B3K4QbI9wV3C4jY4I5wUMwnlGZfTkgZkAF0c9BaZXXvcc4x1KPIX7ZMr0nbwLTeWB/0SrZ+dTIF5lwMvH2ZMe361t+OVyxcRMbP/Hb22/Z58C8i7hrR3dp9J8q8TLhbkbkbo/t9o3H5Pys7fI0QI7A1HuB5+FrAF0KN++RvqNu15STjulNx3Sq7N8q0zlM32bc6cwvzm75bn3Dr1aXfBNveBtuSOZI5sim7FLARofbCTov2SUVZMpNH1lix/FanmEvJxA9BEWkeUgMWN9RTnvGt5HbXzqmC2H/XUHfzPz67SW/2lzyd5v/4jfde34dPrDVkbVkfpfP+UO6oJqwmyK6U8Kd4MeKzobOpeki+QEoB+/46vTf7FgZtm3zKJ1q4zfEQF11zCeB6cQxnwnTuaFvJ35xcc0/XPyRvxne8bfdn/nOX/GNTrjlo9Yy08tM1IJ3BYtG6SD3QhmUGhvgqDvSCXheQIWfQEIUaaRPvF9UssB8sgTPc6O8Sfzm7SV/f/5n/vH03/jr8J6/9jMbCax0w2SJ0TIrnYhS6FymDxmLlTIoZRDyXqidR4NHfZMnjfQi1/+MGHIfXL/XRFoqVjnyDpZTxux5P635j/E7bsrAx/CJre5Zy8SMkqzjXTnhrnZEzWzjhNsk8qyktcNNQjrxSO2RcWg8qhSYD5zu6Rrr8z3EKlYbKKIVMznSi1aELdzlcLAKc3ZcTQO/Hy/4lFe8z1s6Tax0PlamBSWZo9PMWbdntZq4nR15raRRmDcOKeBuOiQXZBxbHPm56pDH9jCOmDVuIXNC94F4F6hByIOgxfOpnnLZb/j96hzvK8EVvKs4rURXCK6wDjMbP5FNqSasu5myVcZtQJMw3wpalLDukFxhP0KpjWgWfib6/2NWWhbQMeF3HdELpVM0CZo8NThKiGQ19spRSLKuQqx0m4ntauKkH9mGiVVI6Nr442ZFmoW8FlJSyuDROeBCAJ/ApcVrn3bZXwbIww7bw8bTgzgih98pFVJGdhPxo8ftA37vyYOSVrqwXJYYswhKDkqn1AjTuef9tmf/JlA2SnCFTZhxq0yZlbxyuAnyyjVAYoDpUBU/XTV7uqZ6UKagVaePzWrjNiLotaL7hNt5LDhK7xd9ZGHA2mSC6qW1KbomH8yzsOs67mLiYtixDhOxS+x7R+lcI4S9UHqHBY94hzn3LD7zhR6yBM/gmyeE0N7/UG/WKpYSsheYE27ftFcXHrFgAQsO80Ja+aXOaEJy2nl268Cmc6wB7wsaC9Ub1QslCDVqAyQuZPIZqtkXe4gcWpNLrdE0zHspkUNr8fC+FEgJm205X1tJ7x3mD0WVgG/aiaRITh6/jfgVyCyk5ChLJvNa0YcyomveZaHVI6098vR2xBcBctwmD3sxi9h8BABa/FgyzefHW3ktS/9WDhXvYUVFOC6tLOlaQbUdrIv2KA/0WJNFRjxIit+3fb/AvjyGqCwah7Yt4xSL4fPfOUgApdw3qo9N7JYWhaa/cmhlHABazBZATO3ogPVQzMgPbIj/7VjFj9iXb5kDcVtKc7yjriKoUv2ygsvWkbqw0jEhKTfN4gDMwncs+MZ5hkDpPfN5ZDpRxrfCdGHoNrFdjTit5KrM2VOSwxeOTXGdDckVyUthVr+mHtJQWVQxh0VP7TzmWiA8mjVgdK64JUagsohHdZEUFwLYe8oQyCvHvFHmbVPQyqbS9ZlVSHitlKqUotTcBGyx1uaQYlDsGMOeM7//jN6uNDCGQDqJLWWumnpWHcdSXRP4MaKz4aaKloqkijnFXEuZeVDmjZLWMJ0votGbRDyZuNjesYnTsQk+3UXkxuPvhHBr+LHiplYVk+6lgK/PZUQwVcwppRNqENLQCqwSOQY8l4zSOTQZbla0NBc3beeUrp2Xtq0PPF0Y5TQTTyZON3s2YaZ3ieupZ0oemxQ/Km6iiUVza45JfjBM87VEZqtNJpScISV0zljnQJpyPp8KJUJegzmjxjb0goEUQbO2+Y9yn0FK13SOssnIOjOsJ7bDxFm/5ySO7HLkZu75cLtif9vhLz3hWohXRn9ViddNSmS3h/14nCz6KoC00SVp+7RUyKXtX9oN1kATcVZGDUbt67FViQlSpCkGpTWuULBYka7Qr1rw3HYTp3HPyicGl5rAnAPTGLGdX1oQ4EfDjRUdEzKmprrP89dnu1YNy0un7naH1krXeyQHphPFHMwK1hnubCbGzMlqxGs99lgUa8xWCys/M7i0PBr9Lyh/Gbf8aX/C7z+dc3fdo+8i/bUy/MXoro3hXSJcz+jVDrnbU8epbZlnzpt9oYcsBVGtbSWmCfEOt0+4TnGTo3aCLIvkfaFfeMjKz5zHPUEL8TD6sMyFrNx0/IqrvOK2dIzFczkO7O46uAmEGyXcQrwx4k3F3+XFO+YXU9y/HBBo/ORQaE0zmOGAfr8CNsynHp0c6cSxn9Z82rRguB0m6kbYhIlv4rwMxxSSOT7lNR/mDZdp4A93p1zuBi4/bNArT/exAdF/MOJtpfuY8HcJvbxD9hN2e4vNacksz59GfFJfxqohlFaKz8A4IaqE6wg0IVis6R+pwj72lKJEV5irx4kxuMRUPVMNTNXzbtzwcVzx7nrDeNPh3wfCldBdQrhtXbpwU/A3E7qbGxjjiKXcHi8wgfg0QOBeNky5deym1rTyIrjbSLjuqINn/s9AHoR5G8lDx8fNlvcBftvfkzOpIBnc1BrY/R1sd21bhLuKv024MaO7GebUgJgm6jQ30ljqi4HxdEAWULBlXKFURDLsR6QUXKnozqP7TO088cZTeiGtlBJaU7sxVWlNp9JGL93UGthuX/C7jO4zOs5t/HJOy1zq4hU5L9muPLs59XxAltWwA3mrBq41jcQp3DpEHd63ycC4PH9G9w9W276XXNpIQylYLlCX12WZZl7Y8zF4vuD08kN7nqZ6aEWYLAw2YUXbHjiMax/socJ2WNEHvMMeKubHDtznK/9TAnGwF2hDtLoEEWxh9D/Yq/nBz3jk8j/jH1e/YG/3wU08Y5L457bXPyB6ZK+APDJ5/WcIn9urhzyyV0Ae2Ssgj+wVkEf2CsgjewXkkf03yTwsevtmH7MAAAAASUVORK5CYII=" class="mx-auto"/>                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Lets finish defining our x.  We want <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">x</code> to have both threes and sevens, but right now they are separated into different variables.  We will use <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">torch.cat</code> to con<strong>cat</strong>enate them, and <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">.view</code> to change the format of the matrix to the right shape.  <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Y</code> is being defined as a long matrix with 1 row per image (prediction) and 1 column.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># combine our threes and sevens into 1 matrix.  Convert Rank 3 matrix to rank 2.
+x = torch.cat([threes_s, sevens_s]).view(-1, 28*28)
+
+# Set my y, or dependent variable matrix.  A three will be 1, and seven will be 0.  So we will be prediction 0 or 1.
+y = tensor([1]*len(threes) + [0]*len(sevens)).unsqueeze(1)
+
+# Combine by xs and ys into 1 dataset for convenience.
+dset = list(zip(x,y))
+x_0,y_0 = dset[0]
+x_0.shape,y_0</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([784]), tensor([1]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Perfect.  We have exactly what we need and defined above.  A 784 x 1 matrix times a 1 x 784 matrix + a constanct = our prediction.  Let's take a look to verify things are the right shape, and if we actually multiply these things together we get 1 prediction per image.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">w.shape,x_0.shape,b.shape,y_0.shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([784, 1]), torch.Size([784]), torch.Size([1]), torch.Size([1]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">print((x@w+b).shape)
+(x@w+b)[1:10]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+<pre ><code class=''>torch.Size([709, 1])
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">tensor([[ 3.3164],
+        [ 5.2035],
+        [-3.7491],
+        [ 1.2665],
+        [ 2.2916],
+        [ 1.3741],
+        [-7.6092],
+        [ 1.3464],
+        [ 2.7644]], grad_fn=&lt;SliceBackward0&gt;)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Great! We have the right number of predictions.  The predictions are not good, because weights and biases are all random.  Let's do something about that.</p>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We will need to do everything that we did above on out validation set, so let's do that now.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="code-fold-container my-6">
+<button class="code-toggle-btn px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors duration-200">                       <div class="flex items-center gap-2">
+<span class="show-text">Show Code</span><span class="hide-text hidden">Hide Code</span>                       </div>
+</button>                     <div class="code-content hidden mt-2">
+                       <div class="code-block">
+<pre class="code-block"><code class="language-python">valid_3_tens = torch.stack([tensor(Image.open(o)) for o in (path/&#x27;valid&#x27;/&#x27;3&#x27;).ls()])
+valid_3_tens = valid_3_tens.float()/255
+valid_7_tens = torch.stack([tensor(Image.open(o)) for o in (path/&#x27;valid&#x27;/&#x27;7&#x27;).ls()])
+valid_7_tens = valid_7_tens.float()/255
+valid_3_tens.shape,valid_7_tens.shape
+valid_x = torch.cat([valid_3_tens, valid_7_tens]).view(-1, 28*28)
+valid_y = tensor([1]*len(valid_3_tens) + [0]*len(valid_7_tens)).unsqueeze(1)
+valid_dset = list(zip(valid_x,valid_y))</code></pre>                       </div>
+                     </div>
+<script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const toggleBtns = document.querySelectorAll('.code-toggle-btn');
+                    toggleBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const content = this.nextElementSibling;
+                            const showText = this.querySelector('.show-text');
+                            const hideText = this.querySelector('.hide-text');
+                            content.classList.toggle('hidden');
+                            showText.classList.toggle('hidden');
+                            hideText.classList.toggle('hidden');
+                        });
+                    });
+                });
+            </script>                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="loss-function">Loss Function</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We need to improve our weights and biases (w and b) and we do that using gradient descent.  I have a few posts on gradient descent, feel free to check those out if you want details on how it works.  Here we will use the built-in pytorch functionality.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The first thing we need to use gradient descent is we need a loss function.  Let's use something simple; how far off we were.  If the correct answer was 1, and we predicted a 0.5 that would be a loss of 0.5.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The one addition is that we will add something called a sigmoid.  All a sigmoid is doing is ensuring that all of our predictions land between 0 and 1.  We never want to predict anything outside of these ranges as those are our 2 categories.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def mnist_loss(predictions, targets):
+    
+    # make all prediction between 0 and 1
+    predictions = predictions.sigmoid()
+    
+    # Difference between predictions and target
+    return torch.where(targets==1, 1-predictions, predictions).mean()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="gradient-descent">Gradient Descent</span></h1>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="background-and-setup">Background and Setup</span></h3>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">predict</li>
+<li class="leading-relaxed pl-2">calculate loss</li>
+<li class="leading-relaxed pl-2">calculate gradient</li>
+<li class="leading-relaxed pl-2">subtract from weights and bias</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now we have a function we need to optimize and a loss function to tell us our error.  We are ready for gradient descent.  Let's create a function to change our weights.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If you want more of a background on what is going on here, please take a look at my series on Gradient Descent where I dive deeper on this.  We will be calculating a gradient - which are equivalent to the "Path Value"</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Here is the function to minimize xw + b
+def linear1(xb): return xb@weights + bias
+
+# Here is how we will initialize paramaters.  This is just giving me random numbers.
+def init_params(size, std=1.0): return (torch.randn(size)*std).requires_grad_()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">First we will make sure our datasets are in a DataLoader.  This is convenience class that helps manage our data and get batches.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">dl = DataLoader(dset, batch_size=256, shuffle=True)
+valid_dl = DataLoader(valid_dset, batch_size=256)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We are now going to get the first batch out.  We'll use a batch size of 256, but feel free to change that based on your memory.  You can see that we can just simply call first dl, and it creates our shuffled batch for us.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">xb,yb = first(dl)
+xb.shape,yb.shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([256, 784]), torch.Size([256, 1]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's Initialize our paramaters we will need.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">weights = init_params((28*28,1))
+bias = init_params(1)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="calculate-the-gradient">Calculate the Gradient</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We now have our batch of x and y, and we have our weights and biases.  The next step is to make a prediction.  Since our batch size is 256, we see 256x1 tensor.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">preds = linear1(xb)
+preds.shape, preds[:5]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([256, 1]),
+ tensor([[-14.7916],
+         [  2.7240],
+         [ -6.8821],
+         [ -2.5954],
+         [ -1.3394]], grad_fn=&lt;SliceBackward0&gt;))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we calculate our loss to see how we did.  Probably not well considering all our weights at this point are random.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">loss = mnist_loss(preds, yb)
+loss</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">tensor(0.5753, grad_fn=&lt;MeanBackward0&gt;)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's calculate our Gradients</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">loss.backward()
+weights.grad.shape,weights.grad.mean(),bias.grad</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([784, 1]), tensor(-0.0014), tensor([-0.0099]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Since we are going to want to calculate gradients every since step, let's create a function that we can call that does these three steps above.  Let's put all that in a function.  From here on out, we will use this function.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">It's always a good idea to periodically reviewing and trying to simplify re-usable code.  I recommend doing following the above approach, make something that works - then simplify.  It often wastes a lot of time trying to write things in the most perfect way from the start.</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def calc_grad(xb, yb, model):
+    preds = model(xb)
+    loss = mnist_loss(preds, yb)
+    loss.backward()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">calc_grad(xb, yb, linear1)
+weights.grad.mean(),bias.grad</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(tensor(-0.0028), tensor([-0.0198]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">weights.grad.zero_()
+bias.grad.zero_();</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="training-the-model">Training the Model</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We are ready to create a function that trains for 1 epoch.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Epoch is just a fancy way of saying 1 pass through all our data.</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def train_epoch(model, lr, params):
+    for xb,yb in dl:
+        calc_grad(xb, yb, model)
+        for p in params:
+            p.data -= p.grad*lr
+            p.grad.zero_()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">We want to be able to measure accuracy so we know how well we are doing.  It's hard for us to gauge how well the model is doing from our loss function.  We create an accuracy metric to look at accuracy for that batch.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">A loss function is designed to be good for gradient descent.  A Metric is designed to be good for human understanding.  This is why they are different sometimes.</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def batch_accuracy(xb, yb):
+    preds = xb.sigmoid()
+    correct = (preds&gt;0.5) == yb
+    return correct.float().mean()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">batch_accuracy(linear1(xb), yb)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">tensor(0.4141)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Looking at accuracy of our batch is great, but we also want to look at our accuracy for the validation set.  This is our way to do that using the accuracy funcion we just defined.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def validate_epoch(model):
+    accs = [batch_accuracy(model(xb), yb) for xb,yb in valid_dl]
+    return round(torch.stack(accs).mean().item(), 4)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">validate_epoch(linear1)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">0.4372</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Awesome!  Let's throw this all in a loop and see what we get.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">params = weights,bias
+lr = 1.
+
+for i in range(20):
+    train_epoch(linear1, lr, params)
+    print(f&quot;Epoch {i} accuracy: {validate_epoch(linear1)}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Epoch 0 accuracy: 0.4916
+Epoch 1 accuracy: 0.5477
+Epoch 2 accuracy: 0.5953
+Epoch 3 accuracy: 0.6459
+Epoch 4 accuracy: 0.6781
+Epoch 5 accuracy: 0.7277
+Epoch 6 accuracy: 0.77
+Epoch 7 accuracy: 0.7931
+Epoch 8 accuracy: 0.8118
+Epoch 9 accuracy: 0.8358
+Epoch 10 accuracy: 0.8568
+Epoch 11 accuracy: 0.8711
+Epoch 12 accuracy: 0.8882
+Epoch 13 accuracy: 0.8957
+Epoch 14 accuracy: 0.9001
+Epoch 15 accuracy: 0.9093
+Epoch 16 accuracy: 0.9199
+Epoch 17 accuracy: 0.9286
+Epoch 18 accuracy: 0.9335
+Epoch 19 accuracy: 0.9348
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="linear-recap">Linear Recap</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's recap really what we did:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Make a prediction</li>
+<li class="leading-relaxed pl-2">Measure how we did</li>
+<li class="leading-relaxed pl-2">Change our weights so we do slightly better next time</li>
+<li class="leading-relaxed pl-2">Print out accuracy metrics along the way so we can see how we are doing</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This is a great start, but what we have is a linear model.  Now we need to add non-linearities so that we can have a true Neural Network.</p>
+</div></div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="relu">ReLu</span></h1>
+</div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="what-is-it">What is it?</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">A ReLu is a common non-linearity in a neural network.  A neural network is just alternating linear and nonlinear layers.  We defined the Linear layer above, here we will talk about the non-linear ones.  So what exactly does the non-linear layer do?  It's actually much simpler than people like to believe.  It's taking a max.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For example, I am going to apply a ReLu to a matrix.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">$\begin{bmatrix}-1&amp;1\-1&amp;-1\0&amp;0\0&amp;1\1&amp;-1\1&amp;0\-1&amp;0\-1&amp;-1\1&amp;1\end{bmatrix}$
+$=&gt;$
+$\begin{bmatrix}0&amp;1\0&amp;0\0&amp;0\0&amp;1\1&amp;0\1&amp;0\0&amp;0\0&amp;0\1&amp;1\end{bmatrix}$</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">As you will see I just took max(x,0).  Another way of saying that is I replaced any negative values with 0.  That's all a ReLu is.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="in-a-neural-network">In a Neural Network</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">These ReLus go between our linear layers.  Here's what a simple Neural Net looks like.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># initialize random weights.  
+w1 = init_params((28*28,30))
+b1 = init_params(30)
+w2 = init_params((30,1))
+b2 = init_params(1)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Here&#x27;s a simple Neural Network.  
+# This can have more layers by duplicating the patten seen below, this is just the simplest model.
+def simple_net(xb): 
+    res = xb@w1 + b1 #Linear
+    res = res.max(tensor(0.0)) #ReLu
+    res = res@w2 + b2 #Linear
+    return res</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="train-the-full-neural-network">Train the Full Neural Network</span></h1>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">We have our new model with new weights.  It's more than just the linear model, so how do we use gradient descent?  We now have 4 weights (<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">w1</code>,<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">w2</code>,<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">b1</code>,<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">b2</code>).</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Turns our it's exactly what we already did.  Let's add the new parameters and change out the linear model with the simple_net we just defined.  We end up with a pretty decent accuracy!</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">w1 = init_params((28*28,30))
+b1 = init_params(30)
+w2 = init_params((30,1))
+b2 = init_params(1)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">params = w1,b1,w2,b2
+lr = 1
+
+for i in range(20):
+    train_epoch(simple_net, lr, params)
+    print(f&quot;Epoch {i} accuracy: {validate_epoch(simple_net)}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Epoch 0 accuracy: 0.5979
+Epoch 1 accuracy: 0.7431
+Epoch 2 accuracy: 0.8324
+Epoch 3 accuracy: 0.8753
+Epoch 4 accuracy: 0.9045
+Epoch 5 accuracy: 0.9288
+Epoch 6 accuracy: 0.9322
+Epoch 7 accuracy: 0.9387
+Epoch 8 accuracy: 0.9406
+Epoch 9 accuracy: 0.941
+Epoch 10 accuracy: 0.9436
+Epoch 11 accuracy: 0.948
+Epoch 12 accuracy: 0.9511
+Epoch 13 accuracy: 0.9501
+Epoch 14 accuracy: 0.9532
+Epoch 15 accuracy: 0.9524
+Epoch 16 accuracy: 0.9581
+Epoch 17 accuracy: 0.9576
+Epoch 18 accuracy: 0.9607
+Epoch 19 accuracy: 0.9602
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="recap-of-tensor-shapes">Recap of Tensor Shapes</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Understanding the shapes of these tensors and how the network works is crucial.  Here's the network we built.  You can see how each layer can fit into the next layer.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">x.shape,w1.shape,b1.shape,w2.shape,b2.shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([709, 784]),
+ torch.Size([784, 30]),
+ torch.Size([30]),
+ torch.Size([30, 1]),
+ torch.Size([1]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800"><img src="./static/simple_net.png" alt="" title="" class="max-w-full h-auto rounded-lg mb-6 
+        max-w-full h-auto rounded-xl shadow-lg mb-6 
+        border-2 border-indigo-100 hover:shadow-xl transition-shadow duration-300"></p>
+</div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="whats-next">What's Next?</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This is a Neural Network.  Now we can do tweaks to enhance performance.  I will talk about those in future posts, but here's a few concepts.</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Instead of a Linear Layer, A ReLu, then a linear layer - Can we add more layers to have a deeper net?</li>
+<li class="leading-relaxed pl-2">What if we average some of the pixels in our image together before dong matrix multiplication (ie a convolutions)?</li>
+<li class="leading-relaxed pl-2">Can we randomly ignore pixels to prevent overfitting (ie dropout)?</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">There are many advanced variations of Neural Networks, but the concepts are typically along the lines of above.  If you boil them down to what they are really doing - they are pretty simple concepts.</p>
+</div></div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#intro" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Intro</a><a href="#load-the-data" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Load the Data</a><a href="#defining-our-linear-equation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Defining our Linear Equation</a><a href="#setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Setup</a><a href="#loss-function" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Loss Function</a><a href="#gradient-descent" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Gradient Descent</a><a href="#background-and-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Background and Setup</a><a href="#calculate-the-gradient" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Calculate the Gradient</a><a href="#training-the-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Training the Model</a><a href="#linear-recap" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Linear Recap</a><a href="#relu" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">ReLu</a><a href="#what-is-it" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What is it?</a><a href="#in-a-neural-network" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">In a Neural Network</a><a href="#train-the-full-neural-network" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Train the Full Neural Network</a><a href="#recap-of-tensor-shapes" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Recap of Tensor Shapes</a><a href="#whats-next" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What&#x27;s Next?</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

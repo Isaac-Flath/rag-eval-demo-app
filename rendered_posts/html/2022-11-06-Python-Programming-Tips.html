@@ -1,0 +1,1854 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2022-11-06-Python-Programming-Tips.ipynb">
+             <meta property="og:title" content="Python Programming Tips">
+             <meta property="og:description" content="A list of handy tips and tricks when programming in python">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Python Programming Tips">
+             <meta name="twitter:description" content="A list of handy tips and tricks when programming in python">
+             <meta property="article:published_time" content="2022-11-06">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="Python">
+             <meta property="article:tag" content="Programming">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2022-11-06-Python-Programming-Tips.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/python.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/python.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Python Programming Tips</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">A list of handy tips and tricks when programming in python</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Setup</a><a href="#purpose" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Purpose</a><a href="#comprehensions" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Comprehensions</a><a href="#destructuring" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Destructuring</a><a href="#fastcore" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Fastcore</a><a href="#parallel-processing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Parallel Processing</a><a href="#docments" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Docments</a><a href="#testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Testing </a><a href="#l" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">L</a><a href="#attrdict" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">AttrDict</a><a href="#logging" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Logging</a><a href="#higher-order-functions-callbacks" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Higher Order Functions &amp; Callbacks</a><a href="#filter" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Filter </a><a href="#map" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Map </a><a href="#simple-logging" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Simple Logging</a><a href="#file-processor" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">File Processor</a><a href="#format-and-clean-sql-file" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Format and clean SQL file</a><a href="#decorators" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Decorators</a><a href="#silly-simple-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Silly Simple Example</a><a href="#useful-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Useful Example</a><a href="#use-on-existing-functions" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Use on Existing Functions</a><a href="#inheritance" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Inheritance</a><a href="#silly-simple-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Silly Simple Example</a><a href="#useful-examples" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Useful Examples</a><a href="#dunders" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Dunders</a><a href="#iteratorsdata-streaming" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Iterators/Data Streaming</a><a href="#silly-simple-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Silly Simple Example</a><a href="#useful-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Useful Example</a><a href="#file-streaming" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">File Streaming</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="setup">Setup</span></h1>
+</div>
+                 <div class="code-section my-6">
+                   <div class="code-fold-container my-6">
+<button class="code-toggle-btn px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors duration-200">                       <div class="flex items-center gap-2">
+<span class="show-text">Show Code</span><span class="hide-text hidden">Hide Code</span>                       </div>
+</button>                     <div class="code-content hidden mt-2">
+                       <div class="code-block">
+<pre class="code-block"><code class="language-python">from functools import partial
+from datetime import datetime
+import logging, string, pandas as pd, sqlparse
+from fastcore.all import *
+from fastcore.docments import *
+from IPython.display import Markdown,display, HTML
+import pandas as pd
+
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
+
+def print_function_source(fn):
+    fn = print_decorator
+    formatter = HtmlFormatter()
+    display(HTML(&#x27;&lt;style type=&quot;text/css&quot;&gt;{}&lt;/style&gt;{}&#x27;.format(
+        formatter.get_style_defs(&#x27;.highlight&#x27;),
+        highlight(inspect.getsource(fn), PythonLexer(), formatter))))</code></pre>                       </div>
+                     </div>
+<script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const toggleBtns = document.querySelectorAll('.code-toggle-btn');
+                    toggleBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const content = this.nextElementSibling;
+                            const showText = this.querySelector('.show-text');
+                            const hideText = this.querySelector('.hide-text');
+                            content.classList.toggle('hidden');
+                            showText.classList.toggle('hidden');
+                            hideText.classList.toggle('hidden');
+                        });
+                    });
+                });
+            </script>                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="purpose">Purpose</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The purpose of this is to introduce concepts I believe data scientists could benefit from knowing.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">I am assuming that the reader knows the basics of programming.  I will cover concepts I frequently see that I think are not used enough or appropriately, regardless of how basic or advanced they may be.</p>
+</div></div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="comprehensions">Comprehensions</span></h1>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Comprehensions in python should be used when possible.  They are faster than forloops and require less code when they fit</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">x = [2,3,4,5]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">out=[]
+%timeit for i in range(1000000): out.append(i+1)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>87.2 ms ± 647 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%timeit [i+1 for i in range(1000000)]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>56.8 ms ± 584 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This is basically special syntax for a forloop, and are useful in a subset of forloops.  Basically any time you see the pattern where you initialize something, then modify or build it in the forloop you can likely use a comprehension</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">out = []
+for o in range(5): out.append(o**o)
+out</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[1, 1, 4, 27, 256]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">[o**o for o in range(5)]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[1, 1, 4, 27, 256]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">List comprehensions are most common but you can also do tuple comprehension, set comprehension, dict comprehension, or other data types.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">set(o**o for o in range(5))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">{1, 4, 27, 256}</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">{str(o):o**o for o in range(5)}</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">{&#x27;0&#x27;: 1, &#x27;1&#x27;: 1, &#x27;2&#x27;: 4, &#x27;3&#x27;: 27, &#x27;4&#x27;: 256}</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">A few handy patterns are:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Reversing a dictionary</li>
+<li class="leading-relaxed pl-2">Combining lists</li>
+<li class="leading-relaxed pl-2">All unique combos from multiple lists (nested comprehension)</li>
+</ul>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">adict = {&quot;a&quot;:1,&quot;b&quot;:2}
+{v:k for k,v in adict.items()}</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">{1: &#x27;a&#x27;, 2: &#x27;b&#x27;}</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">x = [1,2,3,4]
+y = [5,6,7,8]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">[a+b for a,b in zip(x,y)]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[6, 8, 10, 12]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">unique_combos = L((a,b) for a in x for b in y)
+unique_combos</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#16) [(1, 5),(1, 6),(1, 7),(1, 8),(2, 5),(2, 6),(2, 7),(2, 8),(3, 5),(3, 6)...]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="destructuring">Destructuring</span></h1>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Destructured assignments mean to can break up iterables when you assign.  This is handy to reduce pointless lines of code.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">a,b = 5,6
+a,b,c = [],[],{}</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Another use is to break up lists to create lists where we take all the first elements out into it's own list, and the second elements out into their own lists.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">I often see this done with multiple list comprehension, doing <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">[o[0] for o in [x,y,z]]</code> to get the first element, then repeating for other elements.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">However, we can do this easier with the help of zip and destructured assignments</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">nested_list = [[1,2,3],[4,5,6],[7,8,9]]
+nested_list</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">first_elements, second_elements, third_elements = list(zip(*nested_list))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">print(f&quot;{first_elements=}&quot;)
+print(f&quot;{second_elements=}&quot;)
+print(f&quot;{third_elements=}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>first_elements=(1, 4, 7)
+second_elements=(2, 5, 8)
+third_elements=(3, 6, 9)
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="fastcore">Fastcore</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Fastcore is a great library to know.  It's got a lot of useful features and extensions to the python standard library and it's designed to be used in live environments like jupyter notebooks.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="parallel-processing">Parallel Processing</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">See <a href="PythonConcurrency.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">this blog post</a></p>
+</div></div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="docments">Docments</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Nice way of documenting code concisely and being able to access info from code.  It's concise, easy to manipulate to display how you want, and easy to read.  I much prefer it over the large numpy style docstrings that are big string blocks</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastcore.docments import *
+
+def distance(pointa:tuple,  # tuple representing the coordinates of the first point (x,y)
+             pointb:tuple=(0,0) # tuple representing the coordinates of the first point (x,y)
+            )-&gt;float: # float representing distance between pointa and pointb
+    &#x27;&#x27;&#x27;Calculates the distance between pointa and pointb&#x27;&#x27;&#x27;
+    edges = np.abs(np.subtract(pointa,pointa))
+    distance = np.sqrt((edges**2).sum())
+    return distance</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">docstring(distance)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">Calculates the distance between pointa and pointb</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">docments(distance)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-json bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">{ 'pointa': 'tuple representing the coordinates of the first point (x,y)',
+  'pointb': 'tuple representing the coordinates of the first point (x,y)',
+  'return': 'float representing distance between pointa and pointb'}
+</code></pre>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">docments(distance,full=True)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-json bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">{ 'pointa': { 'anno': &lt;class 'tuple'&gt;,
+              'default': &lt;class 'inspect._empty'&gt;,
+              'docment': 'tuple representing the coordinates of the first '
+                         'point (x,y)'},
+  'pointb': { 'anno': &lt;class 'tuple'&gt;,
+              'default': (0, 0),
+              'docment': 'tuple representing the coordinates of the first '
+                         'point (x,y)'},
+  'return': { 'anno': &lt;class 'float'&gt;,
+              'default': &lt;class 'inspect._empty'&gt;,
+              'docment': 'float representing distance between pointa and '
+                         'pointb'}}
+</code></pre>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="testing">Testing </span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Everyone agrees testing is important.  But not all testing is equal.  The needs for unit testing the google code base are not the same as the needs a data scientist needs for building and deploying models, libraries, and most software.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Fastcore is a great tool for most of my testing needs.  Fast and simple enough that I can add tests as I build and as I am exploring and building models.  I want testing to enhance my development workflow, not be something I have to painstakingly build at the end.</p>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Sometimes simple assert statements are sufficient, but there's small annoyances.  For example, a small change in type can mean a failed test.  Sometimes that change in type should cause a failure, sometimes I'm ok if it's a different type if the values are the same</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastcore.test import *</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">test_eq([1,2],(1,2))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">For floating points it has handy functionality for that, which is very common in data science.  For example, we may want <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">.1 + .1 + .1 == .3</code> to be true, because they are close enough based on floating point precision</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">.1 + .1 + .1 == .3</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">False</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">test_close(.1 + .1 + .1, .3)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We can test that something fails, if there are particular situation we want to ensure raise errors.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def _fail(): raise Exception(&quot;foobar&quot;)
+test_fail(_fail)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We can test if 2 lists have the same values, just in different orders (convenient for testing some situations with random mini-batches).</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">a = list(range(5))
+b = a.copy()
+b.reverse()
+test_shuffled(a,b)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">There's more of course, check out the <a href="fastcore.fast.ai" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">docs</a></p>
+</div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="l">L</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">L is a replacement for a list, but with lots of adding functionality.  Some of it are functional programming concepts, some is numpy like stuff, and some is just niceities (like cleaner printing).</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">alist = L(1,2,3,4,3)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">alist.sort()
+alist.sorted()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#5) [1,2,3,3,4]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">alist.unique()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#4) [1,2,3,4]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">alist.filter(lambda x: x &lt; 3)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#2) [1,2]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">alist.map(lambda x: x * 2)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#5) [2,4,6,8,6]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="attrdict">AttrDict</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">Attrdict</code> is another nice thing from fastcore, that makes dictionaries a bit nicer to use.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">regdict = {&#x27;a&#x27;:2,&#x27;b&#x27;:3}
+adict = AttrDict({&#x27;a&#x27;:2,&#x27;b&#x27;:3})</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">adict</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-json bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">{'a': 2, 'b': 3}
+</code></pre>
+</div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">adict.a</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">2</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def _fail(): return regdict.a
+test_fail(_fail)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="logging">Logging</span></h1>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Logging is super important.  if you log stuff as you work properly you can always look back at what was done previously.  Sometimes it's hard to tell what's going on as you run and re-run different things.  Logging is handy not just in production for debugging, but also as a tool when you are developing.  There are many tools to help with logging and visualizing results (for example W&amp;B or tensorboard for deep learning) - but the foundations are good to understand and use too!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">logging.basicConfig(filename=&quot;./mylog.log&quot;)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def get_current_time(): return datetime.now().strftime(&#x27;%Y%m%d_%H%M%S&#x27;)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">logger.info    (f&#x27;{get_current_time()}|This is an info message&#x27;)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">!head -4 mylog.log</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>INFO:root:20221106_111500|This is an info message
+INFO:root:20221106_111521|Starting the model training process
+INFO:root:20221106_111521|Training set has 50 records
+INFO:root:20221106_111521|Validtion set has 70 records
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def log_stuff(msg,**kwargs): 
+    dt = get_current_time()
+    logger.info(f&quot;{dt}|{msg}&quot;)
+    for k,v in kwargs.items(): logger.info(f&quot;{dt}|{k}={v}&quot;)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">log_stuff(&#x27;this is what I want to log&#x27;,
+          trainig_set=&#x27;50 records&#x27;,
+          validation_set=&#x27;70_records&#x27;)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="higher-order-functions-callbacks">Higher Order Functions &amp; Callbacks</span></h1>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">This is a simple example of what these terms mean:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">A higher order function is a function that takes a function as an argument</li>
+<li class="leading-relaxed pl-2">A callback is a function that is passed in as an argument to a higher order function</li>
+</ul>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def callbackFunc1(s): print(&#x27;Callback Function 1: Length of the text file is : &#x27;, s)
+def callbackFunc2(s): print(&#x27;Callback Function 2: Length of the text file is : &#x27;, s)
+
+def HigherOrderFunction(path, callback):
+    with open(path, &quot;r&quot;) as f: callback(len(f.read()))
+
+HigherOrderFunction(&quot;mylog.log&quot;, callbackFunc1)
+HigherOrderFunction(&quot;mylog.log&quot;, callbackFunc2)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Callback Function 1: Length of the text file is :  1130
+Callback Function 2: Length of the text file is :  1130
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">This is handy in a lot of situations.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="filter">Filter </span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Filter is a common higher order function.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">L(1,2,3,4,5).filter(lambda x: x&gt;3)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#2) [4,5]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This is very flexible because we can put filtering logic of any complexity in a function and use that to filter a list of any type.</p>
+</div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="map">Map </span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Map is another very common higher order function.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">L(1,2,3,4,5).map(lambda x: x**2)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#5) [1,4,9,16,25]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">It is again super flexible because we can apply a function of any complexity to have it be applied and modify each element of the list.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">L(1,2,3,4,5).map(lambda x: string.ascii_lowercase[x])</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#5) [&#x27;b&#x27;,&#x27;c&#x27;,&#x27;d&#x27;,&#x27;e&#x27;,&#x27;f&#x27;]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="simple-logging">Simple Logging</span></h2>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We could make a function for logging, where we can pass a function in that we want to use for logging (ie info vs warning).</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def log_stuff(msg,fn=logger.info,**kwargs): 
+    dt = get_current_time()
+    fn(f&quot;{dt}|{msg}&quot;)
+    for k,v in kwargs.items(): fn(f&quot;{dt}|{k}={v}&quot;)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">log_stuff(&#x27;abcd&#x27;,a=1,b=55)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">!tail -3 mylog.log</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>INFO:root:20221106_193211|abcd
+INFO:root:20221106_193211|a=1
+INFO:root:20221106_193211|b=55
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">log_stuff(&#x27;something might be awry&#x27;,fn=logger.critical,a=1,b=55)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">!tail -3 mylog.log</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>CRITICAL:root:20221106_193211|something might be awry
+CRITICAL:root:20221106_193211|a=1
+CRITICAL:root:20221106_193211|b=55
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="file-processor">File Processor</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You can also make a generic file processor that you can pass callbacks to.  This file processor can include log statements to log what you're doing, so you can minimize repeating lots of code.  For now, we'll do a simple processor, and callbacks to clean and format a messy sql file.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def process_file(fpath,callbacks): 
+    with open(fpath, &quot;r&quot;) as f: contents = f.read()
+    for callback in callbacks: contents = callback(contents)
+    return contents</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="format-and-clean-sql-file">Format and clean SQL file</span></h2>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">sql_formatter_cb = partial(sqlparse.format,
+                strip_comments=True,comma_first=True,
+                keyword_case=&#x27;upper&#x27;, identifier_case=&#x27;lower&#x27;,
+                reindent=True, indent_width=4,)
+
+
+
+qrys = process_file(&#x27;test.sql&#x27;,[sql_formatter_cb,sqlparse.split])</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def sql_pprint(sql): display(Markdown(f&quot;```sql\n\n{sql}\n\n```&quot;))
+for qry in qrys: sql_pprint(qry)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-sql bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">
+SELECT top 25 *
+FROM some_table;
+
+</code></pre>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-sql bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">
+SELECT count(1)
+FROM another TABLE ;
+
+</code></pre>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-sql bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">
+SELECT date_time
+     , mbr_id
+     , transactions
+     , count(1)
+FROM table3
+WHERE date_time &gt; '2021-02-02'
+GROUP BY 1
+       , 2
+       , 3;
+
+</code></pre>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="decorators">Decorators</span></h1>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Decorators give you a way to add the same functionality to many functions (like inheritance does for classes).  You typically use decorator using the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">@</code> syntax, which modified the function.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="silly-simple-example">Silly Simple Example</span></h2>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def add_another(func):
+    def wrapper(number):
+        print(f&quot;The decorator took over!&quot;)
+        print(f&quot;I could log the original number ({number}) here!&quot;)
+        print(f&quot;Or I could log the original answer ({func(number)}) here!&quot;)
+        return func(number) + 1
+    return wrapper
+    
+@add_another
+def add_one(number): return number + 1</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">So when we use a decorator, the code in the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">wrapper</code> function is called instead of the original function.  Typically the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">wrapper</code> function calls the original function (otherwise there would be no point in decorating it as you'd just have a new unrelated function).</p>
+</div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="useful-example">Useful Example</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For example, maybe you want to print (or log) particular function call times and the args.  See this decorator that does just that (and can be used on methods too)</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from datetime import datetime</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def print_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(f&quot;{datetime.now()}:{func}:args={args}:kwargs={kwargs}&quot;)
+        return func(*args, **kwargs)
+    return wrapper</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">@print_decorator
+def simple_add(a,b): return a + b</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">simple_add(2,4)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+<pre ><code class=''>2022-11-02 14:18:56.635936:&lt;function simple_add&gt;:args=(2, 4):kwargs={}
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">6</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">@print_decorator
+def complex_add(a,b,*args,**kwargs): 
+    out = a + b
+    for arg in args: out = out + arg
+    for kwarg in kwargs.values(): out = out + kwarg
+    return out</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">complex_add(5,2,3,foo=6,bar=10)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+<pre ><code class=''>2022-11-02 14:18:57.716085:&lt;function complex_add&gt;:args=(5, 2, 3):kwargs={&#x27;foo&#x27;: 6, &#x27;bar&#x27;: 10}
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">26</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="use-on-existing-functions">Use on Existing Functions</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">What we have seen is applying a decorator to functions we fully define but we can also apply them to previously existing functions like ones we import from a library.  This is helpful not just in understanding one way you can extend an existing libraries functionality, but also in understanding what decorators are.  They aren't magical.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's add logging to <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">pd.DataFrame</code> using our existing decorator so we can see when a dataframe is constructed.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">LoggingDataFrame = print_decorator(pd.DataFrame)
+df = LoggingDataFrame([1,2,3])</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>2022-11-02 14:53:16.323144:&lt;class &#x27;pandas.core.frame.DataFrame&#x27;&gt;:args=([1, 2, 3],):kwargs={}
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df.head()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">1</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">The key thing to notice here is that the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">@</code> syntax really isn't doing anything magical.  It's just passing the function into the decorator and using that as the function definition.  It's just syntactic sugar for a higher order function that takes a function and returns a function.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">To understand why this works, think through what our decorator is doing.</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">It's a function that takes a function as an argument</li>
+<li class="leading-relaxed pl-2">It creates a new function called <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">wrapper</code>.  This <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">wrapper</code> function called the argument passed into it, but also has other code.</li>
+<li class="leading-relaxed pl-2">It returns that function as the output</li>
+</ol>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">print_function_source(print_decorator)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><html><head><style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style></head><body><div class="highlight"><pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><span></span><span class="k">def</span> <span class="nf">print_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">func</span><span class="si">}</span><span class="s2">:args=</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">:kwargs=</span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+</body></html></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="inheritance">Inheritance</span></h1>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Inheritance is the idea that you a class can "Inherit" attributes and methods from other classes.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For example a class could have an attribute <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">a</code>, and it can be used to create a new class to give it that attribute without having to specify it.</p>
+</div></div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="silly-simple-example">Silly Simple Example</span></h2>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">class aClass: a = 2
+    
+class bClass(aClass): pass
+    
+aClass.a == bClass.a</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">True</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="useful-examples">Useful Examples</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">In many cases there are common things we want to inherit in lots of classes.  One example is having access to the date.  Often you want this for logging, or printing, or any number of things.  By subclassing you don't have to reformat the date each time in your classes.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">class DateMinuteMixin:
+    date_format=&#x27;%Y%m%d_%H%M%S&#x27;
+    dte = datetime.now()
+
+    @property
+    def date_str(self): return self.dte.strftime(self.date_format)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Another handy use is to have generic behavior for handling different file types.  In this case, we have a mixin where it opens and reads a sql file.  Rather than rewriting this code for every class that needs to read a sql file, you can inherit from a class when you need that functionality.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">💡 Tip</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You can define an abstract property like below to let users know that after inheriting this class, they need to define that property.  In this case, they define the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">sql_filepath</code>, and they get the contents of the file for free via the other methods.</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">import abc
+
+class SqlFileMixin:
+    @abc.abstractproperty
+    def sql_filepath(self):
+        pass
+
+    @property
+    def sql_file(self):
+        return open(self.sql_filepath)
+
+    @property
+    def query(self):
+        return self.sql_file.read()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="dunders">Dunders</span></h1>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">import numpy as np
+class someClass:
+    def __init__(self,a): self.a = a
+    def __str__(self): return f&quot;This object&#x27;s a is : {self.a}&quot;
+    def __getitem__(self,idx): return self.a[idx-1]
+    def __add__(self,some_class): return list(map(lambda x,y: x + y, self.a, some_class.a))</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">a = someClass(x)
+a.a</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[1, 2, 3, 4, 25]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">a + a</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[2, 4, 6, 8, 50]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">a[1]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">1</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">a</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;__main__.someClass&gt;</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">print(a)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>This object&#x27;s a is : [1, 2, 3, 4, 25]
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="iteratorsdata-streaming">Iterators/Data Streaming</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Iterators are useful when you don't want to just load all data in memory all at once.  They are often defined with <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">yield</code>, but there are other ways.</p>
+</div></div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="silly-simple-example">Silly Simple Example</span></h2>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def mapper(items,fn):
+    for item in items: yield item</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">it = mapper([2,4,6,8],square)
+it</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;generator object mapper&gt;</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">next(it), next(it), next(it)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(2, 4, 6)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">You can also process it sequentially in a loop.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">for item in mapper([2,4,6,8],square): 
+    print(item)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>2
+4
+6
+8
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="useful-example">Useful Example</span></h2>
+</div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="file-streaming">File Streaming</span></h3>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">print_plus = partial(print,end=&#x27;\n++++++\n&#x27;)
+
+with open(&#x27;test.txt&#x27;, &#x27;rb&#x27;) as f:
+    iterator = iter(partial(f.read, 64), b&#x27;&#x27;)
+    print_plus(type(iterator))
+    for block in iterator: print_plus(block)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>&lt;class &#x27;callable_iterator&#x27;&gt;
+++++++
+b&#x27;one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\neleven\ntwelve\nt&#x27;
+++++++
+b&#x27;hirteen\nninety nine thousand nine hundred ninety\nninety nine tho&#x27;
+++++++
+b&#x27;usand nine hundred ninety one\nninety nine thousand nine hundred &#x27;
+++++++
+b&#x27;ninety two\nninety nine thousand nine hundred ninety three\nninety&#x27;
+++++++
+b&#x27; nine thousand nine hundred ninety four\nninety nine thousand nin&#x27;
+++++++
+b&#x27;e hundred ninety five\nninety nine thousand nine hundred ninety s&#x27;
+++++++
+b&#x27;ix\nninety nine thousand nine hundred ninety seven\nninety nine th&#x27;
+++++++
+b&#x27;ousand nine hundred ninety eight\nninety nine thousand nine hundr&#x27;
+++++++
+b&#x27;ed ninety nine\n&#x27;
+++++++
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Setup</a><a href="#purpose" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Purpose</a><a href="#comprehensions" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Comprehensions</a><a href="#destructuring" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Destructuring</a><a href="#fastcore" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Fastcore</a><a href="#parallel-processing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Parallel Processing</a><a href="#docments" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Docments</a><a href="#testing" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Testing </a><a href="#l" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">L</a><a href="#attrdict" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">AttrDict</a><a href="#logging" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Logging</a><a href="#higher-order-functions-callbacks" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Higher Order Functions &amp; Callbacks</a><a href="#filter" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Filter </a><a href="#map" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Map </a><a href="#simple-logging" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Simple Logging</a><a href="#file-processor" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">File Processor</a><a href="#format-and-clean-sql-file" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Format and clean SQL file</a><a href="#decorators" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Decorators</a><a href="#silly-simple-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Silly Simple Example</a><a href="#useful-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Useful Example</a><a href="#use-on-existing-functions" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Use on Existing Functions</a><a href="#inheritance" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Inheritance</a><a href="#silly-simple-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Silly Simple Example</a><a href="#useful-examples" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Useful Examples</a><a href="#dunders" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Dunders</a><a href="#iteratorsdata-streaming" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Iterators/Data Streaming</a><a href="#silly-simple-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Silly Simple Example</a><a href="#useful-example" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Useful Example</a><a href="#file-streaming" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">File Streaming</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

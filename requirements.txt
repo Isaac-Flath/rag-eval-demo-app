@@ -1,0 +1,8 @@
+python-fasthtml
+monsterui
+lancedb
+sentence-transformers
+bm25s
+pandas
+transformers
+rerankers

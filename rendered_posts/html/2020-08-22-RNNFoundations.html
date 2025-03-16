@@ -1,0 +1,1003 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-08-22-RNNFoundations.ipynb">
+             <meta property="og:title" content="NLP Recurrent NN Foundations">
+             <meta property="og:description" content="What is an RNN?  How does NLP work?">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="NLP Recurrent NN Foundations">
+             <meta name="twitter:description" content="What is an RNN?  How does NLP work?">
+             <meta property="article:published_time" content="2020-08-22">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="Neural Networks">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-08-22-RNNFoundations.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/NeuralNetwork.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/NeuralNetwork.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">NLP Recurrent NN Foundations</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">What is an RNN?  How does NLP work?</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#credit-where-credit-is-due" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Credit Where Credit is Due</a><a href="#data-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Data Setup</a><a href="#get-the-data" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Get the Data</a><a href="#tokenization" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Tokenization</a><a href="#numericalization" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Numericalization</a><a href="#sequence-definition" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Sequence Definition</a><a href="#dataloader" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Dataloader</a><a href="#language-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Language Model</a><a href="#naive-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Naive Model</a><a href="#rnn-number-1" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">RNN Number 1</a><a href="#rnn-number-2" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">RNN Number 2</a><a href="#conclusion" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Conclusion</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastai.text.all import *</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="credit-where-credit-is-due">Credit Where Credit is Due</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The concept and techniques covered in this post are covered in much greater detail in <a href="https://www.amazon.com/gp/product/1492045527/ref=ppx_yo_dt_b_asin_image_o08_s00?ie=UTF8&amp;psc=1%7C" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Jeremy Howard and Sylvain Gugger's book</a>.  If you like this post, you should buy the book as you'll probably like it even more!</p>
+</div></div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="data-setup">Data Setup</span></h1>
+</div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="get-the-data">Get the Data</span></h3>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">path = untar_data(URLs.HUMAN_NUMBERS)
+lines = L()
+with open(path/&quot;train.txt&quot;) as f: lines += L(*f.readlines())
+with open(path/&quot;valid.txt&quot;) as f: lines += L(*f.readlines())
+lines</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#9998) [&#x27;one \n&#x27;,&#x27;two \n&#x27;,&#x27;three \n&#x27;,&#x27;four \n&#x27;,&#x27;five \n&#x27;,&#x27;six \n&#x27;,&#x27;seven \n&#x27;,&#x27;eight \n&#x27;,&#x27;nine \n&#x27;,&#x27;ten \n&#x27;...]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="tokenization">Tokenization</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">What is Tokenization?</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Tokenization is about getting 'tokens' of language that have meaning.  A word could be a token as it has meaning.  A piece of punctuation could be a token as it has meaning.  If a work is in all capital letters that could be a token.  A portion of a word could be a token (ie dis) because a word beginning with dis has meaning.  There are many many ways to tokenize, for this post I will use the most simple approach.  That is, I will split based on spaces to make each word a token.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">txt = &#x27; . &#x27;.join([l.strip() for l in lines])</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">tokens = L(*txt.split(&#x27; &#x27;)); tokens</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#63095) [&#x27;one&#x27;,&#x27;.&#x27;,&#x27;two&#x27;,&#x27;.&#x27;,&#x27;three&#x27;,&#x27;.&#x27;,&#x27;four&#x27;,&#x27;.&#x27;,&#x27;five&#x27;,&#x27;.&#x27;...]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="numericalization">Numericalization</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that things are split into tokens, we need to start thinking about how to feed it to a Neural Network.  Neural Networks rely on multiplication and addition, and we can't do that with a word.  Somehow we need to convert these tokens to numbers.  That is what Numericalization is all about.  We will do this in a few steps:</p>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Get a unique list of all tokens (v)</li>
+<li class="leading-relaxed pl-2">Assign a number to each of token (vocab)</li>
+<li class="leading-relaxed pl-2">Replace tokens with numbers (nums)</li>
+</ol>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Get a unique list of all tokens (v)
+v = tokens.unique()
+
+# Assign a number to each of token (vocab)
+vocab = {v:i for i,v in enumerate(v)};
+
+# We can lookup the number associated with a token like this
+vocab[&#x27;fifty&#x27;]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">23</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Replace tokens with numbers (nums)
+nums = L(vocab[tok] for tok in tokens); nums</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#63095) [0,1,2,1,3,1,4,1,5,1...]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="sequence-definition">Sequence Definition</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we have tokens in the form of numbers, we need to create out inputs and outputs to the model.  For this we need to organize our data into dependent and independent variables.  Let's use the preceding 3 words to predict the next word.  Below, we see the same thing in 2 ways - one with tokens and one with numbers.  These are the same thing, just translating the tokens to numbers using the vocab above.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">ℹ️ Note</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Sequence Length (<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">sl</code>) will be 3, because we are using a sequence of 3 words to predict the next word.:</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">sl = 3
+
+# For example, we will use the tokens &#x27;one&#x27;,&#x27;.&#x27;, and &#x27;two&#x27; to predict &#x27;.&#x27;
+L((tokens[i:i+sl], tokens[i+sl]) for i in range(0,len(tokens)-sl-1,sl))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#21031) [((#3) [&#x27;one&#x27;,&#x27;.&#x27;,&#x27;two&#x27;], &#x27;.&#x27;),((#3) [&#x27;.&#x27;,&#x27;three&#x27;,&#x27;.&#x27;], &#x27;four&#x27;),((#3) [&#x27;four&#x27;,&#x27;.&#x27;,&#x27;five&#x27;], &#x27;.&#x27;),((#3) [&#x27;.&#x27;,&#x27;six&#x27;,&#x27;.&#x27;], &#x27;seven&#x27;),((#3) [&#x27;seven&#x27;,&#x27;.&#x27;,&#x27;eight&#x27;], &#x27;.&#x27;),((#3) [&#x27;.&#x27;,&#x27;nine&#x27;,&#x27;.&#x27;], &#x27;ten&#x27;),((#3) [&#x27;ten&#x27;,&#x27;.&#x27;,&#x27;eleven&#x27;], &#x27;.&#x27;),((#3) [&#x27;.&#x27;,&#x27;twelve&#x27;,&#x27;.&#x27;], &#x27;thirteen&#x27;),((#3) [&#x27;thirteen&#x27;,&#x27;.&#x27;,&#x27;fourteen&#x27;], &#x27;.&#x27;),((#3) [&#x27;.&#x27;,&#x27;fifteen&#x27;,&#x27;.&#x27;], &#x27;sixteen&#x27;)...]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">seqs = L((tensor(nums[i:i+sl]), nums[i+sl]) for i in range(0,len(nums)-sl-1,sl)); seqs</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(#21031) [(tensor([0, 1, 2]), 1),(tensor([1, 3, 1]), 4),(tensor([4, 1, 5]), 1),(tensor([1, 6, 1]), 7),(tensor([7, 1, 8]), 1),(tensor([1, 9, 1]), 10),(tensor([10,  1, 11]), 1),(tensor([ 1, 12,  1]), 13),(tensor([13,  1, 14]), 1),(tensor([ 1, 15,  1]), 16)...]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="dataloader">Dataloader</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now we need to create our dataloader.  The <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">dataloader</code> is just packaging it into batches, and not doing any transformations or changes to the data.  What we saw above is what will be given to the model.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">bs = 128
+cut = int(len(seqs) * 0.8)
+dls = DataLoaders.from_dsets(seqs[:cut],seqs[cut:],bs=bs, shuffle=False)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">dls2 = DataLoader(seqs[:cut],bs=bs, shuffle=False)
+dls3 = DataLoader(seqs[cut:],bs=bs, shuffle=False)
+
+dls4 = DataLoaders(dls3,dls3)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="language-model">Language Model</span></h1>
+</div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="naive-model">Naive Model</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">First, let's figure out a baseline for what is the best 'non-stupid' model we can come up with.  If a model can't beat this score, then it's not worth anything.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The approach we will take will be to predict the most common token every time.  If we do that we get about a 15% accuracy.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">n,counts = 0,torch.zeros(len(vocab))
+for x,y in dls.valid:
+    n += y.shape[0]
+    for i in range_of(vocab): counts[i] += (y==i).long().sum()
+idx = torch.argmax(counts)
+idx, v[idx.item()], counts[idx].item()/n</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(tensor(29), &#x27;thousand&#x27;, 0.15165200855716662)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="rnn-number-1">RNN Number 1</span></h3>
+<h5>Code</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We are going to make the simplest RNN we can.  Here's a quick explanation of the code below.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">for i in range(sl):</code>
+Because we are feeding in a number of tokens based on our sequence length, sl, which was defined as 3.  We will have 3 steps, 1 per token.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">h = h + self.i_h(x[:,i])</code>
+For each input token we will run our input to hidden function.  We are indexing to grab the column in our embedding matrix that corresponds with the token, and adding that. All this is doing is adding the embedding for the particular token.</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">h = F.relu(self.h_h(h))</code>
+We then run our hidden to hidden function (h_h), which is a linear layer (y = wx + b).  We do a ReLu of that, which is just replacing any negative values with 0.</p>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">return self.h_o(h)</code>
+We then run our hidden to output function (h_o), which is another linear layer, but it is outputing the prediction of which word is next.  Naturally, this is the size of our vocabulary.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Wrap all that in a class and it looks like the below:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">class LM1(Module):
+    def __init__(self, vocab_sz, n_hidden):
+        self.i_h = nn.Embedding(vocab_sz, n_hidden)
+        self.h_h = nn.Linear(n_hidden, n_hidden)
+        self.h_o = nn.Linear(n_hidden,vocab_sz)
+        
+    def forward(self, x):
+        h = 0
+        for i in range(sl):
+            h = h + self.i_h(x[:,i])
+            h = F.relu(self.h_h(h))
+        return self.h_o(h)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now we can run it below and see that we get almost 50% accuracy before we overfit, which is great considering the most common token only appears 15% of the time.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">learn = Learner(dls, LM1(len(vocab), 64), loss_func=F.cross_entropy, metrics=accuracy)
+learn.fit_one_cycle(4, 1e-3)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: left;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">epoch</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">train_loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">valid_loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">accuracy</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2.505863</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2.136583</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.458046</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.602575</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.847033</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.480865</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.503249</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.727588</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.492275</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">3</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.436492</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.771485</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.410506</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+  </tbody>
+</table></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h5>Tensors</h5>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">So what is it REALLY doing?  To understand that, I find it helpful to think about the matrix/tensor sizes at each step.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Embeddings</strong></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's start with our input_hidden.  Our Embedding matrix is has 64 weights (n_hidden) for each token in our vocabulary.  So that looks like this:</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}_{\displaystyle 64-weights}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}30-tokens$</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now all the embedding layer does is get the correct columns.  So for the first word in the sequence we get the index, then look it up in the embedding matrix.  That 1 index location turns into the 64 weights.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">$\underbrace{
+\begin{bmatrix}
+\cdots \<br>
+\cdots \
+\cdots \<br>
+\cdots \<br>
+\cdots \<br>
+\cdots \<br>
+\end{bmatrix}}<em>{\displaystyle token-idx}
+\left.\vphantom{\begin{bmatrix}
+\cdots \<br>
+\cdots \
+\cdots \<br>
+\cdots \<br>
+\cdots \<br>
+\cdots \<br>
+\end{bmatrix}}\right}128-bs$
+$==$
+lookup in embedding matrix
+$==&gt;$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}</em>{\displaystyle 64}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}128$</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Hidden Linear Layer</strong></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Next, we have out hidden_hidden.  We have our 128x64 matrix from our embedding lookup and we need to do a linear layer.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}<em>{\displaystyle 64-weights}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}128-bs$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}</em>{\displaystyle 64}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}64$
+$+$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}<em>{\displaystyle 64-bias}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}1$
+$=$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}</em>{\displaystyle 64-weights}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}128-bs$
+===ReLu - Replace all negatives with 0 ===&gt;
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}_{\displaystyle 64-weights}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}128-bs$</p>
+</div></div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">And we do the above for however long our sequence is, in our case 3.  So for each token we do the above.  We start with 0 on the first loop, and each subsequent loop through we add onto that.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Ouput Linear Layer</strong></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We ended with a 128x64 matrix, which isn't exactly what we want.  We have 30 words, so we want to know which one of the 30 is most likely.  Specifically for each of the 128 items in our batch, we want 30 scores (1 for each word in our vocab).  So we do a similar step as our hidden linear layer, but adjust the number of weights so we end up with the matrix of the appropriate size.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}<em>{\displaystyle 64-weights}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}128-bs$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots\<br>
+\cdots &amp; \cdots\<br>
+\cdots &amp; \cdots\<br>
+\cdots &amp; \cdots\<br>
+\end{bmatrix}}</em>{\displaystyle 30}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots\<br>
+\cdots &amp; \cdots\<br>
+\cdots &amp; \cdots\<br>
+\cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}64$
+$+$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}<em>{\displaystyle 30-bias}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}1$
+$=$
+$\underbrace{
+\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}</em>{\displaystyle 30-preds}
+\left.\vphantom{\begin{bmatrix}
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\<br>
+\end{bmatrix}}\right}128-bs$</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="rnn-number-2">RNN Number 2</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that we have a simple model, how do we improve it?  There are many steps that need to be taken to get to a cutting edge model.  We'll do one improvement, then leave the rest for future blog posts.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">One thing that was a bit odd is in the training loop we reset back to 0 every time.  What I mean by that, is we would loop through each of the 3 tokens, output our predictions for those, update the weights, then reset back for a new set.  This isn't really how language works.  Language has a pattern and a sequence to it.  The further back you go the less important, but even things said a couple minutes ago could be important.  Could you imagine holding a conversation if you could only remember and respond based on the last 3 words?</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">So let's fix this problem.  We will move our h=0 up to the initialization of the class, and never reset back to 0.  Instead, we will continuously keep adding to it.  We will only update the last batch of weights (as if we updated all of them by the 1000th one we would be updating far to many weights to compute).  We call this "detaching" it.  Ultimately we are left with the same thing, but if has a memory of previous sequences beyond the one we are processing!  Let's see if it makes things better.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">class LM2(Module):
+    def __init__(self, vocab_sz, n_hidden):
+        self.i_h = nn.Embedding(vocab_sz, n_hidden)
+        self.h_h = nn.Linear(n_hidden, n_hidden)
+        self.h_o = nn.Linear(n_hidden,vocab_sz)
+        self.h = 0
+
+    def forward(self, x):
+        for i in range(3):
+            self.h = self.h + self.i_h(x[:,i])
+            self.h = F.relu(self.h_h(self.h))
+        out = self.h_o(self.h)
+        self.h = self.h.detach()
+        return out</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">To do this we need to take care that our data is in the appropriate order, so let's do a few tranformations to make that work.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">m = len(seqs)//bs
+m,bs,len(seqs)
+def group_chunks(ds, bs):
+    m = len(ds) // bs
+    new_ds = L()
+    for i in range(m): new_ds += L(ds[i + m*j] for j in range(bs))
+    return new_ds</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">cut = int(len(seqs) * 0.8)
+dls = DataLoaders.from_dsets(
+    group_chunks(seqs[:cut], bs), 
+    group_chunks(seqs[cut:], bs), 
+    bs=bs, drop_last=True, shuffle=False)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">learn = Learner(dls, LM2(len(vocab), 64), loss_func=F.cross_entropy, metrics=accuracy)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">learn.fit_one_cycle(10, 3e-3)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: left;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">epoch</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">train_loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">valid_loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">accuracy</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2.342321</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.897249</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.481689</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.453624</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.713581</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.449707</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.154838</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.680148</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.519775</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">3</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.042766</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.566625</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.517822</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">4</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.969852</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.633654</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.542480</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">5</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.937066</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.581196</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.559570</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">6</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.882712</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.660810</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.588379</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">7</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.844926</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.595611</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.597656</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">8</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.808309</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.613600</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.605225</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">9</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.797358</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1.621867</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.605713</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:00</td>
+    </tr>
+  </tbody>
+</table></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">And we are up from about 50% accuracy to about 60%!</p>
+</div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="conclusion">Conclusion</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Hopefully from this post you gained an understanding of the fundamental concepts behind NLP using Neural Networks.  While this isn't cutting edge, the fundamental principles must be understood if you want to gain an intuition about what types of things might work.</p>
+</div></div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#credit-where-credit-is-due" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Credit Where Credit is Due</a><a href="#data-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Data Setup</a><a href="#get-the-data" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Get the Data</a><a href="#tokenization" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Tokenization</a><a href="#numericalization" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Numericalization</a><a href="#sequence-definition" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Sequence Definition</a><a href="#dataloader" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Dataloader</a><a href="#language-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Language Model</a><a href="#naive-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Naive Model</a><a href="#rnn-number-1" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">RNN Number 1</a><a href="#rnn-number-2" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">RNN Number 2</a><a href="#conclusion" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Conclusion</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

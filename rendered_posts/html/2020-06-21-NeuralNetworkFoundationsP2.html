@@ -1,0 +1,881 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-06-21-NeuralNetworkFoundationsP2.ipynb">
+             <meta property="og:title" content="Neural Network Foundations (Part 2)">
+             <meta property="og:description" content="MNIST multi-class classification from scratch with deep Learning">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Neural Network Foundations (Part 2)">
+             <meta name="twitter:description" content="MNIST multi-class classification from scratch with deep Learning">
+             <meta property="article:published_time" content="2020-06-21">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="Neural Networks">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-06-21-NeuralNetworkFoundationsP2.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/NeuralNetwork.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/NeuralNetwork.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Neural Network Foundations (Part 2)</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">MNIST multi-class classification from scratch with deep Learning</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#intro" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Intro</a><a href="#load-the-data" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Load the Data</a><a href="#linear-equation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Linear Equation</a><a href="#tensor-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Tensor Setup</a><a href="#calculate-wx-b" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Calculate `wx + b`</a><a href="#neural-network" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Neural Network</a><a href="#improving-weights-and-biases" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Improving Weights and Biases</a><a href="#loss-function" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Loss Function</a><a href="#calculate-gradient" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Calculate Gradient</a><a href="#train-the-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Train the Model</a><a href="#measure-accuracy-on-batch" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Measure Accuracy on Batch</a><a href="#measure-accuracy-on-all" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Measure Accuracy on All</a><a href="#initialize-weights-and-biases" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Initialize weights and biases</a><a href="#train-the-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Train the Model</a><a href="#results" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Results</a><a href="#this-model-vs-sota" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">This Model vs SOTA</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastai.vision.all import *
+from fastai.data.external import *
+from PIL import Image
+import math</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="intro">Intro</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Today we will be working with the MNIST dataset. The goal is going to be to take an image of handwritten digits and automatically predict what number it is.  We will be building a Neural Network to do this.  This is building off of the <a href="NeuralNetworkFoundationsP1.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">previous post</a> where we classified 3s vs 7s.  If anything in this post is confusing, I recommend heading over to that post first.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">ℹ️ Note</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If you get through this and want more detail, I highly recommend checking out <a href="https://www.amazon.com/Deep-Learning-Coders-fastai-PyTorch/dp/1492045527" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Deep Learning for Coders with fastai &amp; Pytorch by Jeremy Howard and Sylvain Gugger</a>. All of the material in this guide and more is covered in much greater detail in that book.  They also have some awesome courses on the <a href="https://fast.ai" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">fast.ai</a> website, such as <a href="https://course.fast.ai" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">their deep learning course</a></p>
+</blockquote>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="load-the-data">Load the Data</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The first step is to get and load the data.  We'll look at it a bit to make sure it was loaded properly as well.  We will be using fastai's built in dataset feature rather than sourcing it ourself.  We will skim over this quickly as this was covered in part 1.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># This command downloads the MNIST_TINY dataset and returns the path where it was downloaded
+path = untar_data(URLs.MNIST)
+
+# This takes that path from above, and get the path for training and validation
+training = [x.ls() for x in (path/&#x27;training&#x27;).ls().sorted()]
+validation = [x.ls() for x in (path/&#x27;testing&#x27;).ls().sorted()]</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's take a look at an image.  The first thing I recommend doing for any dataset is to view something to verify you loaded it right. The second thing is to look at the size of it.  This is not just for memory concerns, but you want to generally know some basics about whatever you are working with.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Let&#x27;s view what one of the images looks like
+im3 = Image.open(training[6][1])
+im3</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAwUlEQVR4nGNgoAaY8F0eVYAJiW3LzoNTkoXz9w+cpur/e4QmgqRTn+EObkkG/JLHcUsaMHzCLSnOcAO3pPyPewy4gML3p2wMDEwsSMoRTHH2fwwMHmd/XdDAotPk31UW5i//fv97LIBF9u0/yc7vvTpL/i3CIrn/X+zjyQwMav/eYJGc+m/HP3UGBubz2CQdf/17zczAwHAImyTDpP//cvQYxC5ilRQ98e/f3x+//nVik2RgTT7w79/vIn6skoMeAACyy0D0k05xwAAAAABJRU5ErkJggg==" class="mx-auto"/></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Let&#x27;s see what shape the underlying matrix is that represents the picture
+tensor(im3).shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">torch.Size([28, 28])</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="linear-equation">Linear Equation</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We are looking to do <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">wx + b = y</code>.   In a single class classifier, y has 1 column as it is predicting 1 thing (0 or 1).  In a multi-class classifier y has "however-many-classes-you-have" columns.</p>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="tensor-setup">Tensor Setup</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">First we get our xs and ys in tensors in the right format.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">training_t = list()
+for x in range(0,len(training)):
+    # For each class, stack them together.  Divide by 255 so all numbers are between 0 and 1
+    training_t.append(torch.stack([tensor(Image.open(i)) for i in training[x]]).float()/255)
+    
+validation_t = list()
+for x in range(0,len(validation)):
+    # For each class, stack them together.  Divide by 255 so all numbers are between 0 and 1
+    validation_t.append(torch.stack([tensor(Image.open(i)) for i in validation[x]]).float()/255)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Let&#x27;s make sure images are the same size as before
+training_t[1][1].shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">torch.Size([28, 28])</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We can do simple average of one of our images as a sanity check.  We can see that after averaging, we get a recognizable number.  That's a good sign.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">show_image(training_t[5].mean(0))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;AxesSubplot:&gt;</p>
+<img src="data:image/png;base64,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" class="mx-auto"/>                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># combine all our different images into 1 matrix.  Convert Rank 3 tensor to rank 2 tensor.
+x = torch.cat([x for x in training_t]).view(-1, 28*28)
+valid_x = torch.cat([x for x in validation_t]).view(-1, 28*28)
+
+# Defining Y.  I am starting with a tensor of all 0.  
+# This tensor has 1 row per image, and 1 column per class
+y = tensor([[0]*len(training_t)]*len(x))
+valid_y = tensor([[0]*len(validation_t)]*len(valid_x))
+
+# Column 0 = 1 when the digit is a 0, 0 when the digit is not a 0
+# Column 1 = 1 when the digit is a 1, 0 when the digit is not a 1
+# Column 2 = 1 when the digit is a 2, 0 when the digit is not a 2
+# etc.
+j=0
+for colnum in range(0,len(training_t)):
+    y[j:j+len(training_t[colnum]):,colnum] = 1
+    j = j + len(training[colnum])
+    
+j=0
+for colnum in range(0,len(validation_t)):
+    valid_y[j:j+len(validation_t[colnum]):,colnum] = 1
+    j = j + len(validation[colnum])
+
+
+# Combine by xs and ys into 1 dataset for convenience.
+dset = list(zip(x,y))
+valid_dset = list(zip(valid_x,valid_y))
+
+# Inspect the shape of our tensors
+x.shape,y.shape,valid_x.shape,valid_y.shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([60000, 784]),
+ torch.Size([60000, 10]),
+ torch.Size([10000, 784]),
+ torch.Size([10000, 10]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Perfect.  We have exactly what we need and defined above.  <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">60,000 images x 784 pixels</code> for <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">x</code> and <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">60,000 images x 10 classes</code> for my predictions.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">10,000 images make up the validation set.</p>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="calculate-wx-b">Calculate <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">wx + b</code></span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Let's initialize our weights and biases and then do the matrix multiplication and make sure the output is the expected shape (<code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">60,000 images x 10 classes</code>).</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Random number initialization
+def init_params(size, std=1.0): return (torch.randn(size)*std).requires_grad_()
+
+# Initialize w and b weight tensors
+w = init_params((28*28,10))
+b = init_params(10)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Linear equation to see what shape we get.
+(x@w+b).shape,(valid_x@w+b).shape</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(torch.Size([60000, 10]), torch.Size([10000, 10]))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">We have the right number of predictions.  The predictions are no good because all our weights are random, but we know we've got the right shapes.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The first thing we need to do is turn our Linear Equation into a Neural Network.  To do that we need to do this twice with a ReLu inbetween.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="neural-network">Neural Network</span></h1>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">⚠️ Important</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You can check out <a href="NeuralNetworkFoundationsP1.ipynb" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">previous blog post</a> that does thin in a simpler problem (single class classifier) and assumes less pre-requisite knowledge.  I am assuming that the information in Part 1 is understood.  If you understand Part 1, you are ready for this post!</p>
+</blockquote>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Here&#x27;s a simple Neural Network.  
+# This can have more layers by duplicating the patten seen below, this is just the fewest layers for demonstration.
+
+def simple_net(xb): 
+    
+    # Linear Equation from above
+    res = xb@w1 + b1 #Linear
+    
+    # Replace any negative values with 0.  This is called a ReLu.
+    res = res.max(tensor(0.0)) #ReLu
+    
+    # Do another Linear Equation
+    res = res@w2 + b2 #Linear
+    
+    # return the predictions
+    return res</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># initialize random weights.  
+# The number 30 here can be adjusted for more or less model complexity.
+
+multipliers = 30
+
+w1 = init_params((28*28,multipliers))
+b1 = init_params(multipliers)
+w2 = init_params((multipliers,10))
+b2 = init_params(10)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">simple_net(x).shape # 60,000 images with 10 predictions per class (one per digit)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">torch.Size([60000, 10])</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="improving-weights-and-biases">Improving Weights and Biases</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We have predictions with random weights and biases.  We need to find the right numbers for the weights and biases rather than random numbers.  To do this we need to use gradient descent  to improve the weights.  Here's roughly what we need to do:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Create a loss function to measure how close (or far) off we are</li>
+<li class="leading-relaxed pl-2">Calculate the gradient (slope) so we know which direction to step</li>
+<li class="leading-relaxed pl-2">Adjust our values in that direction</li>
+<li class="leading-relaxed pl-2">Repeat many times</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The first thing we need in order to use gradient descent is a loss function.  Let's use something simple, how far off we were.  If the correct answer was 1, and we predicted a 0.5 that would be a loss of 0.5.  We will do this for every class</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We will add something called a sigmoid.  A sigmoid ensures that all of our predictions land between 0 and 1.  We never want to predict anything outside of these ranges.</p>
+<blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">ℹ️ Note</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If you want more of a background on what is going on here, please take a look at my series on Gradient Descent where I dive deeper on this.  We will be calculating a gradient - which are equivalent to the "Path Value"</p>
+</blockquote>
+</div></div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="loss-function">Loss Function</span></h3>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def mnist_loss(predictions, targets):
+    
+    # make all prediction between 0 and 1
+    predictions = predictions.sigmoid()
+    
+    # Difference between predictions and target
+    return torch.where(targets==1, 1-predictions, predictions).mean()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Calculate loss on training and validation sets to make sure the function works
+mnist_loss(simple_net(x),y),mnist_loss(simple_net(valid_x),valid_y)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">(tensor(0.5195, grad_fn=&lt;MeanBackward0&gt;),
+ tensor(0.5191, grad_fn=&lt;MeanBackward0&gt;))</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="calculate-gradient">Calculate Gradient</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">WE now have a function we need to optimize and a loss function to tell us our error.  We are ready for gradient descent.  Let's create a function to change our weights.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">First, we will make sure our datasets are in a DataLoader.  This is convenience class that helps manage our data and get batches.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># Batch size of 256 - feel free to change that based on your memory
+dl = DataLoader(dset, batch_size=1000, shuffle=True)
+valid_dl = DataLoader(valid_dset, batch_size=1000)
+
+# Example for how to get the first batch
+xb,yb = first(dl)
+valid_xb,valid_yb = first(valid_dl)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def calc_grad(xb, yb, model):
+    
+    # calculate predictions
+    preds = model(xb)
+    
+    # calculate loss
+    loss = mnist_loss(preds, yb)
+    
+    # Adjust weights based on gradients
+    loss.backward()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="train-the-model">Train the Model</span></h3>
+</div>
+                 <div class="prose-section my-4"><blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Note: This is the same from part 1</p>
+</blockquote>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def train_epoch(model, lr, params):
+    for xb,yb in dl:
+        calc_grad(xb, yb, model)
+        for p in params:
+            p.data -= p.grad*lr
+            p.grad.zero_()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="measure-accuracy-on-batch">Measure Accuracy on Batch</span></h3>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def batch_accuracy(xb, yb):    
+    # this is checking for each row, which column has the highest score.
+    # p_inds, y_inds gives the index highest score, which is our prediction.
+    p_out, p_inds = torch.max(xb,dim=1)
+    y_out, y_inds = torch.max(yb,dim=1)
+    
+    # Compre predictions with actual
+    correct = p_inds == y_inds
+    
+    # average how often we are right (accuracy)
+    return correct.float().mean()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="measure-accuracy-on-all">Measure Accuracy on All</span></h3>
+</div>
+                 <div class="prose-section my-4"><blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Note: This is the same from part 1</p>
+</blockquote>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">def validate_epoch(model):
+    # Calculate accuracy on the entire validation set
+    accs = [batch_accuracy(model(xb), yb) for xb,yb in valid_dl]
+    
+    # Combine accuracy from each batch and round
+    return round(torch.stack(accs).mean().item(), 4)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="initialize-weights-and-biases">Initialize weights and biases</span></h3>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python"># When classifying 3 vs 7 in part one, we just used 30 weights.  
+# With this problem being much harder, I will give it more weights to work with
+
+complexity = 500 
+w1 = init_params((28*28,complexity))
+b1 = init_params(complexity)
+w2 = init_params((complexity,10))
+b2 = init_params(10)
+
+params = w1,b1,w2,b2</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="train-the-model">Train the Model</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Below we will actually train our model.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">lr = 50
+# epoch means # of passes through our data (60,000 images)
+epochs = 30
+loss_old = 9999999
+
+for i in range(epochs):
+    train_epoch(simple_net, lr, params)
+    
+    # Print Accuracy metric every 10 iterations
+    if (i % 10 == 0) or (i == epochs - 1):
+        print(&#x27;Accuracy:&#x27;+ str(round(validate_epoch(simple_net)*100,2))+&#x27;%&#x27;)
+        
+    loss_new = mnist_loss(simple_net(x),y)
+    
+    loss_old = loss_new</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Accuracy:18.71%
+Accuracy:31.39%
+Accuracy:34.11%
+Accuracy:34.81%
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="results">Results</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">A few key points:</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">The Loss is not the same as the metric (Accuracy).  Loss is what the models use, Accuracy is more meaningful to us humans.</li>
+<li class="leading-relaxed pl-2">We see that our loss slowly decreases each epoch.  Our accuracy is getting better over time as well.</li>
+</ul>
+<h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="this-model-vs-sota">This Model vs SOTA</span></h3>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">What is different about this model than a best practice model?</p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">This model is only 1 layer.  State of the art for image recognition will use more layers.  Resnet 34 and Resnet 50 are common (34 and 50 layers).  This would just mean we would alternate between the ReLu and linear layers and duplicate what we are doing with more weights and biases.</li>
+<li class="leading-relaxed pl-2">More weights and Biases.  The Weights and Biases I used are fairly small - I ran this extremely quickly on a CPU.  With the appropriate size weight and biases tensors, it would make way more sense to use a GPU.</li>
+<li class="leading-relaxed pl-2">Matrix Multiplication is replaced with Convolutions for image recognition.  A Convolution can be thought of as matrix multiplication if you averaged some of the pixels together.  This intuitively makes sense as 1 pixel in itself is meaningless without the context of other pixels.  So we tie them together some.</li>
+<li class="leading-relaxed pl-2">Dropout would make our model less likely to overfit and less dependent on specific pixels.  It would do this by randomly ignoring different pixels so it cannot rely on them.  It's very similar to how decision trees randomly ignore variables for their splits.</li>
+<li class="leading-relaxed pl-2">Discriminate learning rates means that the learning rates are not the same for all levels of the neural network.  With only 1 layer, naturally we don't worry about this.</li>
+<li class="leading-relaxed pl-2">Gradient Descent - we can adjust our learning rate based on our loss to speed up the process</li>
+<li class="leading-relaxed pl-2">Transfer learning - we can optimize our weights on a similar task so when we start trying to optimize weights on digits we aren't starting from random variables.</li>
+<li class="leading-relaxed pl-2">Keep training for as many epochs as we see our validation loss decrease</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">As you can see, these are not completely different models.  These are small tweaks to what we have done above that make improvements - the combination of these small tweaks and a few other tricks are what elevate these models.  There are many 'advanced' variations of Neural Networks, but the concepts are typically along the lines of above.  If you boil them down to what they are really doing without all the jargon - they are pretty simple concepts.</p>
+</div></div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#intro" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Intro</a><a href="#load-the-data" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Load the Data</a><a href="#linear-equation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Linear Equation</a><a href="#tensor-setup" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Tensor Setup</a><a href="#calculate-wx-b" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Calculate `wx + b`</a><a href="#neural-network" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Neural Network</a><a href="#improving-weights-and-biases" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Improving Weights and Biases</a><a href="#loss-function" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Loss Function</a><a href="#calculate-gradient" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Calculate Gradient</a><a href="#train-the-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Train the Model</a><a href="#measure-accuracy-on-batch" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Measure Accuracy on Batch</a><a href="#measure-accuracy-on-all" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Measure Accuracy on All</a><a href="#initialize-weights-and-biases" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Initialize weights and biases</a><a href="#train-the-model" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Train the Model</a><a href="#results" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Results</a><a href="#this-model-vs-sota" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">This Model vs SOTA</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

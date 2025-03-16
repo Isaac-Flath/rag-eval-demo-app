@@ -1,0 +1,1096 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-25-DNS.ipynb">
+             <meta property="og:title" content="DNS 101">
+             <meta property="og:description" content="A Practical Guide of key information needed to know about DNS to host web apps">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="DNS 101">
+             <meta name="twitter:description" content="A Practical Guide of key information needed to know about DNS to host web apps">
+             <meta property="article:published_time" content="2025-03-25">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="DNS">
+             <meta property="article:tag" content="web apps">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-25-DNS.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/dns.webp">
+             <meta name="twitter:image" content="static/thumbnail_imgs/dns.webp">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">DNS 101</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">A Practical Guide of key information needed to know about DNS to host web apps</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#what-this-post-will-deliver" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What This Post Will Deliver</a><a href="#context-setting-background-and-foundation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Context Setting: Background and Foundation</a><a href="#dns-diagnositcs" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">DNS Diagnositcs</a><a href="#domain-registrar-registry" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Domain Registrar &amp; Registry</a><a href="#root-servers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Root Servers</a><a href="#tld-servers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">TLD Servers</a><a href="#authoritative-nameservers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Authoritative Nameservers</a><a href="#a-and-cname-records-directing-traffic-to-your-web-server" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">A and CNAME Records: Directing Traffic to Your Web Server</a><a href="#isprecursive-dns-servers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">ISP/Recursive DNS Servers</a><a href="#local-cache" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Local Cache</a><a href="#troubleshooting-dns-issues-a-complete-solution" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Troubleshooting DNS Issues: A Complete Solution</a><a href="#1-check-domain-registration" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">1. Check Domain Registration</a><a href="#3-check-dns-records" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">3. Check DNS Records</a><a href="#5-verify-web-server-connectivity" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">5. Verify Web Server Connectivity</a><a href="#conclusion-mastering-dns-for-web-developers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Conclusion: Mastering DNS for Web Developers</a><a href="#key-takeaways" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Key Takeaways</a><a href="#next-steps" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Next Steps</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Ever deployed a web app only to find yourself staring at a blank screen instead of your beautiful creation? You're not alone. I recently spent many frustrating hours debugging why a newly deployed application wasn't working, only to discover it was a simple DNS configuration issue. DNS problems are the silent killers - they seem simple until they're not, and suddenly you're down a rabbit hole of technical jargon.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The worst part? Most DNS tutorials either oversimplify ("just point your domain to this IP!") or overwhelm you with network engineering concepts you don't need. There's rarely a middle ground that gives developers exactly what they need to know - no more, no less.</p>
+</div></div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="what-this-post-will-deliver">What This Post Will Deliver</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">By the end of this post, you'll have a practical understanding of DNS that actually matters for web development. I'm not going to turn you into a network engineer - instead, I'll give you the mental model and debugging tools to solve 90% of the DNS issues you'll encounter when deploying web applications.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">We will define what each (poorly named) entity does and why so you can reason about issues,</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You'll learn how to methodically trace DNS issues through the entire resolution chain, with Python code snippets you can run to diagnose problems at each step. Here's a quick example of checking if your domain is properly registered:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">import whois
+
+domain = &quot;isaacflath.com&quot;
+w = whois.whois(domain)
+print(f&quot;Registrar: {w.registrar}&quot;)
+print(f&quot;Creation Date: {w.creation_date}&quot;)
+print(f&quot;Expiration Date: {w.expiration_date}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Registrar: NAMECHEAP INC
+Creation Date: 2025-03-13 05:06:07
+Expiration Date: 2027-03-13 05:06:07
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="context-setting-background-and-foundation">Context Setting: Background and Foundation</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Before diving into the technical details, let's establish a foundational understanding. DNS (Domain Name System) is essentially the internet's phone book - it translates human-friendly domain names like "isaacflath.com" into machine-friendly IP addresses like "192.168.1.1" that computers use to find each other.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This translation happens through a hierarchical system of servers, each responsible for different parts of the domain name resolution process. Understanding this hierarchy is key to diagnosing issues when things go wrong.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This diagram illustrates this hierarchy, from root servers at the top to your specific DNS records at the bottom. Each component plays a crucial role, and problems can occur at any level - which is why having a systematic debugging approach is so valuable.  We will walk through each step in this blog post.</p>
+</div></div>
+                 <div class="prose-section my-4"><blockquote class="pl-6 border-l-4 border-gradient-to-b from-indigo-400 to-purple-400 
+        italic mb-6 text-gray-700 py-2 bg-gradient-to-r from-purple-50 to-transparent">
+<p class="text-lg leading-relaxed mb-6 text-gray-800">🙏 I have a huge amount of gratitude to <a href="https://alexisgallagher.com" class="text-indigo-600 hover:text-indigo-800 underline decoration-2 decoration-indigo-200 hover:decoration-indigo-500 transition-all duration-300">Alexis Gallagher</a> who has taught me a great deal about DNS.  I would not have the knowledge required to write this post if not for him.</p>
+</blockquote>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">As you read the blog post, keep referring back to this diagram and understand where you are in it.  This diagram is what you really need to know!</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from IPython.display import HTML
+
+# The HTML to render the Mermaid diagram
+mermaid_html = &quot;&quot;&quot;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+flowchart TD
+    %% Define nodes with consistent background color
+    Registrar[&quot;Domain Registrar&lt;br&gt;(e.g. Namecheap)&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;whois domain.com&lt;/span&gt;&quot;]
+    Registry[&quot;Domain Registry&lt;br&gt;(e.g. Verisign for .com)&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;whois domain.com&lt;/span&gt;&quot;]
+    NameServers[&quot;Name Servers&lt;br&gt;(NS records)&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;dig NS domain.com&lt;/span&gt;&quot;]
+    RootServers[&quot;Root Servers&lt;br&gt;(13 worldwide)&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;dig NS .&lt;/span&gt;&quot;]
+    TLDServers[&quot;TLD Servers&lt;br&gt;(.com, .org etc)&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;dig NS com.&lt;/span&gt;&quot;]
+    ISPServers[&quot;ISP/Recursive DNS Servers&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;dig domain.com&lt;/span&gt;&quot;]
+    UserDevice[&quot;User&#x27;s Device&lt;br&gt;DNS Request&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;nslookup domain.com&lt;/span&gt;&quot;]
+    WebServer[&quot;Web Server&lt;br&gt;(A/CNAME records)&lt;br&gt;&lt;span style=&#x27;color:orange&#x27;&gt;dig A domain.com&lt;br&gt;dig CNAME example.com&lt;/span&gt;&quot;]
+    
+    %% Define connections with labels
+    Registrar --&gt;|&quot;Register domain name&quot;| Registry
+    Registry --&gt;|&quot;Update root servers&quot;| RootServers
+    Registrar --&gt;|&quot;Configure DNS records&quot;| NameServers
+    RootServers --&gt;|&quot;Delegate to TLD servers&quot;| TLDServers
+    TLDServers --&gt;|&quot;Delegate to authoritative NS&quot;| UserDevice
+    NameServers --&gt;|&quot;Provide DNS records&quot;| ISPServers
+    UserDevice --&gt;|&quot;Query propagates&quot;| ISPServers
+    ISPServers --&gt;|&quot;Cache and return results&quot;| WebServer
+    
+    %% Style all nodes with the same background color
+    classDef defaultStyle fill:#f0f8ff,stroke:#333,stroke-width:2px
+    
+    %% Apply consistent style to all nodes
+    class Registrar,Registry,NameServers,RootServers,TLDServers,ISPServers,UserDevice,WebServer defaultStyle
+    
+    %% Add direction
+    linkStyle default stroke:#666,stroke-width:2px,color:black;
+&lt;/div&gt;
+&lt;script&gt;
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: &#x27;default&#x27;,
+        securityLevel: &#x27;loose&#x27;
+    });
+&lt;/script&gt;
+&quot;&quot;&quot;
+
+# Display the HTML
+HTML(mermaid_html)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="dns-diagnositcs">DNS Diagnositcs</span></h1>
+</div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="domain-registrar-registry">Domain Registrar &amp; Registry</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Domain Registrar = The Store Where You Buy Your Listing</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">This is like a shop (e.g., <strong>Namecheap</strong>, <strong>GoDaddy</strong>) where you go to "buy" your domain name</li>
+<li class="leading-relaxed pl-2">You pay them a fee to reserve your unique name (e.g., isaacflath.com) for a period of time</li>
+<li class="leading-relaxed pl-2">They handle the paperwork and customer service</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: Registrars allow you to configure <strong>nameservers</strong> for your domain, which determine where your DNS records are stored and managed</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Domain Registry = The Official Record Keeper</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">This is the organization (e.g., <strong>Verisign</strong> for .com domains) that maintains the master database</li>
+<li class="leading-relaxed pl-2">They're like the government office that maintains property records</li>
+<li class="leading-relaxed pl-2">They don't deal with individual customers, but work with registrars</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>ICANN = The Governing Authority</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">The <strong>Internet Corporation for Assigned Names and Numbers</strong> oversees the entire domain name system</li>
+<li class="leading-relaxed pl-2">They accredit registrars and establish policies for domain registration</li>
+<li class="leading-relaxed pl-2">They ensure the stability and security of the domain name system globally</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Imagine buying a plot of land. The domain registrar is like the real estate agent who handles your purchase, while the domain registry is like the county records office that maintains the official database of who owns what property. You deal with the agent (registrar), who then ensures your ownership is recorded with the official record keeper (registry). ICANN would be like the government agency that regulates real estate transactions and maintains standards.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When you register a domain, your registrar collects your information and payment, then notifies the appropriate registry to record that you now "own" that domain name for the duration of your registration period.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking Domain Registration</h4>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">You can check domain registration information using the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">whois</code> command</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+whois isaacflath.com | grep Registrar:</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>   Registrar: NameCheap, Inc.
+Registrar: NAMECHEAP INC
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">This will return detailed information about the domain, including registrar, registration dates, and nameserver information.  I have filtered it with <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">grep</code> to only show the Registrar, but try running it yourself to see all the information it provides!</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Here's some key information to look at (you will understand more of what the results mean by the end of the blog post :))</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+whois isaacflath.com | grep -E &#x27;Registrar:|Name Server:|Creation Date:|Expiration Date:&#x27; | grep -v &#x27;Registrar URL&#x27;</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>   Creation Date: 2025-03-13T05:06:07Z
+   Registrar: NameCheap, Inc.
+   Name Server: PDNS1.REGISTRAR-SERVERS.COM
+   Name Server: PDNS2.REGISTRAR-SERVERS.COM
+Creation Date: 2025-03-13T05:06:07.00Z
+Registrar Registration Expiration Date: 2027-03-13T05:06:07.00Z
+Registrar: NAMECHEAP INC
+Name Server: pdns1.registrar-servers.com
+Name Server: pdns2.registrar-servers.com
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="root-servers">Root Servers</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Root Servers = The Top of the DNS Hierarchy</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These are 13 special server clusters (labeled A through M) distributed worldwide</li>
+<li class="leading-relaxed pl-2">They're the first step in the DNS resolution process</li>
+<li class="leading-relaxed pl-2">They maintain information about the authoritative nameservers for top-level domains (TLDs)</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: Root servers don't store information about specific domains, but direct queries to the appropriate TLD servers</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>TLD Servers = The Next Level Down</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These servers maintain information about domains under specific TLDs (.com, .org, .net, etc.)</li>
+<li class="leading-relaxed pl-2">They know which nameservers are authoritative for each domain within their TLD</li>
+<li class="leading-relaxed pl-2">When queried, they respond with the nameservers responsible for the specific domain</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>IANA = The Root Zone Manager</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">The <strong>Internet Assigned Numbers Authority</strong> manages the DNS root zone</li>
+<li class="leading-relaxed pl-2">They coordinate the global pool of IP addresses and AS numbers</li>
+<li class="leading-relaxed pl-2">They ensure the stability and correct operation of the root server system</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Imagine walking into a huge library looking for a specific book. You first go to the main directory at the entrance. This directory doesn't tell you exactly where your book is, but it directs you to the right floor or section (like "Fiction, 3rd floor" or "Science, west wing"). Root servers work the same way - they don't know where "isaacflath.com" is, but they know to direct you to the servers that handle all ".com" domains.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When your computer looks up a website, it often starts by asking a root server "Where can I find information about .com domains?" The root server responds with directions to the TLD servers that handle .com domains.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking Root Servers</h4>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">You can check root servers using the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">dig</code> command:</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+dig NS . +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>m.root-servers.net.
+k.root-servers.net.
+a.root-servers.net.
+c.root-servers.net.
+j.root-servers.net.
+b.root-servers.net.
+h.root-servers.net.
+l.root-servers.net.
+i.root-servers.net.
+e.root-servers.net.
+f.root-servers.net.
+g.root-servers.net.
+d.root-servers.net.
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This will return a list of the root nameservers that form the foundation of the global DNS system.</p>
+</div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="tld-servers">TLD Servers</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>TLD Servers = The Section Managers of the Internet</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These servers are responsible for specific top-level domains (.com, .org, .net, etc.)</li>
+<li class="leading-relaxed pl-2">They maintain information about all domains registered under their TLD</li>
+<li class="leading-relaxed pl-2">They direct queries to the appropriate authoritative nameservers for specific domains</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: TLD servers don't store the actual DNS records for your domain, but know which nameservers do</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Registry Operators = The TLD Administrators</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Organizations like <strong>Verisign</strong> (for .com and .net) manage TLD servers</li>
+<li class="leading-relaxed pl-2">They maintain the authoritative database for their TLDs</li>
+<li class="leading-relaxed pl-2">They work with registrars to update domain information</li>
+<li class="leading-relaxed pl-2">Different TLDs may have different registry operators (e.g., Public Interest Registry for .org)</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If root servers are like the main directory of a library that points you to different sections, TLD servers are like the section-specific information desks. When you arrive at the "Fiction Section" (the .com TLD), the information desk there doesn't know exactly where every book is, but it can tell you which shelf contains the specific author you're looking for. Similarly, the .com TLD servers don't know the IP address for isaacflath.com, but they know which nameservers are responsible for that domain.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking TLD Servers</h4>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">You can check TLD servers using the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">dig</code> command:</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+dig NS com. +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>d.gtld-servers.net.
+b.gtld-servers.net.
+g.gtld-servers.net.
+h.gtld-servers.net.
+k.gtld-servers.net.
+c.gtld-servers.net.
+m.gtld-servers.net.
+j.gtld-servers.net.
+e.gtld-servers.net.
+a.gtld-servers.net.
+l.gtld-servers.net.
+f.gtld-servers.net.
+i.gtld-servers.net.
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This will return a list of the nameservers responsible for the .com top-level domain, which are crucial in the DNS resolution chain for all .com websites.</p>
+</div>
+                 <div class="prose-section my-4"><div><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="authoritative-nameservers">Authoritative Nameservers</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Authoritative Nameservers = The Final Authority for Your Domain</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These servers hold the actual DNS records for your specific domain</li>
+<li class="leading-relaxed pl-2">They provide definitive answers about your domain's IP addresses and other configurations</li>
+<li class="leading-relaxed pl-2">They're typically provided by your DNS host (could be your registrar, hosting provider, or a third-party DNS service)</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: These are configured at your registrar and determine where all your DNS records are stored and managed</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>DNS Zone = Your Domain's Complete Record Collection</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">A DNS zone is the complete set of records for your domain</li>
+<li class="leading-relaxed pl-2">It contains all the information about how to route traffic to your domain</li>
+<li class="leading-relaxed pl-2">It's maintained on your authoritative nameservers</li>
+<li class="leading-relaxed pl-2">Changes to your DNS records are made in this zone</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If the DNS system is like a library, authoritative nameservers are the specific bookshelves where your book is stored. When someone asks, "Where can I find the book 'isaacflath.com'?", they're first directed to the main entrance (root servers), then to the correct section (TLD servers), and finally to the exact shelf (authoritative nameservers) where your book is located. The authoritative nameservers then provide the exact location (IP address) where the content can be found.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking Authoritative Nameservers</h4>
+</div></div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">You can check authoritative nameservers and query them directly using dig:</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+# Find nameservers
+dig NS isaacflath.com +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>pdns2.registrar-servers.com.
+pdns1.registrar-servers.com.
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Check A records from one of these nameservers</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+# Query a specific nameserver for A records
+dig @pdns1.registrar-servers.com isaacflath.com A +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>7el1rp37.up.railway.app.
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="a-and-cname-records-directing-traffic-to-your-web-server">A and CNAME Records: Directing Traffic to Your Web Server</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>A Records = The Direct IP Address Pointer</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These records map your domain name directly to a specific IPv4 address (e.g., 192.168.1.1)</li>
+<li class="leading-relaxed pl-2">They're the crucial final step in the DNS resolution chain</li>
+<li class="leading-relaxed pl-2">When someone types your domain in their browser, A records provide the actual server location</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: A records are what ultimately connect users to your web server or application</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>CNAME Records = Aliases for Your Domain</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These create an alias pointing one domain to another (e.g., www.example.com → example.com)</li>
+<li class="leading-relaxed pl-2">They don't contain IP addresses directly but point to another domain name that will be resolved</li>
+<li class="leading-relaxed pl-2">They're useful for subdomains that should point to the same destination as your main domain</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: CNAMEs add an extra DNS lookup step but simplify management when IP addresses change</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>CNAME Limitations and Considerations</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">The target of a CNAME must be a domain name, not an IP address</li>
+<li class="leading-relaxed pl-2">CNAME records cannot exist on the apex/root domain (example.com) in standard DNS</li>
+<li class="leading-relaxed pl-2">A domain with a CNAME record cannot have other record types (like MX or TXT)</li>
+<li class="leading-relaxed pl-2">They're ideal for third-party services integration (blog.yourdomain.com → hosting-service.com)</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>TTL (Time To Live) = Cache Duration</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">This value determines how long DNS resolvers should cache your records</li>
+<li class="leading-relaxed pl-2">Lower TTL values mean changes propagate faster but increase DNS lookup traffic</li>
+<li class="leading-relaxed pl-2">Higher TTL values improve performance but slow down propagation of changes</li>
+<li class="leading-relaxed pl-2">Typical values range from minutes (300 seconds) to days (86400 seconds)</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Other DNS Records = The Specific Instructions for Your Domain</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>AAAA Records</strong>: Map a domain to an IPv6 address</li>
+<li class="leading-relaxed pl-2"><strong>MX Records</strong>: Direct email to the correct mail servers</li>
+<li class="leading-relaxed pl-2"><strong>TXT Records</strong>: Store text information (often used for verification and security)</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If the DNS system is like a delivery service, A records are the exact coordinates where your package (web request) should be delivered. After going through all previous DNS servers, the browser finally gets the exact address (IP address) where your website is hosted.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">CNAME records are like mail forwarding. When a request arrives for "www.example.com," the DNS system checks its records and sees instructions to "forward all requests to example.com instead." The browser then follows that domain's address resolution path.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking A and CNAME Records</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You can check these records using the <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">dig</code> command:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+dig A isaacflath.com +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>7el1rp37.up.railway.app.
+trestle.proxy.rlwy.net.
+35.212.94.98
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+dig CNAME www.isaacflath.com +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>isaacflath.com.
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">These commands will show you the IP addresses associated with your domain and any domain aliases, which are essential for directing web traffic to the correct destination.</p>
+</div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="isprecursive-dns-servers">ISP/Recursive DNS Servers</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>ISP/Recursive DNS Servers = Your Personal DNS Navigator</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">These servers handle DNS resolution requests from your devices</li>
+<li class="leading-relaxed pl-2">They query the DNS hierarchy on your behalf, starting from root servers if necessary</li>
+<li class="leading-relaxed pl-2">They're typically provided by your Internet Service Provider or public services (like Google's 8.8.8.8 or Cloudflare's 1.1.1.1)</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: These servers cache results to improve performance, which affects how quickly DNS changes propagate</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>DNS Resolution Process = The Complete Journey</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">When you type a domain name, your device first checks its local cache</li>
+<li class="leading-relaxed pl-2">If not found, it queries the recursive DNS server configured in your network settings</li>
+<li class="leading-relaxed pl-2">The recursive server either returns a cached result or performs a full lookup through the DNS hierarchy</li>
+<li class="leading-relaxed pl-2">Results are cached according to the TTL (Time To Live) values specified in the DNS records</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>DNS Caching = Performance vs. Propagation</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Caching reduces load on authoritative servers and speeds up common lookups</li>
+<li class="leading-relaxed pl-2">Different recursive servers may have different cached values during DNS changes</li>
+<li class="leading-relaxed pl-2">This is why some users might see your new website while others still see the old one</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: You cannot force cache expiration on recursive servers you don't control</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">If the DNS system is like a library, recursive DNS servers are like research assistants who know the library's organization. When you need information, instead of navigating the complex library system yourself, you simply ask your assistant "Where can I find isaacflath.com?" The assistant either immediately tells you from memory (cache) or goes through the process of consulting the main directory (root servers), finding the right section (TLD servers), and locating the specific shelf (authoritative nameservers) to get your answer.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking Recursive DNS Resolution</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You can check how different recursive DNS servers resolve your domain:</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For example, Google DNS resolution:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+dig @8.8.8.8 isaacflath.com +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>7el1rp37.up.railway.app.
+trestle.proxy.rlwy.net.
+35.212.94.98
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Or Cloudflare DNS resolution:</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+dig @1.1.1.1 isaacflath.com +short</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>7el1rp37.up.railway.app.
+trestle.proxy.rlwy.net.
+35.212.94.98
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This will show you how major public DNS providers are currently resolving your domain, which is useful for checking if DNS changes have propagated globally.</p>
+</div>
+                 <div class="prose-section my-4"><h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="local-cache">Local Cache</span></h2>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Local DNS Cache = Your Device's Memory of Previous Lookups</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">This is the DNS information stored directly on your computer, phone, or other device</li>
+<li class="leading-relaxed pl-2">Your operating system maintains this cache to avoid repeated DNS lookups</li>
+<li class="leading-relaxed pl-2">It's the first place your device checks before making external DNS queries</li>
+<li class="leading-relaxed pl-2"><strong>Important</strong>: Outdated cache entries can cause confusion when DNS records change</li>
+</ul>
+<p class="text-lg leading-relaxed mb-6 text-gray-800"><strong>Browser DNS Cache = Browser-Specific DNS Storage</strong></p>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2">Most web browsers maintain their own separate DNS cache</li>
+<li class="leading-relaxed pl-2">This adds another layer of caching beyond your operating system</li>
+<li class="leading-relaxed pl-2">Different browsers on the same device might show different results during DNS changes</li>
+<li class="leading-relaxed pl-2">Browser caches typically have shorter retention times than OS-level caches</li>
+</ul>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Analogy</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Think of your local DNS cache like a personal address book. When you need to visit a friend, you first check your address book to see if you already know where they live. Only if you don't have their address (or suspect it might have changed) do you ask someone else. Similarly, your device first checks its local cache before asking recursive DNS servers for domain information.</p>
+<h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Checking Your Local DNS Resolution</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You can check how your local system is currently resolving a domain using Python:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">import socket
+
+domain = &quot;isaacflath.com&quot;
+try:
+    ip = socket.gethostbyname(domain)
+    print(f&quot;Local resolution: {domain} -&gt; {ip}&quot;)
+except socket.gaierror as e:
+    print(f&quot;Resolution error: {e}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Local resolution: isaacflath.com -&gt; 35.212.94.98
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><h4 class="text-xl font-semibold mt-6 mb-3 text-purple-700">Viewing and Clearing Your Local DNS Cache</h4>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">For Windows:</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+# View DNS cache
+ipconfig /displaydns
+
+# Clear DNS cache
+ipconfig /flushdns</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">For macOS:</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+# Clear DNS cache (macOS 10.15+)
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">For Linux:</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">%%bash
+# Restart the nscd service if installed
+sudo systemctl restart nscd</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">This allows you to clear your local DNS cache when troubleshooting, which is often the first step in resolving DNS-related issues after making changes to your domain configuration.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">import requests
+
+domain = &quot;isaacflath.com&quot;
+try:
+    response = requests.get(f&quot;https://{domain}&quot;, timeout=5)
+    print(f&quot;Status code: {response.status_code}&quot;)
+    print(f&quot;Server responded in {response.elapsed.total_seconds():.2f} seconds&quot;)
+    print(f&quot;Server type: {response.headers.get(&#x27;Server&#x27;, &#x27;Unknown&#x27;)}&quot;)
+except requests.exceptions.RequestException as e:
+    print(f&quot;Connection error: {e}&quot;)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Status code: 200
+Server responded in 0.52 seconds
+Server type: railway-edge
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">You can also check if specific ports are open:</p>
+</div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="troubleshooting-dns-issues-a-complete-solution">Troubleshooting DNS Issues: A Complete Solution</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">When facing DNS problems, follow this systematic approach to identify and resolve issues at each level of the DNS hierarchy:</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="1-check-domain-registration">1. Check Domain Registration</span></h2>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">import whois
+domain = "yourdomain.com"
+w = whois.whois(domain)
+print(f"Registrar: {w.registrar}")
+print(f"Creation Date: {w.creation_date}")
+print(f"Expiration Date: {w.expiration_date}")
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">✅ Verify your domain is properly registered and not expired</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">2. Verify Nameserver Configuration</h2>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-bash bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">dig NS yourdomain.com +short
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">✅ Confirm nameservers match what's configured at your registrar</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="3-check-dns-records">3. Check DNS Records</span></h2>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-bash bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block"># A Records
+dig A yourdomain.com +short
+
+# CNAME Records
+dig CNAME www.yourdomain.com +short
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">✅ Ensure records point to the correct IP addresses or domains</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">4. Test DNS Propagation</h2>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-bash bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block"># Check with different public DNS providers
+dig @8.8.8.8 yourdomain.com +short  # Google DNS
+dig @1.1.1.1 yourdomain.com +short  # Cloudflare DNS
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">✅ If results differ, you may need to wait for propagation</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="5-verify-web-server-connectivity">5. Verify Web Server Connectivity</span></h2>
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-python bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block">import requests
+import socket
+
+# Check HTTP response
+try:
+    response = requests.get(f"https://yourdomain.com", timeout=5)
+    print(f"Status code: {response.status_code}")
+except requests.exceptions.RequestException as e:
+    print(f"Connection error: {e}")
+    
+# Check if ports are open
+def check_port(domain, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(2)
+    result = sock.connect_ex((domain, port))
+    sock.close()
+    return result == 0
+
+print(f"HTTP (port 80) open: {check_port('yourdomain.com', 80)}")
+print(f"HTTPS (port 443) open: {check_port('yourdomain.com', 443)}")
+</code></pre>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">✅ Confirm your web server is responding properly</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary">Common Solutions</h2>
+<ol class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-decimal marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>Domain not resolving</strong>: Update nameservers at your registrar</li>
+<li class="leading-relaxed pl-2"><strong>Subdomain issues</strong>: Add appropriate CNAME or A records</li>
+<li class="leading-relaxed pl-2"><strong>Slow propagation</strong>: Lower TTL values (300-3600 seconds)</li>
+<li class="leading-relaxed pl-2"><strong>Inconsistent results</strong>: Clear local DNS cache with:
+<pre class="bg-indigo-50 rounded-xl p-6 mb-6 shadow-inner overflow-x-auto border border-indigo-100"><code class="language-bash bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm bg-transparent p-0 text-gray-800 font-mono text-sm block"># Windows
+ipconfig /flushdns
+
+# macOS
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+
+# Linux
+sudo systemctl restart nscd
+</code></pre>
+</li>
+</ol>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Remember that changes can take time to propagate globally (up to 24-48 hours), though most updates are visible within minutes to hours with modern configurations.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="conclusion-mastering-dns-for-web-developers">Conclusion: Mastering DNS for Web Developers</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">DNS might seem like a complex system, but with the mental model and debugging tools we've covered, you now have everything you need to confidently manage your domain configurations and troubleshoot issues when they arise.</p>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="key-takeaways">Key Takeaways</span></h2>
+<ul class="space-y-3 mb-6 ml-6 text-lg text-gray-800 list-disc marker:text-indigo-400">
+<li class="leading-relaxed pl-2"><strong>DNS is hierarchical</strong>: From root servers to your specific records, understanding this hierarchy helps you pinpoint where problems occur</li>
+<li class="leading-relaxed pl-2"><strong>Systematic debugging works</strong>: Follow the complete solution workflow to methodically trace issues through the entire DNS chain</li>
+<li class="leading-relaxed pl-2"><strong>Patience is sometimes required</strong>: Remember that DNS propagation takes time, especially with higher TTL values</li>
+<li class="leading-relaxed pl-2"><strong>Tools matter</strong>: Simple commands like <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">dig</code>, <code class="bg-indigo-50 px-2 py-0.5 rounded-md text-indigo-700 font-mono text-sm">whois</code>, and basic Python scripts can save you hours of frustration</li>
+</ul>
+<h2 class="text-3xl font-bold mt-10 mb-5 gradient-text-secondary"><span id="next-steps">Next Steps</span></h2>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Now that you understand DNS fundamentals, try mapping out how your favorite blog's DNS works!</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Have you encountered particularly tricky DNS issues? Share your experiences in the comments - I'd love to hear how you solved them and what you learned in the process.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">And if this guide helped you solve a DNS problem, let me know! There's nothing more satisfying than knowing these practical guides are making someone's development life a little easier.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Happy deploying!</p>
+</div></div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#what-this-post-will-deliver" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What This Post Will Deliver</a><a href="#context-setting-background-and-foundation" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Context Setting: Background and Foundation</a><a href="#dns-diagnositcs" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">DNS Diagnositcs</a><a href="#domain-registrar-registry" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Domain Registrar &amp; Registry</a><a href="#root-servers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Root Servers</a><a href="#tld-servers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">TLD Servers</a><a href="#authoritative-nameservers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Authoritative Nameservers</a><a href="#a-and-cname-records-directing-traffic-to-your-web-server" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">A and CNAME Records: Directing Traffic to Your Web Server</a><a href="#isprecursive-dns-servers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">ISP/Recursive DNS Servers</a><a href="#local-cache" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Local Cache</a><a href="#troubleshooting-dns-issues-a-complete-solution" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Troubleshooting DNS Issues: A Complete Solution</a><a href="#1-check-domain-registration" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">1. Check Domain Registration</a><a href="#3-check-dns-records" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">3. Check DNS Records</a><a href="#5-verify-web-server-connectivity" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">5. Verify Web Server Connectivity</a><a href="#conclusion-mastering-dns-for-web-developers" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Conclusion: Mastering DNS for Web Developers</a><a href="#key-takeaways" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Key Takeaways</a><a href="#next-steps" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-4
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Next Steps</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>

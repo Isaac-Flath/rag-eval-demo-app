@@ -1,0 +1,880 @@
+ <!doctype html>
+ <html>
+   <head>
+     <title>Isaac Flath</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/fasthtml-js@1.0.12/fasthtml.js"></script><script src="https://cdn.jsdelivr.net/gh/answerdotai/surreal@main/surreal.js"></script><script src="https://cdn.jsdelivr.net/gh/gnat/css-scope-inline@main/script.js"></script><script src="https://unpkg.com/@tailwindcss/browser@4"></script>     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+   </head>
+   <body>
+     <div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        // Set initial state explicitly
+        mobileMenu.style.display = 'none';
+        
+        // Handle click events
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Menu toggle clicked');
+          
+          // Toggle menu visibility
+          if (mobileMenu.style.display === 'block') {
+            console.log('Hiding menu');
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            console.log('Showing menu');
+            mobileMenu.style.display = 'block';
+            menuToggle.classList.add('is-active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.style.display === 'block') {
+            mobileMenu.style.display = 'none';
+            menuToggle.classList.remove('is-active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.error('Menu elements not found:', { menuToggle, mobileMenu });
+      }
+    });
+    </script>       <style>
+    /* Hamburger icon animation */
+    .is-active .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .is-active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .is-active .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+      display: none;
+      z-index: 9999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: white !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+    }
+    </style>
+       <div class="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 top-0 z-50 border-b border-indigo-100 shadow-[0_2px_10px_rgba(165,180,252,0.15)] relative">
+         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative z-40">
+<a href="/" class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text hover:scale-105 transform transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">Isaac Flath</a>           <div class="hidden md:flex items-center gap-x-8">
+<a href="/" class="relative px-4 py-2 text-cyan-600 hover:text-cyan-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">About</a><a href="/blog" class="relative px-4 py-2 text-yellow-600 hover:text-yellow-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-yellow-400 after:to-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Blog</a><a href="/feed" class="relative px-4 py-2 text-orange-600 hover:text-orange-800 transition-all duration-300 hover:scale-110 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-orange-400 after:to-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">RSS</a><form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="flex ml-8">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-48 px-3 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+<button aria-expanded="false" aria-label="Toggle menu" type="button" id="menu-toggle" class="md:hidden p-3 rounded-lg hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300" name="menu-toggle">             <div class="flex flex-col justify-center items-center">
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 mb-1.5 transition-all duration-300 hamburger-line"></div>
+               <div class="w-6 h-0.5 bg-indigo-600 transition-all duration-300 hamburger-line"></div>
+             </div>
+</button>         </div>
+         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-b border-indigo-100 shadow-lg z-50 rounded-b-lg">
+<a href="/" class="block w-full py-4 px-6 text-lg text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">About</a><a href="/blog" class="block w-full py-4 px-6 text-lg text-yellow-600 hover:text-yellow-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">Blog</a><a href="/feed" class="block w-full py-4 px-6 text-lg text-orange-600 hover:text-orange-800 hover:bg-indigo-50 transition-colors duration-300 border-b border-indigo-50">RSS</a>           <div class="p-6">
+<form enctype="multipart/form-data" action="https://app.kit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">               <div class="w-full">
+                 <input type="email" name="email_address" placeholder="Enter email" required class="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+<button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>               </div>
+</form>           </div>
+         </div>
+       </div>
+       <div>
+         <div class="max-w-6xl mx-auto px-4 py-8">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+           <link rel="stylesheet" href="/static/prism.css">
+           <link rel="stylesheet" href="/static/blog_styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>           <div class="mb-8">
+             <meta property="og:type" content="article">
+             <meta property="og:url" content="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-11-20-PartialDependencePlotting.ipynb">
+             <meta property="og:title" content="Partial Dependence Plotting">
+             <meta property="og:description" content="UA guide for showing the benefits and technique to Partial Dependence Plotting">
+             <meta property="og:site_name" content="Isaac Flath's Blog">
+             <meta name="twitter:card" content="summary_large_image">
+             <meta name="twitter:title" content="Partial Dependence Plotting">
+             <meta name="twitter:description" content="UA guide for showing the benefits and technique to Partial Dependence Plotting">
+             <meta property="article:published_time" content="2020-11-20">
+             <meta property="article:author" content="Isaac Flath">
+             <meta property="article:tag" content="Data Exploration">
+             <meta property="article:tag" content="Tabular Modeling">
+             <link rel="canonical" href="https://isaacflath.com/blog/blog_post?fpath=posts%2F2020-11-20-PartialDependencePlotting.ipynb">
+             <meta property="og:image" content="static/thumbnail_imgs/DataAnalysis.jpg">
+             <meta name="twitter:image" content="static/thumbnail_imgs/DataAnalysis.jpg">
+             <h1 class="gradient-text-primary text-4xl font-bold mb-4">Partial Dependence Plotting</h1>
+             <p class="text-xl text-gray-600 leading-relaxed">UA guide for showing the benefits and technique to Partial Dependence Plotting</p>
+           </div>
+           <div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('#toc-list a').forEach(link => {
+                            const isActive = link.getAttribute('href') === '#' + id;
+                            link.style.color = isActive ? '#4F46E5' : '#4B5563';
+                            link.style.fontWeight = isActive ? '600' : '400';
+                            link.style.borderLeftColor = isActive ? '#4F46E5' : 'transparent';
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all section headings
+            document.querySelectorAll('span[id]').forEach(section => observer.observe(section));
+
+            // Handle smooth scrolling
+            document.querySelectorAll('#toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>             <div class="lg:hidden mb-8">
+               <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                 <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                 <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#what-is-partial-dependence-plotting" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What is Partial Dependence Plotting?</a><a href="#why-use-it" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Why use it?</a><a href="#examples" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Examples</a><a href="#logistic-regression" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Logistic Regression</a><a href="#what-now" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What now?</a>                 </div>
+               </div>
+             </div>
+             <div class="lg:flex lg:gap-8">
+               <div class="lg:max-w-4xl">
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="what-is-partial-dependence-plotting">What is Partial Dependence Plotting?</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Traditional analysis looks at historical data and describes it.  The data is fixed and you are looking to make a prediction based on the data.  The person is responsible for finding <strong>and</strong> understanding the interactions.  This gets exponentially more difficult in higher dimensional problems.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">Partial Dependence Plotting looks at a prediction, and modifies the data to see how it effects the prediction.  The <strong>model</strong> is fixed and you are looking to understand interactions by modifying the data.  <strong>The model is responsible for finding the interactions and the person just focuses on understanding the interactions the model found.</strong></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">In this way, you can think of Descriptive Analysis as a method of analysis that focuses on understanding the data, where Partial Dependence Plotting is a method of analysis that focuses on understanding the predictions.  They can accomplish similar goals but approach it differently.</p>
+</div></div>
+                 <div class="prose-section my-4"><div><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="why-use-it">Why use it?</span></h1>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">One of the <strong>biggest challenges of statistics is that is requires a person to make a series of assumptions</strong>.  Whether you are doing p-values, or correlations, or any other test you are typically making some assumption.  Maybe you have to assume the data follows a particular distribution, maybe you have to assume that your variables are independent, or maybe you assume your variables and linearly dependent.  Whatever the case may be, you typically have to make some assumption - and if you make the wrong assumptions you can get incorrect findings.  It's for this reason that P-Values are not recommended for use in validating results by the majority of the top statisticians (including the American Statistical Association), despite the fact that most business analysts use them heavily in their analysis and decision making.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This leads me to the first advantage of the partial dependence plotting approach, which is a big differentiator between statistics and data science.  <strong>With partial dependence plotting you are testing through experimentation rather than through descriptive statistics and statistical testing</strong>.  For example a Neural Network can approximate any function, whether that is linear, exponential, logistic, or any other shape with any number of interactions. So I can use that, measure the accuracy, and understand the uncertainty of my analysis with no assumptions about distribution, co-linearity, or type of function.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">A second advantage is that if you have sufficient data for your analysis, but it's not all the right type due to some data imbalance you can leverage all the data for the analysis.  For example, if you are looking at customer churn you likely have many more accounts that did not churn than accounts that did churn.  With descriptive statistics you will look at the few churned accounts and see what they have in common.  With a model driven approach, <strong>you can look at accounts that did not churn and see what changes you could make to those accounts that makes them more likely to churn.</strong></p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">A third advantage is that the output you are seeing is the prediction.  <strong>The prediction of the future is often what is of value</strong>, so if the goal is to make some decision based on what is likely to happen in the future <strong>keeping that in the forefront is ideal.</strong></p>
+</div></div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="examples">Examples</span></h1>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Enough jibber-jabber.  Let's look at some examples.  We'll start simple and get a little bit more complicated over time.</p>
+</div>
+                 <div class="prose-section my-4"><h3 class="text-2xl font-semibold mt-8 mb-4 text-indigo-700"><span id="logistic-regression">Logistic Regression</span></h3>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's create a model on the classic iris dataset and fit a logistic regression to it.  When we do this, we see we have a mean accuracy score of about 97%.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+X, y = load_iris(return_X_y=True)
+clf = LogisticRegression(max_iter=500).fit(X, y)
+clf.score(X, y)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">0.9733333333333334</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">That's pretty good, but we don't really know what the important variables are.  Let's experiment a bit.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">for our first 2 rows of data we can see the model predicts 0, which is the correct answer.  What changes could we make to the data to make it predict something else?</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">X[0:2, :]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">array([[5.1, 3.5, 1.4, 0.2],
+       [4.9, 3. , 1.4, 0.2]])</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">clf.predict(X[0:2, :])</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">array([0, 0])</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's test adding to each of the columns and see if any change the predictions.  Our original prediction is [0,0], so anything different tells us something</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">for i in range(0,X_temp.shape[1]):
+  X_temp = X[0:2, :].copy()
+  X_temp[:,i] = X_temp[:,i]+20
+  print(&#x27;New Values&#x27;)
+  print(X_temp)
+  print(&#x27;Prediction&#x27;)
+  print(clf.predict(X_temp))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>New Values
+[[25.1  3.5  1.4  0.2]
+ [24.9  3.   1.4  0.2]]
+Prediction
+[1 1]
+New Values
+[[ 5.1 23.5  1.4  0.2]
+ [ 4.9 23.   1.4  0.2]]
+Prediction
+[0 0]
+New Values
+[[ 5.1  3.5 21.4  0.2]
+ [ 4.9  3.  21.4  0.2]]
+Prediction
+[2 2]
+New Values
+[[ 5.1  3.5  1.4 20.2]
+ [ 4.9  3.   1.4 20.2]]
+Prediction
+[2 2]
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">That's interesting. We can see that adding to the 1st, 3rd, and 4th variable made our model make a different prediction.  Since we know our model was about 97% accurate, we know this is meaningful.  It is picking up on some trend in the data using each of these columns.  Lets hone in on column 1 to see if we can understand this more.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">for i in range(-10,10):
+  X_temp = X[0:2, :].copy()
+  X_temp[:,0] = X_temp[:,0]+i
+  if (clf.predict(X_temp) == np.array([0,0])).all():
+    continue
+  print(&#x27;Prediction for adding &#x27; +str(i))
+  print(clf.predict(X_temp))</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><pre ><code class=''>Prediction for adding 4
+[0 1]
+Prediction for adding 5
+[1 1]
+Prediction for adding 6
+[1 1]
+Prediction for adding 7
+[1 1]
+Prediction for adding 8
+[1 1]
+Prediction for adding 9
+[1 1]
+</code></pre></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Great, here we see that subtracting from that value does not change the prediction, but once we start adding 4 - 5 to it changes.  Our original value for these rows were 5.1 and 4.9, so it seems that when we get to the 9 - 10 range for that value it becomes more likely that it is a different class all other things equal.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">This is great insight, and throughout this process we made no assumptions of co-linearity, distribution, or anything else.  we just manipulated the data to see the change in predictions of the mode.</p>
+</div></div>
+                 <div class="prose-section my-4"><h5>Neural Network</h5>
+</div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Let's try a slightly more difficult problem and use a Neural Net.  I could have used an XGBoost or a random forest, or any other model choice.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">The goal of this dataset is to predict whether the person makes more or less than 50K salary.  This could be useful for marketing reasons if you are trying to decide what products to market to whom.  Let's first look at the data.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">from fastai.tabular.all import *
+path = untar_data(&#x27;ADULT_SAMPLE&#x27;)
+df = pd.read_csv(path/&#x27;adult.csv&#x27;)
+df.head()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">age</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">workclass</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">fnlwgt</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">education</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">education-num</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">marital-status</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">occupation</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">relationship</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">race</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">sex</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">capital-gain</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">capital-loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">hours-per-week</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">native-country</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">0</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">49</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Private</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">101320</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Assoc-acdm</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">12.0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Married-civ-spouse</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Wife</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">White</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Female</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1902</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">40</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">United-States</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">&gt;=50k</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">1</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">44</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Private</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">236746</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Masters</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">14.0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Divorced</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Exec-managerial</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Not-in-family</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">White</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Male</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">10520</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">45</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">United-States</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">&gt;=50k</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">2</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">38</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Private</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">96185</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">HS-grad</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Divorced</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Unmarried</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Black</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Female</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">32</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">United-States</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">&lt;50k</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">3</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">38</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Self-emp-inc</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">112847</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Prof-school</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">15.0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Married-civ-spouse</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Prof-specialty</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Husband</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Asian-Pac-Islander</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Male</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">40</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">United-States</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">&gt;=50k</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">4</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">42</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Self-emp-not-inc</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">82297</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">7th-8th</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">NaN</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Married-civ-spouse</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Other-service</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Wife</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Black</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">Female</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">50</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">United-States</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">&lt;50k</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">We can see we've got a lot of difference variables or both categorical and continuous to look at.  Lets format this for a Neural Network and fit the model.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">to = TabularPandas(df, procs=[Categorify, FillMissing,Normalize],
+                   cat_names = [&#x27;workclass&#x27;, &#x27;education&#x27;, &#x27;marital-status&#x27;, &#x27;occupation&#x27;, &#x27;relationship&#x27;, &#x27;race&#x27;],
+                   cont_names = [&#x27;age&#x27;, &#x27;fnlwgt&#x27;, &#x27;education-num&#x27;],
+                   y_names=&#x27;salary&#x27;,
+                   splits=RandomSplitter(valid_pct=0.2)(range_of(df)))
+dls = to.dataloaders(bs=64)</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">learn = tabular_learner(dls, metrics=accuracy, wd=0.01)
+print(to.valid.xs.shape)
+learn.fit_one_cycle(3)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: left;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">epoch</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">train_loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">valid_loss</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">accuracy</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.363723</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.374584</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.823710</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:04</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">1</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.350536</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.357585</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.832002</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:04</td>
+    </tr>
+    <tr>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">2</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.342484</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.354669</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">0.831081</td>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">00:04</td>
+    </tr>
+  </tbody>
+</table></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">to.y</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">21805    0
+14537    0
+1399     0
+8107     0
+16255    0
+        ..
+3603     1
+15429    0
+3551     0
+1880     0
+30442    0
+Name: salary, Length: 32561, dtype: int8</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df.iloc[0]</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">age                                49
+workclass                     Private
+fnlwgt                         101320
+education                  Assoc-acdm
+education-num                      12
+marital-status     Married-civ-spouse
+occupation                        NaN
+relationship                     Wife
+race                            White
+sex                            Female
+capital-gain                        0
+capital-loss                     1902
+hours-per-week                     40
+native-country          United-States
+salary                          &gt;=50k
+Name: 0, dtype: object</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">Perfect - we have pretty good accuracy and our validation set has over 6000 data points.  Let's look at some features to see if we can understand what impacts our model's prediction of the individuals salary.</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">0 = &lt;50K, so it correctly predicts the first row is someone the makes more than 50k.  Let's see at what point the prediction switches if I reduce hours worked.</p>
+</div></div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">row, clas, probs = learn.predict(df.iloc[0])
+clas</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">tensor(1)</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">for i in range(-40,0):
+  X_temp = df.iloc[0].copy()
+  X_temp[&#x27;hours-per-week&#x27;] = X_temp[&#x27;hours-per-week&#x27;]+i
+  row, clas, probs = learn.predict(X_temp)
+  if clas == tensor(1):
+    continue
+  print(&#x27;Prediction for adding &#x27; +str(i))
+  print(clas)
+  
+from IPython.display import clear_output
+clear_output()</code></pre>                     </div>
+                   </div>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Interestingly, the model isn't convinced even if I change hours works to 0, maybe it thinks the money is passive income or comes from the husband.  Let's see if we can figure that out.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">for i in df.relationship.unique():
+  X_temp = df.iloc[0].copy()
+  X_temp[&#x27;relationship&#x27;] = i
+  row, clas, probs = learn.predict(X_temp)
+  print(&#x27;Prediction for adding &#x27; +str(i))
+  print(clas)</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+<pre ><code class=''>Prediction for adding  Wife
+tensor(1)
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+<pre ><code class=''>Prediction for adding  Not-in-family
+tensor(0)
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+<pre ><code class=''>Prediction for adding  Unmarried
+tensor(0)
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+<pre ><code class=''>Prediction for adding  Husband
+tensor(0)
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+<pre ><code class=''>Prediction for adding  Own-child
+tensor(0)
+</code></pre>                         <p class="text-lg leading-relaxed mb-6 text-gray-800">&lt;IPython.core.display.HTML object&gt;</p>
+<pre ><code class=''>Prediction for adding  Other-relative
+tensor(0)
+</code></pre>                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">If we change the relationship to anything else, the model starts thinking she makes less than 50K instead of more.  We can continue to experiment with individual rows, or when ready try some larger experiments across the larger dataset.</p>
+</div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">df[[&#x27;salary&#x27;,&#x27;age&#x27;]][:1000].groupby(&#x27;salary&#x27;).count()</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe 
+        w-full mb-6 border-collapse border border-indigo-200 rounded-lg overflow-hidden
+        bg-white shadow-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">age</th>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">salary</th>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">&lt;50k</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">754</td>
+    </tr>
+    <tr>
+      <th class="bg-gradient-to-r from-indigo-50 to-purple-50 
+        p-4 text-left font-semibold text-indigo-700 border-b border-indigo-200">&gt;=50k</th>
+      <td class="p-4 border-b border-indigo-100 text-gray-700">246</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="code-section my-6">
+                   <div class="my-6">
+                     <div class="code-block">
+<pre class="code-block"><code class="language-python">results = list()
+for i in df.relationship.unique():
+  g50k, l50k = (0,0)
+  df_temp = df[:1000].copy()
+  df_temp[&#x27;relationship&#x27;] = i
+  for rownum in range(0,len(df_temp)):
+    if learn.predict(df_temp.iloc[rownum])[1] == tensor(1):
+      g50k += 1
+    else:
+      l50k += 1
+    clear_output()
+  results.append((i,g50k,l50k))
+results</code></pre>                     </div>
+                   </div>
+                   <article class="border border-indigo-100 rounded-xl shadow-sm bg-white overflow-x-auto">
+                     <footer>
+                       <div class="p-4">
+                         <p class="text-lg leading-relaxed mb-6 text-gray-800">[(&#x27; Wife&#x27;, 232, 768),
+ (&#x27; Not-in-family&#x27;, 165, 835),
+ (&#x27; Unmarried&#x27;, 150, 850),
+ (&#x27; Husband&#x27;, 210, 790),
+ (&#x27; Own-child&#x27;, 161, 839),
+ (&#x27; Other-relative&#x27;, 107, 893)]</p>
+                       </div>
+                     </footer>
+                   </article>
+                 </div>
+                 <div class="prose-section my-4"><div><p class="text-lg leading-relaxed mb-6 text-gray-800">We see that changing the relationship did impact the predictions across 1000 samples.  Married couples, both "Wife" and "Husband" seem to be much better off with making more than 50K per year.  I wonder if their income is combined and thus being double counted.  "Unmarried" and "Other-Relative" seem to be the relationship types that are least likely to make more than 50K.  Keep iterating through experiment like we have been to dig deeper!</p>
+<p class="text-lg leading-relaxed mb-6 text-gray-800">You may be asking, how do I know 1000 samples is enough?  The answer - I don't.  Try 1500 samples next and if the results show roughly the same thing you know you have a representative sample.  This is again, the data science approach vs the statistical approach.</p>
+</div></div>
+                 <div class="prose-section my-4"><h1 class="text-4xl font-bold mt-12 mb-6 gradient-text-primary"><span id="what-now">What now?</span></h1>
+</div>
+                 <div class="prose-section my-4"><p class="text-lg leading-relaxed mb-6 text-gray-800">Now, you keep digging like we have been.  We can be completely sure that the model has found meaningful interactions.  We saw that in the accuracy score.  So rather than me trying to find interactions, I am trying to uncover the interactions that the model has found.  Again, I am making no assumptions in regard to distribution, co-linearity, type of relationships between variable, sample size, or anything else so it allows for much safe analysis of complex datasets.</p>
+</div>
+                 <div class="code-section my-6">
+                 </div>
+                 <div class="bg-gray-50 p-6 rounded-xl mt-12 border border-gray-200">
+                   <h3 class="text-xl font-semibold mb-2 text-gray-900">Stay Updated</h3>
+                   <p class="text-gray-600 mb-4">Get notified about new posts on AI, web development, and tech insights.</p>
+<form enctype="multipart/form-data" action="https://app.convertkit.com/forms/7782268/subscriptions" method="post" data-sv-form="7782268" data-uid="33bc264078" data-format="inline" data-version="5" class="seva-form formkit-form">                     <div class="flex">
+                       <input type="email" name="email_address" placeholder="Enter your email" required class="w-full md:w-64 px-4 py-2 rounded-l-lg border border-r-0 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent">
+<button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition-colors duration-200">Subscribe</button>                     </div>
+</form>                 </div>
+               </div>
+               <div class="hidden lg:block lg:w-80 lg:flex-shrink-0 lg:ml-8 lg:sticky lg:top-4 lg:self-start">
+                 <div class="
+            bg-gray-50 rounded-xl p-6
+            border border-gray-200
+            max-h-[calc(100vh-2rem)] overflow-y-auto
+        ">
+                   <h2 class="text-lg font-medium text-gray-900 mb-4">Contents</h2>
+                   <div id="toc-list" class="space-y-1 border-l-2 border-gray-200">
+<a href="#what-is-partial-dependence-plotting" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What is Partial Dependence Plotting?</a><a href="#why-use-it" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Why use it?</a><a href="#examples" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Examples</a><a href="#logistic-regression" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-normal
+                          ml-8
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">Logistic Regression</a><a href="#what-now" class="
+                          block text-sm text-gray-600 hover:text-indigo-600 
+                          font-semibold
+                          ml-0
+                          py-2 border-l-2 pl-4
+                          hover:border-indigo-500 border-transparent
+                          transition-all duration-200
+                      ">What now?</a>                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Highlight all code blocks
+                Prism.highlightAll();
+            });
+        </script>         </div>
+       </div>
+       <section class="bg-gradient-to-b from-purple-50 to-indigo-50 mt-12">
+         <div class="max-w-4xl mx-auto px-4">
+           <div class="h-1 w-full bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 mb-8 shadow-[0_0_15px_rgba(165,180,252,0.3)]"></div>
+           <div class="space-y-4 py-8">
+             <div class="flex justify-center">
+               <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 inline-block text-transparent bg-clip-text">Let&#x27;s Connect</h2>
+             </div>
+             <div class="flex gap-4 justify-center flex-wrap">
+<a href="https://github.com/isaac-flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(165,180,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-indigo-400"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg><span class="ml-2">GitHub</span>                 </div>
+</a><a href="https://linkedin.com/in/isaacflath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-purple-400"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg><span class="ml-2">LinkedIn</span>                 </div>
+</a><a href="https://x.com/isaac_flath" class="px-6 py-3 rounded-lg bg-white/90 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)] border border-indigo-100">                 <div class="flex items-center">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="w-6 h-6 text-pink-400"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg><span class="ml-2">Twitter</span>                 </div>
+</a>             </div>
+             <p class="mt-8 text-sm text-indigo-600/70 text-center">© 2025 Isaac Flath • All rights reserved</p>
+           </div>
+         </div>
+       </section>
+     </div>
+   </body>
+ </html>
