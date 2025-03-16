@@ -1,10 +1,10 @@
 .sesskey
+search_evaluations.db*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-search_evaluations.db*
 # C extensions
 *.so
 
