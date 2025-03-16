@@ -67,14 +67,6 @@ Features:
 - Notes and annotations for search results
 - Historical evaluation tracking and comparison
 
-## Requirements
-
-- Python 3.8+
-- LanceDB
-- Sentence Transformers
-- FastHTML/MonsterUI
-- Additional dependencies for BM25 and reranking
-
 ## Getting Started
 
 1. Clone the repository
