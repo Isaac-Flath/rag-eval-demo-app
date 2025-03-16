@@ -14,6 +14,8 @@ This project provides tools to:
 2. Search blog posts using various retrieval methods
 3. Evaluate and compare search results through an interactive web application
 
+> Note:  This is deployed to railway [here](https://search-eval-demo-production.up.railway.app/).  But it's not designed for multiple users as it's a demo so if too many people are there it'll probably be super slow!
+> 
 ## Components
 
 ### 1. Evaluation Application
