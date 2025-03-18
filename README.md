@@ -1,6 +1,6 @@
 # RAG Evaluation Demo App
 
-A toolkit for building, searching, and evaluating retrieval-augmented generation (RAG) systems using blog posts from isaacflath.com.  This is intended as a demo app for educational purposes.
+A toolkit for building, searching, and evaluating search systems using blog posts from isaacflath.com.  This is intended as a starter or demo app for educational purposes.
 
 This is a companion repo for the following blog posts:
 - [Retrieval 101](https://isaacflath.com/blog/blog_post?fpath=posts%2F2025-03-17-Retrieval101.ipynb)
@@ -14,7 +14,7 @@ This project provides tools to:
 2. Search blog posts using various retrieval methods
 3. Evaluate and compare search results through an interactive web application
 
-> Note:  This is deployed to railway [here](https://search-eval-demo-production.up.railway.app/).  But it's not designed for multiple users as it's a demo so if too many people are there it'll probably be super slow!
+> Note:  This is deployed to railway [here](https://search-eval-demo-production.up.railway.app/).  But it's not designed for multiple users as it's a demo, so if too many people are there, it'll probably be super slow!
 > 
 ## Components
 
@@ -34,7 +34,7 @@ Features:
 
 ### 2. Content Storage
 
-- `rendered_posts/`: Contains blog posts from isaacflath.com in both HTML and Markdown formats.  `create_search_index.py` uses these, and they are provided for your own experimentation.
+- `rendered_posts/`: Contains blog posts from isaacflath.com in both HTML and Markdown formats.  `create_search_index.py` uses these, and they are provided for your experimentation.
 
 ### 3. Search Index Creation
 
@@ -68,8 +68,6 @@ Search methods:
 - `keyword`: Sparse retrieval using BM25 algorithm
 - `hybrid`: Combined vector and keyword search
 - `rerank`: Two-stage retrieval with cross-encoder reranking
-
-
 
 ## Getting Started
 
