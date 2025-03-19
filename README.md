@@ -1,4 +1,4 @@
-# RAG Evaluation Demo App
+# Retrieval 101 + Eval Demo App
 
 A toolkit for building, searching, and evaluating search systems using blog posts from isaacflath.com.  This is intended as a starter or demo app for educational purposes.
 
