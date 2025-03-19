@@ -11,7 +11,7 @@ This is a companion repo for the following blog posts:
 This project provides tools to:
 
 1. Create search indices from blog post content (lancedb vectors and bm25 corpus)
-2. Search blog posts using various retrieval methods
+2. Search blog posts using various retrieval methods (including a hybrid search -> re-ranking search)
 3. Evaluate and compare search results through an interactive web application
 
 > Note:  This is deployed to railway [here](https://search-eval-demo-production.up.railway.app/).  But it's not designed for multiple users as it's a demo, so if too many people are there, it'll probably be super slow!
